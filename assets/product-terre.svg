@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+  <rect width="900" height="1100" fill="#eadfd4"/>
+  <circle cx="450" cy="510" r="285" fill="#fffaf2"/>
+  <circle cx="355" cy="430" r="58" fill="#b66f53"/>
+  <circle cx="545" cy="430" r="58" fill="#b66f53"/>
+  <path d="M355 500c-56 74-54 150 0 228 54-78 56-154 0-228Zm190 0c-56 74-54 150 0 228 54-78 56-154 0-228Z" fill="#2b2f2b"/>
+  <path d="M320 805c86 38 173 38 260 0" fill="none" stroke="#7b8b73" stroke-width="18" stroke-linecap="round"/>
+  <text x="450" y="945" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#20241f">Boucles Terre</text>
+</svg>

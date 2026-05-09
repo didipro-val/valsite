@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+  <rect width="900" height="1100" fill="#eee4d8"/>
+  <circle cx="450" cy="500" r="260" fill="#fffaf2"/>
+  <path d="M290 432c82 116 238 116 320 0" fill="none" stroke="#b66f53" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="300" cy="432" r="58" fill="#7b8b73"/>
+  <circle cx="600" cy="432" r="58" fill="#7b8b73"/>
+  <circle cx="450" cy="565" r="70" fill="#d9a7a1"/>
+  <text x="450" y="915" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#20241f">Bracelet Soline</text>
+</svg>

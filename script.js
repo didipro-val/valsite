@@ -5,7 +5,7 @@ const products = [
     category: "bijoux",
     tag: "Bijoux",
     price: 28,
-    image: "https://source.unsplash.com/900x1100/?handmade,earrings",
+    image: "assets/product-soline.svg",
     description: "Une piece delicate dans l'esprit des petites merveilles Valmeo."
   },
   {
@@ -14,7 +14,7 @@ const products = [
     category: "bijoux",
     tag: "Bijoux",
     price: 34,
-    image: "https://source.unsplash.com/900x1100/?artisan,earrings",
+    image: "assets/product-aube.svg",
     description: "Une paire lumineuse pour accompagner les tenues simples."
   },
   {
@@ -23,7 +23,7 @@ const products = [
     category: "bijoux",
     tag: "Bijoux",
     price: 42,
-    image: "https://source.unsplash.com/900x1100/?jewelry,handmade,earrings",
+    image: "assets/product-maison.svg",
     description: "Une creation douce a porter ou a offrir."
   },
   {
@@ -32,7 +32,7 @@ const products = [
     category: "cadeaux",
     tag: "Cadeaux",
     price: 49,
-    image: "https://source.unsplash.com/900x1100/?earrings,gift,box",
+    image: "assets/product-rituel.svg",
     description: "Un ensemble pret a offrir avec une attention personnalisable."
   },
   {
@@ -41,7 +41,7 @@ const products = [
     category: "bijoux",
     tag: "Bijoux",
     price: 31,
-    image: "https://source.unsplash.com/900x1100/?artisan,jewelry",
+    image: "assets/product-terre.svg",
     description: "Une paire chaleureuse pour les jours simples."
   },
   {
@@ -50,7 +50,7 @@ const products = [
     category: "cadeaux",
     tag: "Cadeaux",
     price: 26,
-    image: "https://source.unsplash.com/900x1100/?handmade,pouch,textile",
+    image: "assets/product-muse.svg",
     description: "Une presentation douce pour glisser un bijou et un mot."
   }
 ];

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+  <rect width="900" height="1100" fill="#e7ddd0"/>
+  <circle cx="450" cy="500" r="285" fill="#fffaf2"/>
+  <path d="M310 505 450 365l140 140v235H310Z" fill="#d9a7a1"/>
+  <path d="M345 502 450 397l105 105" fill="none" stroke="#2b2f2b" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="450" cy="575" r="58" fill="#7b8b73"/>
+  <text x="450" y="915" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#20241f">Boucles Maison</text>
+</svg>

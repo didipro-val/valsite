@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+  <rect width="900" height="1100" fill="#f4eadf"/>
+  <rect x="190" y="190" width="520" height="680" rx="44" fill="#fffaf2"/>
+  <circle cx="350" cy="390" r="42" fill="#2b2f2b"/>
+  <circle cx="550" cy="390" r="42" fill="#2b2f2b"/>
+  <path d="M350 445c-80 120-50 225 0 285 50-60 80-165 0-285Z" fill="#b66f53"/>
+  <path d="M550 445c-80 120-50 225 0 285 50-60 80-165 0-285Z" fill="#7b8b73"/>
+  <text x="450" y="945" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#20241f">Boucles Aube</text>
+</svg>

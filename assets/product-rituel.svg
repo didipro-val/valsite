@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+  <rect width="900" height="1100" fill="#efe6db"/>
+  <rect x="210" y="350" width="480" height="330" rx="36" fill="#fffaf2"/>
+  <rect x="210" y="350" width="480" height="86" rx="30" fill="#b66f53"/>
+  <path d="M450 350v330M230 436h440" stroke="#7b8b73" stroke-width="24"/>
+  <path d="M390 330c-72-80-128-68-130-22-2 56 76 60 130 42Zm120 0c72-80 128-68 130-22 2 56-76 60-130 42Z" fill="#d9a7a1"/>
+  <text x="450" y="915" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#20241f">Coffret Rituel</text>
+</svg>

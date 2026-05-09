@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+  <rect width="900" height="1100" fill="#f1e7de"/>
+  <rect x="250" y="300" width="400" height="480" rx="48" fill="#d9a7a1"/>
+  <path d="M315 335c72 80 198 80 270 0" fill="none" stroke="#fffaf2" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="365" cy="535" r="34" fill="#7b8b73"/>
+  <circle cx="535" cy="535" r="34" fill="#7b8b73"/>
+  <path d="M388 642c42 30 82 30 124 0" fill="none" stroke="#2b2f2b" stroke-width="16" stroke-linecap="round"/>
+  <text x="450" y="930" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#20241f">Pochette cadeau</text>
+</svg>
