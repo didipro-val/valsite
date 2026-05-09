@@ -8,7 +8,7 @@ Ouvrir `index.html` dans un navigateur.
 
 ## Remplacer les visuels
 
-La photo de profil publique Instagram est stockee dans `assets/valmeo-profile.jpg`. Les visuels produit actuels sont des illustrations locales de demonstration, car Instagram ne livre pas les medias des posts dans le HTML public sans connexion/API. Pour utiliser les vraies photos :
+La photo de profil publique Instagram est stockee dans `assets/valmeo-profile.jpg`. Les visuels produit sont copies depuis `C:\Users\vileurbanne\Pictures\valmeo` vers `assets/valmeo`.
 
 1. creer un dossier `assets`;
 2. y ajouter les photos produit;

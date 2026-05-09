@@ -1,57 +1,57 @@
 const products = [
   {
     id: "soline",
-    name: "Bracelet Soline",
+    name: "Boucles Coquelicot",
     category: "bijoux",
     tag: "Bijoux",
     price: 28,
-    image: "./assets/product-soline.svg",
-    description: "Une piece delicate dans l'esprit des petites merveilles Valmeo."
+    image: "./assets/valmeo/photo-01.jpeg",
+    description: "Fleurs rouges lumineuses avec perles dorees, une piece pleine d'energie."
   },
   {
     id: "aube",
-    name: "Boucles Aube",
+    name: "Boucles Bleu Porcelaine",
     category: "bijoux",
     tag: "Bijoux",
     price: 34,
-    image: "./assets/product-aube.svg",
-    description: "Une paire lumineuse pour accompagner les tenues simples."
+    image: "./assets/valmeo/photo-07.jpeg",
+    description: "Cercles bleus et medaillons decoratifs pour une allure douce et graphique."
   },
   {
     id: "maison",
-    name: "Boucles Maison",
+    name: "Boucles Rose Feuille",
     category: "bijoux",
     tag: "Bijoux",
     price: 42,
-    image: "./assets/product-maison.svg",
-    description: "Une creation douce a porter ou a offrir."
+    image: "./assets/valmeo/photo-10.jpeg",
+    description: "Papillons roses et feuilles dorees, une creation romantique et legere."
   },
   {
     id: "rituel",
-    name: "Coffret Rituel",
+    name: "Boucles Marguerite",
     category: "cadeaux",
     tag: "Cadeaux",
     price: 49,
-    image: "./assets/product-rituel.svg",
-    description: "Un ensemble pret a offrir avec une attention personnalisable."
+    image: "./assets/valmeo/photo-20.jpeg",
+    description: "Un assortiment fleuri esprit marguerite, parfait pour offrir."
   },
   {
     id: "terre",
-    name: "Boucles Terre",
+    name: "Boucles Turquoise",
     category: "bijoux",
     tag: "Bijoux",
     price: 31,
-    image: "./assets/product-terre.svg",
-    description: "Une paire chaleureuse pour les jours simples."
+    image: "./assets/valmeo/photo-21.jpeg",
+    description: "Tons turquoise, perles et pendants eventail pour une touche estivale."
   },
   {
     id: "muse",
-    name: "Pochette cadeau",
+    name: "Boucles Noir Dore",
     category: "cadeaux",
     tag: "Cadeaux",
     price: 26,
-    image: "./assets/product-muse.svg",
-    description: "Une presentation douce pour glisser un bijou et un mot."
+    image: "./assets/valmeo/photo-23.jpeg",
+    description: "Noir profond et dorure fine, une paire elegante pour une idee cadeau."
   }
 ];
 
