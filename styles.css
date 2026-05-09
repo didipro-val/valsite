@@ -1,16 +1,15 @@
 :root {
   --ink: #1f2320;
   --muted: #697066;
-  --paper: #f8f5ef;
-  --surface: #fffdf8;
+  --paper: #f6eee4;
+  --surface: #fff9f0;
   --sage: #798a72;
   --clay: #b66f53;
   --rose: #d9a7a1;
   --line: rgba(31, 35, 32, 0.13);
   --shadow: 0 22px 70px rgba(31, 35, 32, 0.14);
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+    "Trebuchet MS", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
 }
 
 * {
@@ -24,7 +23,23 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: var(--paper);
+  background:
+    radial-gradient(circle at 18% 6%, rgba(217, 167, 161, 0.28), transparent 28rem),
+    radial-gradient(circle at 86% 18%, rgba(121, 138, 114, 0.18), transparent 24rem),
+    linear-gradient(135deg, #f7efe4 0%, #f1dfd1 48%, #f7efe4 100%);
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.24) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+  background-size: 42px 42px;
+  opacity: 0.24;
 }
 
 img {
@@ -54,7 +69,7 @@ textarea {
   justify-content: space-between;
   gap: 20px;
   padding: 16px clamp(18px, 4vw, 56px);
-  background: rgba(248, 245, 239, 0.88);
+  background: rgba(255, 249, 240, 0.88);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(18px);
 }
@@ -63,7 +78,9 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  font-family: Georgia, "Times New Roman", serif;
   font-weight: 800;
+  letter-spacing: 0;
 }
 
 .brand-mark {
@@ -120,7 +137,7 @@ textarea {
 
 .hero {
   position: relative;
-  min-height: calc(100vh - 69px);
+  min-height: min(760px, calc(100vh - 69px));
   display: grid;
   align-items: end;
   overflow: hidden;
@@ -144,7 +161,7 @@ textarea {
   position: relative;
   z-index: 1;
   width: min(760px, calc(100% - 36px));
-  padding: 0 0 clamp(72px, 10vw, 120px) clamp(18px, 6vw, 82px);
+  padding: 0 0 clamp(50px, 7vw, 84px) clamp(18px, 6vw, 82px);
   color: var(--surface);
 }
 
@@ -170,15 +187,20 @@ p {
 
 h1 {
   margin-bottom: 18px;
-  font-size: clamp(3.7rem, 10vw, 9rem);
-  line-height: 0.92;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.4rem, 8vw, 7.6rem);
+  font-style: italic;
+  font-weight: 800;
+  line-height: 0.96;
   letter-spacing: 0;
 }
 
 h2 {
   margin-bottom: 14px;
-  font-size: clamp(2rem, 4vw, 4rem);
-  line-height: 1;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.4vw, 3.35rem);
+  font-style: italic;
+  line-height: 1.05;
   letter-spacing: 0;
 }
 
@@ -190,8 +212,8 @@ h3 {
 .hero p {
   max-width: 560px;
   color: rgba(255, 253, 248, 0.88);
-  font-size: 1.18rem;
-  line-height: 1.65;
+  font-size: 1.12rem;
+  line-height: 1.58;
 }
 
 .hero-actions,
@@ -209,6 +231,7 @@ h3 {
   padding: 0 18px;
   border-radius: 999px;
   font-weight: 800;
+  letter-spacing: 0;
 }
 
 .button.primary {
@@ -228,11 +251,16 @@ h3 {
 .intro-band {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-block: 1px solid var(--line);
+  margin: -1px clamp(18px, 4vw, 56px) 0;
+  overflow: hidden;
+  background: rgba(255, 249, 240, 0.78);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 14px 38px rgba(96, 67, 45, 0.08);
 }
 
 .intro-band div {
-  padding: 28px clamp(18px, 4vw, 56px);
+  padding: 22px clamp(16px, 3vw, 34px);
   border-right: 1px solid var(--line);
 }
 
@@ -251,16 +279,16 @@ h3 {
 }
 
 .section {
-  padding: clamp(64px, 9vw, 110px) clamp(18px, 4vw, 56px);
+  padding: clamp(42px, 6vw, 76px) clamp(18px, 4vw, 56px);
 }
 
 .section-heading {
   max-width: 720px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .filters {
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .filter {
@@ -280,19 +308,36 @@ h3 {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 .product-card {
   overflow: hidden;
-  background: var(--surface);
+  background: rgba(255, 249, 240, 0.92);
   border: 1px solid var(--line);
   border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(96, 67, 45, 0.08);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 38px rgba(96, 67, 45, 0.14);
 }
 
 .product-image {
   aspect-ratio: 1 / 1;
   background: #e8e1d6;
+}
+
+.product-image img {
+  transition: transform 220ms ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.035);
 }
 
 .product-content {
@@ -338,8 +383,12 @@ h3 {
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(28px, 6vw, 74px);
   align-items: center;
-  padding: clamp(64px, 9vw, 110px) clamp(18px, 4vw, 56px);
-  background: var(--surface);
+  margin: 0 clamp(18px, 4vw, 56px) clamp(42px, 6vw, 76px);
+  padding: clamp(36px, 6vw, 68px);
+  background: rgba(255, 249, 240, 0.78);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(96, 67, 45, 0.1);
 }
 
 .atelier-copy p:not(.eyebrow) {
@@ -405,6 +454,11 @@ h3 {
   display: grid;
   gap: 16px;
   max-width: 760px;
+  padding: clamp(20px, 4vw, 34px);
+  background: rgba(255, 249, 240, 0.76);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 14px 38px rgba(96, 67, 45, 0.08);
 }
 
 .checkout-form label {
@@ -423,7 +477,16 @@ h3 {
   border-radius: 8px;
 }
 
+.order-section {
+  padding-top: clamp(20px, 4vw, 38px);
+}
+
+.order-section .section-heading {
+  margin-bottom: 18px;
+}
+
 .form-note {
+  margin-bottom: 0;
   color: var(--muted);
 }
 
