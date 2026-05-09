@@ -1,9 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
-  <rect width="900" height="1100" fill="#eadfd4"/>
-  <circle cx="450" cy="510" r="285" fill="#fffaf2"/>
-  <circle cx="355" cy="430" r="58" fill="#b66f53"/>
-  <circle cx="545" cy="430" r="58" fill="#b66f53"/>
-  <path d="M355 500c-56 74-54 150 0 228 54-78 56-154 0-228Zm190 0c-56 74-54 150 0 228 54-78 56-154 0-228Z" fill="#2b2f2b"/>
-  <path d="M320 805c86 38 173 38 260 0" fill="none" stroke="#7b8b73" stroke-width="18" stroke-linecap="round"/>
-  <text x="450" y="945" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#20241f">Boucles Terre</text>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f7eee4"/><stop offset="1" stop-color="#d7bdab"/></linearGradient>
+    <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#87551f"/><stop offset=".5" stop-color="#f4d58c"/><stop offset="1" stop-color="#87551f"/></linearGradient>
+    <filter id="s"><feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#4a3328" flood-opacity=".22"/></filter>
+  </defs>
+  <rect width="900" height="1100" fill="url(#bg)"/>
+  <ellipse cx="450" cy="515" rx="285" ry="345" fill="#fffaf2" opacity=".86"/>
+  <g filter="url(#s)">
+    <circle cx="345" cy="365" r="50" fill="url(#gold)"/>
+    <circle cx="555" cy="365" r="50" fill="url(#gold)"/>
+    <path d="M345 432c-65 72-78 174-38 268 17 40 59 40 76 0 40-94 27-196-38-268Z" fill="#76866f"/>
+    <path d="M555 432c-65 72-78 174-38 268 17 40 59 40 76 0 40-94 27-196-38-268Z" fill="#b87958"/>
+    <path d="M321 504c22 18 39 18 61 0M531 504c22 18 39 18 61 0" stroke="#fff5e7" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <text x="450" y="940" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#242720">Boucles Terre</text>
 </svg>

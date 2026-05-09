@@ -1,9 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
-  <rect width="900" height="1100" fill="#f4eadf"/>
-  <rect x="190" y="190" width="520" height="680" rx="44" fill="#fffaf2"/>
-  <circle cx="350" cy="390" r="42" fill="#2b2f2b"/>
-  <circle cx="550" cy="390" r="42" fill="#2b2f2b"/>
-  <path d="M350 445c-80 120-50 225 0 285 50-60 80-165 0-285Z" fill="#b66f53"/>
-  <path d="M550 445c-80 120-50 225 0 285 50-60 80-165 0-285Z" fill="#7b8b73"/>
-  <text x="450" y="945" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#20241f">Boucles Aube</text>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f8efe6"/><stop offset="1" stop-color="#e1cdbc"/></linearGradient>
+    <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#8b5c28"/><stop offset=".5" stop-color="#f6d891"/><stop offset="1" stop-color="#8b5c28"/></linearGradient>
+    <radialGradient id="pearl" cx="35%" cy="28%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#f3e8dc"/><stop offset="1" stop-color="#c9b4a3"/></radialGradient>
+    <filter id="s"><feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="#4a3328" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="900" height="1100" fill="url(#bg)"/>
+  <rect x="185" y="180" width="530" height="700" rx="46" fill="#fffaf2" opacity=".9"/>
+  <g filter="url(#s)">
+    <circle cx="350" cy="344" r="45" fill="url(#pearl)"/>
+    <circle cx="550" cy="344" r="45" fill="url(#pearl)"/>
+    <path d="M350 397c-82 94-78 206 0 310 78-104 82-216 0-310Z" fill="url(#gold)"/>
+    <path d="M550 397c-82 94-78 206 0 310 78-104 82-216 0-310Z" fill="#b87958"/>
+    <circle cx="350" cy="579" r="38" fill="#fff7e8" opacity=".72"/>
+    <circle cx="550" cy="579" r="38" fill="#fff7e8" opacity=".72"/>
+  </g>
+  <text x="450" y="960" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#242720">Boucles Aube</text>
 </svg>

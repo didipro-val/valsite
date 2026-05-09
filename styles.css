@@ -131,8 +131,8 @@ textarea {
   inset: 0;
   content: "";
   background:
-    linear-gradient(90deg, rgba(31, 35, 32, 0.76), rgba(31, 35, 32, 0.2)),
-    linear-gradient(0deg, rgba(31, 35, 32, 0.42), transparent 55%);
+    linear-gradient(90deg, rgba(31, 35, 32, 0.58), rgba(31, 35, 32, 0.08)),
+    linear-gradient(0deg, rgba(31, 35, 32, 0.22), transparent 58%);
 }
 
 .hero-media {
