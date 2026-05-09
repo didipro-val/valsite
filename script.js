@@ -5,8 +5,8 @@ const products = [
     category: "bijoux",
     tag: "Bijoux",
     price: 28,
-    image: "https://source.unsplash.com/900x1100/?handmade,bracelet",
-    description: "Bracelet delicat pense pour les superpositions legeres."
+    image: "https://source.unsplash.com/900x1100/?handmade,earrings",
+    description: "Une piece delicate dans l'esprit des petites merveilles Valmeo."
   },
   {
     id: "aube",
@@ -19,12 +19,12 @@ const products = [
   },
   {
     id: "maison",
-    name: "Suspension Maison",
-    category: "deco",
-    tag: "Deco",
+    name: "Boucles Maison",
+    category: "bijoux",
+    tag: "Bijoux",
     price: 42,
-    image: "https://source.unsplash.com/900x1100/?handmade,home,decor",
-    description: "Piece murale douce pour rechauffer une entree ou une chambre."
+    image: "https://source.unsplash.com/900x1100/?jewelry,handmade,earrings",
+    description: "Une creation douce a porter ou a offrir."
   },
   {
     id: "rituel",
@@ -32,26 +32,26 @@ const products = [
     category: "cadeaux",
     tag: "Cadeaux",
     price: 49,
-    image: "https://source.unsplash.com/900x1100/?handmade,gift,box",
+    image: "https://source.unsplash.com/900x1100/?earrings,gift,box",
     description: "Un ensemble pret a offrir avec une attention personnalisable."
   },
   {
     id: "terre",
-    name: "Vide-poche Terre",
-    category: "deco",
-    tag: "Deco",
+    name: "Boucles Terre",
+    category: "bijoux",
+    tag: "Bijoux",
     price: 31,
-    image: "https://source.unsplash.com/900x1100/?ceramic,tray,handmade",
-    description: "Petit objet utile pour bijoux, cles ou tresors du quotidien."
+    image: "https://source.unsplash.com/900x1100/?artisan,jewelry",
+    description: "Une paire chaleureuse pour les jours simples."
   },
   {
     id: "muse",
-    name: "Pochette Muse",
+    name: "Pochette cadeau",
     category: "cadeaux",
     tag: "Cadeaux",
     price: 26,
     image: "https://source.unsplash.com/900x1100/?handmade,pouch,textile",
-    description: "Pochette textile douce pour glisser un mot, un bijou ou un secret."
+    description: "Une presentation douce pour glisser un bijou et un mot."
   }
 ];
 

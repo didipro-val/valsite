@@ -1,6 +1,6 @@
 # Valmeo Creation
 
-Site vitrine et boutique statique pour Valmeo Creation.
+Site vitrine et boutique statique pour Valmeo Creation, inspire du compte public Instagram `@valmeo.creation`.
 
 ## Ouvrir le site
 
@@ -8,7 +8,7 @@ Ouvrir `index.html` dans un navigateur.
 
 ## Remplacer les visuels
 
-Les visuels actuels sont des images de demonstration chargees depuis Unsplash. Pour utiliser les vraies photos :
+La photo de profil publique Instagram est stockee dans `assets/valmeo-profile.jpg`. Les visuels produit actuels restent des images de demonstration chargees depuis Unsplash, car Instagram ne livre pas les medias des posts dans le HTML public sans connexion/API. Pour utiliser les vraies photos :
 
 1. creer un dossier `assets`;
 2. y ajouter les photos produit;

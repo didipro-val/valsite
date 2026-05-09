@@ -74,6 +74,13 @@ textarea {
   color: var(--surface);
   background: var(--ink);
   border-radius: 50%;
+  overflow: hidden;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .desktop-nav {
@@ -342,12 +349,51 @@ h3 {
   min-height: 460px;
 }
 
-.atelier-gallery img {
+.atelier-gallery > img {
   border-radius: 8px;
 }
 
-.atelier-gallery img:first-child {
+.atelier-gallery > img:first-child {
   margin-top: 52px;
+}
+
+.instagram-link {
+  width: fit-content;
+  margin-top: 10px;
+  color: var(--surface);
+  background: var(--ink);
+}
+
+.instagram-card {
+  align-self: start;
+  margin-top: 52px;
+  padding: 24px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.instagram-card img {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+}
+
+.instagram-card strong,
+.instagram-card span {
+  display: block;
+}
+
+.instagram-card span {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+.instagram-card p {
+  margin: 18px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .checkout-form {
