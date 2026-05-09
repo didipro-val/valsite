@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Valmeo Creation imagine des pieces artisanales, sensibles et modernes a offrir ou a porter au quotidien."
+    />
+    <title>Valmeo Creation | Boutique artisanale</title>
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#accueil" aria-label="Valmeo Creation accueil">
+        <span class="brand-mark">V</span>
+        <span>Valmeo Creation</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navigation principale">
+        <a href="#boutique">Boutique</a>
+        <a href="#atelier">Atelier</a>
+        <a href="#commande">Commande</a>
+      </nav>
+      <button class="cart-toggle" type="button" aria-label="Ouvrir le panier">
+        <span>Panier</span>
+        <strong data-cart-count>0</strong>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="accueil">
+        <div class="hero-media" aria-hidden="true">
+          <img
+            src="https://source.unsplash.com/1400x1100/?handmade,ceramic,jewelry"
+            alt=""
+          />
+        </div>
+        <div class="hero-content">
+          <p class="eyebrow">Pieces faites main en petites series</p>
+          <h1>Valmeo Creation</h1>
+          <p>
+            Des objets sensibles, des accessoires delicats et des compositions
+            pensees pour les cadeaux qui restent.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#boutique">Voir la boutique</a>
+            <a class="button secondary" href="#atelier">Decouvrir l'atelier</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-band" aria-label="Promesses de la marque">
+        <div>
+          <strong>Fait main</strong>
+          <span>Chaque piece garde une trace de l'atelier.</span>
+        </div>
+        <div>
+          <strong>Petites series</strong>
+          <span>Des collections courtes, renouvelees au fil des envies.</span>
+        </div>
+        <div>
+          <strong>Commande douce</strong>
+          <span>Le paiement est simule pour valider le parcours boutique.</span>
+        </div>
+      </section>
+
+      <section class="section" id="boutique">
+        <div class="section-heading">
+          <p class="eyebrow">Selection</p>
+          <h2>La boutique</h2>
+        </div>
+        <div class="filters" aria-label="Filtres produits">
+          <button class="filter active" type="button" data-filter="all">Tout</button>
+          <button class="filter" type="button" data-filter="bijoux">Bijoux</button>
+          <button class="filter" type="button" data-filter="deco">Deco</button>
+          <button class="filter" type="button" data-filter="cadeaux">Cadeaux</button>
+        </div>
+        <div class="product-grid" data-products></div>
+      </section>
+
+      <section class="atelier" id="atelier">
+        <div class="atelier-copy">
+          <p class="eyebrow">Atelier</p>
+          <h2>Une boutique qui peut grandir avec tes vraies photos.</h2>
+          <p>
+            Les images actuelles servent de demonstration. Des que tu ajoutes
+            tes photos Instagram ou tes fichiers produit dans le dossier
+            <code>assets</code>, les fiches peuvent reprendre tes visuels exacts.
+          </p>
+        </div>
+        <div class="atelier-gallery" aria-label="Ambiance atelier">
+          <img src="https://source.unsplash.com/700x900/?craft,studio" alt="Table d'atelier artisanale" />
+          <img src="https://source.unsplash.com/700x900/?handmade,gift" alt="Emballage cadeau fait main" />
+        </div>
+      </section>
+
+      <section class="section order-section" id="commande">
+        <div class="section-heading">
+          <p class="eyebrow">Commande</p>
+          <h2>Un parcours pret pour la vente</h2>
+        </div>
+        <form class="checkout-form" data-checkout-form>
+          <label>
+            Nom
+            <input name="name" type="text" autocomplete="name" required />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            Message
+            <textarea
+              name="message"
+              rows="4"
+              placeholder="Precise une couleur, une taille ou une personnalisation..."
+            ></textarea>
+          </label>
+          <button class="button primary" type="submit">Envoyer la demande</button>
+          <p class="form-note" data-form-note>
+            Le formulaire simule l'envoi : aucune transaction bancaire n'est effectuee.
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <aside class="cart-panel" data-cart-panel aria-label="Panier" aria-hidden="true">
+      <div class="cart-header">
+        <h2>Panier</h2>
+        <button class="icon-button" type="button" data-close-cart aria-label="Fermer le panier">×</button>
+      </div>
+      <div class="cart-items" data-cart-items></div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total</span>
+          <strong data-cart-total>0 €</strong>
+        </div>
+        <a class="button primary full" href="#commande" data-close-cart-link>Commander</a>
+      </div>
+    </aside>
+    <div class="overlay" data-overlay></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
