@@ -85,19 +85,20 @@ textarea {
 
 .brand-mark {
   display: grid;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   place-items: center;
   color: var(--surface);
-  background: var(--ink);
-  border-radius: 50%;
+  background: #fff2df;
+  border: 1px solid var(--line);
+  border-radius: 8px;
   overflow: hidden;
 }
 
 .brand-mark img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .desktop-nav {
@@ -155,6 +156,28 @@ textarea {
 .hero-media {
   position: absolute;
   inset: 0;
+}
+
+.logo-hero {
+  min-height: min(740px, calc(100vh - 69px));
+  background: #fff2df;
+}
+
+.logo-hero::after {
+  background:
+    linear-gradient(90deg, rgba(31, 35, 32, 0.72) 0%, rgba(31, 35, 32, 0.34) 38%, rgba(31, 35, 32, 0.02) 70%),
+    linear-gradient(0deg, rgba(31, 35, 32, 0.14), transparent 55%);
+}
+
+.logo-hero .hero-media {
+  left: 38%;
+  background: #fff2df;
+}
+
+.logo-hero .hero-media img {
+  object-fit: contain;
+  object-position: center;
+  padding: clamp(18px, 4vw, 44px);
 }
 
 .hero-content {
@@ -621,6 +644,21 @@ h3 {
 
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .logo-hero {
+    min-height: 780px;
+    align-items: end;
+  }
+
+  .logo-hero::after {
+    background:
+      linear-gradient(0deg, rgba(31, 35, 32, 0.76) 0%, rgba(31, 35, 32, 0.4) 38%, rgba(31, 35, 32, 0.04) 78%);
+  }
+
+  .logo-hero .hero-media {
+    inset: 0;
+    bottom: 170px;
   }
 
   .intro-band div {
