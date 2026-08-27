@@ -1,57 +1,48 @@
 const products = [
   {
-    id: "soline",
-    name: "Boucles Coquelicot",
-    category: "bijoux",
-    tag: "Bijoux",
-    price: 28,
-    image: "./assets/valmeo/photo-01.jpeg",
-    description: "Fleurs rouges lumineuses avec perles dorees, une piece pleine d'energie."
+    id: "boucles-plume-turquoise",
+    name: "Boucles plume turquoise",
+    category: "bi-matieres",
+    tag: "Bi-matieres",
+    price: 20,
+    image: "./assets/articles/bi-matieres-boucles-plume-turquoise.jpeg",
+    description: "Plumes d'oiseau turquoise comme l'eau de la crete."
   },
   {
-    id: "aube",
-    name: "Boucles Bleu Porcelaine",
-    category: "bijoux",
-    tag: "Bijoux",
-    price: 34,
-    image: "./assets/valmeo/photo-07.jpeg",
-    description: "Cercles bleus et medaillons decoratifs pour une allure douce et graphique."
+    id: "boucles-perles-eventail",
+    name: "Boucles perles eventail",
+    category: "boucles",
+    tag: "Boucles",
+    price: 12,
+    image: "./assets/articles/boucles-boucles-perles-eventail.jpeg",
+    description: "Magnifiques boucles en forme d'eventail."
   },
   {
-    id: "maison",
-    name: "Boucles Rose Feuille",
-    category: "bijoux",
-    tag: "Bijoux",
-    price: 42,
-    image: "./assets/valmeo/photo-10.jpeg",
-    description: "Papillons roses et feuilles dorees, une creation romantique et legere."
+    id: "boucles-hibiscus",
+    name: "Boucles Hibiscus",
+    category: "florales",
+    tag: "Florales",
+    price: 12,
+    image: "./assets/articles/florales-boucles-hibiscus.jpeg",
+    description: "Hibiscus plus vrai que les vrais."
   },
   {
-    id: "rituel",
-    name: "Boucles Marguerite",
-    category: "cadeaux",
-    tag: "Cadeaux",
-    price: 49,
-    image: "./assets/valmeo/photo-20.jpeg",
-    description: "Un assortiment fleuri esprit marguerite, parfait pour offrir."
+    id: "boucles-fleur",
+    name: "Boucles Fleur",
+    category: "perles",
+    tag: "Perles",
+    price: 10,
+    image: "./assets/articles/perles-boucles-fleur.jpeg",
+    description: "Jolies boucles fleur faites a la main."
   },
   {
-    id: "terre",
-    name: "Boucles Turquoise",
-    category: "bijoux",
-    tag: "Bijoux",
-    price: 31,
-    image: "./assets/valmeo/photo-21.jpeg",
-    description: "Tons turquoise, perles et pendants eventail pour une touche estivale."
-  },
-  {
-    id: "muse",
-    name: "Boucles Noir Dore",
-    category: "cadeaux",
-    tag: "Cadeaux",
-    price: 26,
-    image: "./assets/valmeo/photo-23.jpeg",
-    description: "Noir profond et dorure fine, une paire elegante pour une idee cadeau."
+    id: "boucle-eventail-ponpon",
+    name: "Boucle eventail ponpon",
+    category: "polymeres",
+    tag: "Polymeres",
+    price: 22,
+    image: "./assets/articles/polymeres-boucle-eventail-ponpon.jpeg",
+    description: "Avec cette boucle on a gagne le ponpon."
   }
 ];
 
