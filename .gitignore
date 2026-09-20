@@ -1,0 +1,6 @@
+.codex-work/
+node_modules/
+outputs/
+assets/catalogue/**/*.jpg
+assets/catalogue/**/*.jpeg
+assets/catalogue/**/*.png
