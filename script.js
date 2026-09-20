@@ -1497,6 +1497,12 @@ function paragraphs(text) {
     .join("");
 }
 
+function firstSentence(text) {
+  const normalized = String(text || "").replace(/\s+/g, " ").trim();
+  const match = normalized.match(/^.*?[.!?](?=\s|$)/);
+  return match ? match[0] : normalized;
+}
+
 function renderProducts(filter = "all") {
   const visibleProducts =
     filter === "all" ? products : products.filter((product) => product.category === filter);
@@ -1515,6 +1521,7 @@ function renderProducts(filter = "all") {
             </div>
             <h3>${product.name}</h3>
             <div class="product-description">${paragraphs(product.description)}</div>
+            <p class="product-mobile-description">${firstSentence(product.description)}</p>
             <button class="button primary" type="button" data-add="${product.id}">
               Ajouter au panier
             </button>
