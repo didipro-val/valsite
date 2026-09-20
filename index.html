@@ -8,7 +8,7 @@
       content="Valmeo Creation par Valerie Palacin : boucles d'oreilles et petites merveilles faites main a s'offrir ou a offrir."
     />
     <title>Valmeo Creation | Boutique artisanale</title>
-    <link rel="stylesheet" href="./styles.css?v=9" />
+    <link rel="stylesheet" href="./styles.css?v=10" />
   </head>
   <body>
     <header class="site-header">
@@ -87,8 +87,8 @@
           <h2>Valerie Palacin, une ame creative derriere chaque piece.</h2>
           <p>
             Le compte public presente les creations Valmeo. La boutique est
-            maintenant organisee avec le catalogue complet : Creatives,
-            Faconnees, Florales et Perles.
+            maintenant organisee avec le catalogue du fichier saugardevalerie :
+            Creatives, Faconnees, Florales et Perles.
           </p>
           <a class="button instagram-link" href="https://www.instagram.com/valmeo.creation/" target="_blank" rel="noreferrer">
             Voir Instagram
@@ -151,8 +151,29 @@
         <a class="button primary full" href="#commande" data-close-cart-link>Commander</a>
       </div>
     </aside>
+    <aside class="product-modal" data-product-modal aria-label="Fiche produit" aria-hidden="true">
+      <button class="modal-close" type="button" data-close-product aria-label="Fermer la fiche produit">×</button>
+      <div class="product-modal-shell">
+        <div class="modal-gallery">
+          <img data-modal-image src="" alt="" />
+          <div class="modal-thumbnails" data-modal-thumbnails></div>
+        </div>
+        <div class="modal-copy">
+          <p class="product-tag" data-modal-meta></p>
+          <h2 data-modal-title></h2>
+          <div class="modal-description" data-modal-description></div>
+          <div class="modal-characteristics">
+            <h3>Caractéristiques</h3>
+            <ul data-modal-characteristics></ul>
+          </div>
+          <button class="button primary" type="button" data-modal-add data-add="">
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+    </aside>
     <div class="overlay" data-overlay></div>
 
-    <script src="./script.js?v=8"></script>
+    <script src="./script.js?v=9"></script>
   </body>
 </html>
