@@ -918,12 +918,18 @@ body.modal-open {
   }
 
   .product-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 8px;
+    align-items: start;
     padding: 7px;
   }
 
   .product-meta {
+    grid-column: 2;
+    grid-row: 1;
     justify-content: flex-end;
-    margin-bottom: 3px;
+    margin-bottom: 0;
   }
 
   .product-tag,
@@ -938,6 +944,8 @@ body.modal-open {
   }
 
   .product-content h3 {
+    grid-column: 1;
+    grid-row: 1;
     margin-bottom: 3px;
     overflow: hidden;
     font-size: 0.84rem;
@@ -947,8 +955,8 @@ body.modal-open {
   }
 
   .product-content .product-mobile-description {
+    grid-column: 1 / -1;
     display: -webkit-box;
-    max-height: 2.1em;
     min-height: 0;
     margin: 0;
     overflow: hidden;
