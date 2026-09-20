@@ -9,7 +9,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-003.webp"
     ],
-    "description": "Les Alba sont composées de formes turquoise arrondies et d'un motif ondulé, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Alba pour réveiller une tenue sobre, avec un détail lumineux qui se remarque juste ce qu'il faut.",
+    "description": "Les Alba sont composées de formes turquoise arrondies et d'un motif ondulé.\n\nOn choisit les Alba pour réveiller une tenue sobre, avec un détail lumineux qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère et feuilles d'or",
       "Apprêts dorés en acier inoxydable",
@@ -31,7 +31,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-070.webp",
       "./assets/catalogue-saugardevalerie/photos/row-070-2.webp"
     ],
-    "description": "Les violletta sont composées d'une pétale violette nervuré avec des éclats dorés, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme des Violettes apporte une touche colorée pleine de caractère, aussi agréable avec une tenue décontrectée qu'avec une tenue plus habillée.",
+    "description": "Les violletta sont composées d'une pétale violette nervuré avec des éclats dorés.\n\nUn bijou comme des Violettes apporte une touche colorée pleine de caractère, aussi agréable avec une tenue décontractée qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte polymère feille d'or",
       "Apprêts dorés en acier inoxydable",
@@ -51,7 +51,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-005.webp"
     ],
-    "description": "Les Azura sont composées de roses bleues texturées avec une finition dorée, montées sur des apprêts dorés en acier inoxydable.\n\nAvec leurs roses en relief, les Azura apportent une note tendre et romantique sans trop charger le visage.",
+    "description": "Les Azura sont composées de roses bleues texturées avec une finition dorée.\n\nAvec leurs roses en relief, les Azura apportent une note tendre et romantique sans trop charger le visage.",
     "characteristics": [
       "Pâte polymère feuille d'or",
       "Apprêts dorés en acier inoxydable",
@@ -70,7 +70,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-006.webp"
     ],
-    "description": "Les Naya sont composées de roses turquoise superposées, montées sur des apprêts dorés en acier inoxydable.\n\nLes Naya sont parfaites pour adoucir une tenue simple, tout en gardant un rendu féminin.",
+    "description": "Les Naya sont composées de roses turquoise superposées.\n\nLes Naya sont parfaites pour adoucir une tenue simple, tout en gardant un rendu féminin.",
     "characteristics": [
       "Pâte polymère et feuille d'or",
       "Apprêts dorés en acier inoxydable",
@@ -89,7 +89,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-007.webp"
     ],
-    "description": "Les Prune sont composées de fleurs violettes mouchetées d'or, montées sur des apprêts dorés en acier inoxydable.\n\nLes Prune donnent tout de suite une touche colorée pleine de caractère et finissent joliment une tenue du quotidien.",
+    "description": "Les Prune sont composées de fleurs violettes mouchetées d'or.\n\nLes Prune donnent tout de suite une touche colorée pleine de caractère et finissent joliment une tenue du quotidien.",
     "characteristics": [
       "Pâte polymère et feuille d'or",
       "Apprêts dorés en acier inoxydable",
@@ -129,7 +129,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-009.webp"
     ],
-    "description": "Les Manta sont composées d'une silhouette de raie bleue à pois blancs, montées sur des apprêts en acier inoxydable couleur argent. \n\nUn bijou comme les Manta apporte une note fraîche et colorée, aussi agréable avec un jean qu'avec une tenue plus habillée.",
+    "description": "Les Manta sont composées d'une silhouette de raie bleue à pois blancs.\n\nUn bijou comme les Manta apporte une note fraîche et colorée, aussi agréable avec un jean qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts argent en acier inoxydable (en doré à la demande)",
@@ -149,7 +149,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-010.webp"
     ],
-    "description": "Les Liliane sont composées de petites fleurs mauves en format discret, montées sur des apprêts dorés en acier inoxydable.\n\nAvec leur ton violet parme, les Liliane apportent une touche colorée tout en étant discretes et pleine de caractère sans trop charger votre tenue ou visage.\nConfortables pour la journée.",
+    "description": "Les Liliane sont composées de petites fleurs mauves en format discret.\n\nAvec leur ton violet parme, les Liliane apportent une touche colorée tout en étant discrètes et pleine de caractère sans trop charger votre tenue ou visage.\nConfortables pour la journée.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier ( en couleurs argent à la demande)Un format facile à porter",
@@ -168,7 +168,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-012.webp"
     ],
-    "description": "Les Plume sont composées de deux plumes bleues agrémenté de feuille dorées, montées sur des apprêts dorés en acier inoxydable.\n\nLes boucles d'oreille Plume donnent tout de suite un mouvement léger et naturel et finissent joliment une tenue du quotidien.",
+    "description": "Les Plume sont composées de deux plumes bleues agrémentées de feuilles dorées.\n\nLes boucles d'oreille Plume donnent tout de suite un mouvement léger et naturel et finissent joliment une tenue du quotidien.",
     "characteristics": [
       "Pâte polymère feuille d'or",
       "Apprêts dorés en acier inoxydable",
@@ -188,7 +188,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-013.webp",
       "./assets/catalogue-saugardevalerie/photos/row-013-2.webp"
     ],
-    "description": "Les Rosalie sont composées de médaillons couleur teracotta ornée d'une fleur dorée en relief, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Rosalie pour adoucir une tenue simple, avec un détail discret qui se remarque juste ce qu'il faut.",
+    "description": "Les Rosalie sont composées de médaillons couleur terracotta ornés d'une fleur dorée en relief.\n\nOn choisit les Rosalie pour adoucir une tenue simple, avec un détail discret qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -207,7 +207,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-014.webp"
     ],
-    "description": "Les Palma sont composées d'un petit médaillon orné d'une disctrete petite fleur or et d'un éventail doré, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme Palma apporte une touche élégante et lumineuse, avec une tenue simple ou plus habillée.",
+    "description": "Les Palma sont composées d'un petit médaillon orné d'une discrète petite fleur or et d'un éventail doré.\n\nUn bijou comme Palma apporte une touche élégante et lumineuse, avec une tenue simple ou plus habillée.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -227,7 +227,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-015.webp"
     ],
-    "description": "Les Miel sont composées de gouttes blanches décorées de feuilles couleur dorées, montées sur des apprêts dorés en acier inoxydable.\n\nAvec leurs détails de feuilles, les Miel apportent un mouvement naturel et lumineux pour sublimer une tenue à tout moment de la journée.",
+    "description": "Les Miel sont composées de gouttes blanches décorées de feuilles couleur dorées.\n\nAvec leurs détails de feuilles, les Miel apportent un mouvement naturel et lumineux pour sublimer une tenue à tout moment de la journée.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -247,7 +247,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-017.webp"
     ],
-    "description": "Les Pivoine sont composées de medaillons bleues clair au motif bleus cintillants, montées sur des apprêts dorés en acier inoxydable.\n\nLes Pivoine donnent tout de suite une note fraîche et colorée et finissent joliment une tenue du quotidien.",
+    "description": "Les Pivoine sont composées de médaillons bleu clair au motif bleu scintillant.\n\nLes Pivoine donnent tout de suite une note fraîche et colorée et finissent joliment une tenue du quotidien.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -268,7 +268,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-018.webp",
       "./assets/catalogue-saugardevalerie/photos/row-018-2.webp"
     ],
-    "description": "Les Terracotta sont composées de medailloncouleur terre cuite avec une empreinte de feuille rouge dorée , montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Terracotta pour embellir joliment une tenue, avec un détail végétal qui se remarque juste ce qu'il faut.",
+    "description": "Les Terracotta sont composées de médaillon couleur terre cuite avec une empreinte de feuille rouge dorée.\n\nOn choisit les Terracotta pour embellir joliment une tenue, avec un détail végétal qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -288,7 +288,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-019.webp"
     ],
-    "description": "Les Celeste sont composées de lunes bleus ornées de feuilles dorées pendantes. Montées sur des clous dorés en acier inoxydable.\n\nUn bijou comme les Celeste apporte un mouvement naturel et lumineux, aussi agréable avec une tenue simple qu'avec une tenue plus habillée.",
+    "description": "Les Celeste sont composées de lunes bleues ornées de feuilles dorées pendantes.\n\nUn bijou comme les Celeste apporte un mouvement naturel et lumineux, aussi agréable avec une tenue simple qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -308,7 +308,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-020.webp"
     ],
-    "description": "Les Gaia sont composées d'un médaillon rond couleur terracotta ornés d'un apprêts dorés style anciens, montées sur des apprêts dorés en acier inoxydable.\n\nAvec leurs détails travaillés, les Gaia apportent une touche soignée sans trop charger votre tenue ou visage.",
+    "description": "Les Gaia sont composées d'un médaillon rond couleur terracotta orné d'un apprêt doré style ancien.\n\nAvec leurs détails travaillés, les Gaia apportent une touche soignée sans trop charger votre tenue ou visage.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -328,7 +328,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-021.webp"
     ],
-    "description": "Les Rose sont composées de petites gouttes de couleur roses pastel avec le motif d'une feuille de rose, montées sur des apprêts dorés en acier inoxydable.\n\nLes Rose sont parfaites pour adoucir une tenue simple, tout en gardant un rendu chic et élégant.",
+    "description": "Les Rose sont composées de petites gouttes de couleur rose pastel avec le motif d'une feuille de rose.\n\nLes Rose sont parfaites pour adoucir une tenue simple, tout en gardant un rendu chic et élégant.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -348,7 +348,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-022.webp"
     ],
-    "description": "Les Luna sont composées d'une lune rose lumineuse ornées de feuilles dorées, montées sur des apprêts dorés en acier inoxydable.\n\nLes Luna donnent tout de suite une note tendre et romantique et finissent joliment une tenue du quotidien.",
+    "description": "Les Luna sont composées d'une lune rose lumineuse ornée de feuilles dorées.\n\nLes Luna donnent tout de suite une note tendre et romantique et finissent joliment une tenue du quotidien.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -368,7 +368,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-023.webp"
     ],
-    "description": "Les Mieline sont composées de gouttes blanches decorées d'une feuille dorées, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Mieline pour sublimer joliment une tenue, avec son détail doré doux et naturel comme sortie d'un pot de miel. Elles se feront remarquer juste ce qu'il faut.",
+    "description": "Les Mieline sont composées de gouttes blanches décorées d'une feuille dorée.\n\nOn choisit les Mieline pour sublimer joliment une tenue, avec son détail doré doux et naturel comme sortie d'un pot de miel. Elles se feront remarquer juste ce qu'il faut.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -389,7 +389,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-024.webp",
       "./assets/catalogue-saugardevalerie/photos/row-055.webp"
     ],
-    "description": "Les Cléa sont composées de petits médaillons couleur teracotta ornée de feuilles dorées, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Cléa apporte un mouvement naturel et lumineux, aussi agréable avec une tenue simple qu'avec une tenue plus habillée.",
+    "description": "Les Cléa sont composées de petits médaillons couleur terracotta ornés de feuilles dorées.\n\nUn bijou comme les Cléa apporte un mouvement naturel et lumineux, aussi agréable avec une tenue simple qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -409,7 +409,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-025.webp"
     ],
-    "description": "Les Azule sont composées de médaillons bleues à motif bleus cintillants, montées sur des apprêts dorés en acier inoxydable.\n\nAvec leurs deux nuances de bleues, les Azule apportent une note fraîche et colorée sans trop charger votre tenue.",
+    "description": "Les Azule sont composées de médaillons bleus à motif bleu scintillant.\n\nAvec leurs deux nuances de bleues, les Azule apportent une note fraîche et colorée sans trop charger votre tenue.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -429,7 +429,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-026.webp"
     ],
-    "description": "Les Aura sont composées de lunes blanches ornées d'un decor doré, montées sur des apprêts dorés style anciens en acier inoxydable.\n\nLes Aura sont parfaites pour briller avec discrétion, tout en gardant un rendu raffiné.",
+    "description": "Les Aura sont composées de lunes blanches ornées d'un décor doré.\n\nLes Aura sont parfaites pour briller avec discrétion, tout en gardant un rendu raffiné.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -449,7 +449,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-027.webp"
     ],
-    "description": "Les Avia sont composées d'une forme géometrique discrète d'un rose pale nervurées d'un motif discret couleur rouge cintillant ,ornées d'une feuille dorées, montées sur des apprêts dorés en acier inoxydable.\n\nLes Avia donnent tout de suite une note tendre et romantique et finissent joliment une tenue du quotidien.",
+    "description": "Les Avia sont composées d'une forme géométrique discrète d'un rose pâle nervurée d'un motif discret couleur rouge scintillant, ornée d'une feuille dorée.\n\nLes Avia donnent tout de suite une note tendre et romantique et finissent joliment une tenue du quotidien.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -469,7 +469,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-028.webp"
     ],
-    "description": "Boucle Soleia\n\nLes Soleia sont composées de lunes blanches avec un discret détail végétal dorés, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Soleia pour donner du caractère à votre tenue, avec un détail simple et chic à la fois, qui se remarque juste ce qu'il faut.",
+    "description": "Boucle Soleia\n\nLes Soleia sont composées de lunes blanches avec un discret détail végétal doré.\n\nOn choisit les Soleia pour donner du caractère à votre tenue, avec un détail simple et chic à la fois, qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -489,7 +489,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-029.webp"
     ],
-    "description": "Les Lagune sont composées de deux formes géométrique turquoise agrément de dorés, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Lagune apporte une note fraîche et colorée, aussi agréable avec une tenues simple qu'avec une tenue plus habillée.",
+    "description": "Les Lagune sont composées de deux formes géométrique turquoise agrément de dorés.\n\nUn bijou comme les Lagune apporte une note fraîche et colorée, aussi agréable avec une tenues simple qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -510,7 +510,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-030.webp",
       "./assets/catalogue-saugardevalerie/photos/row-083.webp"
     ],
-    "description": "Les Sélène sont composées d'une lune couleur ivoire agrémentée d'un décor doré, ornés d' apprêts dorés style anciens, montées sur des apprêts en acier inoxydable.\n\nAvec leurs reflets doux, les Sélène apportent une touche élégante et lumineuse sans trop charger votre tenue.",
+    "description": "Les Sélène sont composées d'une lune couleur ivoire agrémentée d'un décor doré, ornés d' apprêts dorés style anciens.\n\nAvec leurs reflets doux, les Sélène apportent une touche élégante et lumineuse sans trop charger votre tenue.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -530,7 +530,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-031.webp"
     ],
-    "description": "Les Oria sont composées de lunes bleues et de petites feuilles dorées, montées sur des apprêts dorés en acier inoxydable.\n\nLes Oria sont parfaites pour embellir votre tenue, tout en gardant un rendu chisc élégant.",
+    "description": "Les Oria sont composées de lunes bleues et de petites feuilles dorées.\n\nLes Oria sont parfaites pour embellir votre tenue, tout en gardant un rendu chic élégant.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -550,7 +550,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-032.webp"
     ],
-    "description": "Les Dune sont composées de deux lunes blanches ornés de petites branches dorées, montées sur des apprêts dorés en acier inoxydable.\n\nLes Dune donnent tout de suite un mouvement naturel et lumineux et finissent joliment une tenue du quotidien.",
+    "description": "Les Dune sont composées de deux lunes blanches ornés de petites branches dorées.\n\nLes Dune donnent tout de suite un mouvement naturel et lumineux et finissent joliment une tenue du quotidien.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -570,7 +570,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-033.webp"
     ],
-    "description": "Les Flamme sont composées de formes terracotta ondulées, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Flamme pour donner du caractère au look, avec un détail graphique qui se remarque juste ce qu'il faut.",
+    "description": "Les Flamme sont composées de formes terracotta ondulées.\n\nOn choisit les Flamme pour donner du caractère au look, avec un détail graphique qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -592,7 +592,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-069.webp",
       "./assets/catalogue-saugardevalerie/photos/row-069-2.webp"
     ],
-    "description": "Les rosélia sont composées de petits médaillons roses pale décoré de fin feuillage légèrement cintillant agrémentée de branches bronze style ancien, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les rosélia apporte une note tendre et romantique, aussi agréable avec une de tout les jours qu'avec une tenue plus habillée.",
+    "description": "Les rosélia sont composées de petits médaillons rose pâle décorés de fin feuillage légèrement scintillant agrémentée de branches bronze style ancien.\n\nUn bijou comme les rosélia apporte une note tendre et romantique, aussi agréable avec une de tous les jours qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêt dorés en acier inoxydable",
@@ -612,7 +612,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-036.webp"
     ],
-    "description": "Les Onatha sont composées de médaillonscouleur teracotta ornée d'une fleur dorée en relief, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Onatha pour adoucir une tenue simple, avec un détail discret qui se remarque juste ce qu'il faut.",
+    "description": "Les Onatha sont composées de médaillons couleur terracotta ornés d'une fleur dorée en relief.\n\nOn choisit les Onatha pour adoucir une tenue simple, avec un détail discret qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêts dorés en acier inoxydable",
@@ -633,7 +633,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-037.webp",
       "./assets/catalogue-saugardevalerie/photos/row-037-2.webp"
     ],
-    "description": "Les Cristal sont composées d'un médaillon en résine transparente une petite fleur rose emprisonée à l'interieur fait tout son charme, montées sur des apprêts dorés en acier inoxydable.\n\nLes Cristal donnent tout de suite une note tendre et romantique et finissent joliment une tenue tout en légèreté.",
+    "description": "Les Cristal sont composées d'un médaillon en résine transparente une petite fleur rose emprisonnée à l'intérieur fait tout son charme.\n\nLes Cristal donnent tout de suite une note tendre et romantique et finissent joliment une tenue tout en légèreté.",
     "characteristics": [
       "Résine époxy transparente",
       "Apprêts dorés en acier légere et agreéable à porteés",
@@ -653,7 +653,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-043.webp",
       "./assets/catalogue-saugardevalerie/photos/row-043-2.webp"
     ],
-    "description": "Les Néa sont composées de deux petites fleurs blanches à coeur jaune, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Néa pour illuminer son quotidien comme un air de primptemps, avec un détail joyeux qui se remarque juste ce qu'il faut.",
+    "description": "Les Néa sont composées de deux petites fleurs blanches à coeur jaune.\n\nOn choisit les Néa pour illuminer son quotidien comme un air de printemps, avec un détail joyeux qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère",
       "Apprêtsdorés en acier inoxydable",
@@ -673,7 +673,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-044.webp"
     ],
-    "description": "Les Azalée sont composées de pétales aux nuances de rose, faconnées et montées à la mains une à une ce qui leur donne cet effet naturel , montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Azalée apporte une présence chaleureuse, aussi agréableà porter avec une tenue simple qu'avec une tenue plus habillée.",
+    "description": "Les Azalée sont composées de pétales aux nuances de rose, façonnées et montées à la main une à une ce qui leur donne cet effet naturel.\n\nUn bijou comme les Azalée apporte une présence chaleureuse, aussi agréable à porter avec une tenue simple qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -693,7 +693,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-046.webp"
     ],
-    "description": "Les Azélie sont composées de pétales roses fushia, faconnées et montées à la mains une à une ce qui leur donne cet effet naturel , montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Azélie apporte une présence chaleureuse, aussi agréableà porter avec une tenue simple qu'avec une tenue plus habillée.",
+    "description": "Les Azélie sont composées de pétales roses fushia, façonnées et montées à la main une à une ce qui leur donne cet effet naturel.\n\nUn bijou comme les Azélie apporte une présence chaleureuse, aussi agréable à porter avec une tenue simple qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -714,7 +714,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-047.webp",
       "./assets/catalogue-saugardevalerie/photos/row-047-2.webp"
     ],
-    "description": "Les Moka sont composées de petites fleurs blanches à coeur brun, montées sur des apprêts dorés en acier inoxydable.\n\nLes Moka donnent tout de suite une touche discrète, soignée et finissent joliment une tenue du quotidien.",
+    "description": "Les Moka sont composées de petites fleurs blanches à coeur brun.\n\nLes Moka donnent tout de suite une touche discrète, soignée et finissent joliment une tenue du quotidien.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -735,7 +735,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-048.webp"
     ],
-    "description": "Les Séléa sont composées de marguerites blanches ornées de feuilles dorées, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Séléa pour illuminer une tenue, avec un détail joyeux qui se remarque juste ce qu'il faut.",
+    "description": "Les Séléa sont composées de marguerites blanches ornées de feuilles dorées.\n\nOn choisit les Séléa pour illuminer une tenue, avec un détail joyeux qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -755,7 +755,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-049.webp"
     ],
-    "description": "Les Margot sont composées de grandes marguerites blanches à coeur jaune, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Margot apporte une fraîcheur printanière, par son coté originale elle seront unique à porter autant avec une tenue simple qu'avec une tenue plus habillée.",
+    "description": "Les Margot sont composées de grandes marguerites blanches à coeur jaune.\n\nUn bijou comme les Margot apporte une fraîcheur printanière, par son côté originale elle seront unique à porter autant avec une tenue simple qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -775,7 +775,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-050.webp"
     ],
-    "description": "Les Flora sont composées de deux marguerites blanches au coeur jaune, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Flora apporte une fraîcheur printanière, par son coté originale elle seront unique à porter autant avec une tenue simple qu'avec une tenue plus habillée.",
+    "description": "Les Flora sont composées de deux marguerites blanches au coeur jaune.\n\nUn bijou comme les Flora apporte une fraîcheur printanière, par son côté originale elle seront unique à porter autant avec une tenue simple qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -796,7 +796,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-053.webp",
       "./assets/catalogue-saugardevalerie/photos/row-053-2.webp"
     ],
-    "description": "Les Pétalia sont composées de plusieurs marguerites blanches en cascade au coeur couleur moka, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Pétalia pour illuminer votre visage, avec un détail joyeux qui se remarque juste ce qu'il faut.",
+    "description": "Les Pétalia sont composées de plusieurs marguerites blanches en cascade au coeur couleur moka.\n\nOn choisit les Pétalia pour illuminer votre visage, avec un détail joyeux qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -816,7 +816,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-054.webp",
       "./assets/catalogue-saugardevalerie/photos/row-054-2.webp"
     ],
-    "description": "Les Citronelle sont de deux marguerites jaune au coeur clair, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Citronelle apporte une note solaire, discrèts aussi agréable avec une simple qu'avec une tenue plus habillée.",
+    "description": "Les Citronelle sont de deux marguerites jaune au coeur clair.\n\nUn bijou comme les Citronelle apporte une note solaire, discrèts aussi agréable avec une simple qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -837,7 +837,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-024.webp",
       "./assets/catalogue-saugardevalerie/photos/row-055.webp"
     ],
-    "description": "Les Cléa sont composées d'une petites fleur blanche, ornées de deux feuilles dorées, montées sur des apprêts dorés en acier inoxydable.\n\nAvec leur details dorés, les Feuillages de Cléa apportent un mouvement naturel et lumineux sans trop charger votre tenue.",
+    "description": "Les Cléa sont composées d'une petite fleur blanche, ornées de deux feuilles dorées.\n\nAvec leur détails dorés, les Feuillages de Cléa apportent un mouvement naturel et lumineux sans trop charger votre tenue.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -857,7 +857,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-057.webp"
     ],
-    "description": "Les Éclat Floral sont composées de deux fleurs rouges au coeur doré, montées sur des apprêts dorés en acier inoxydable.\n\nLes Éclat Floral donnent tout de suite une présence chaleureuse et finissent joliment une tenue du quotidien.",
+    "description": "Les Éclat Floral sont composées de deux fleurs rouges au coeur doré.\n\nLes Éclat Floral donnent tout de suite une présence chaleureuse et finissent joliment une tenue du quotidien.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -877,7 +877,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-058.webp"
     ],
-    "description": "Les Prunelle sont composées de pétales violettes façonées à la main, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Prunelle pour changer des bijoux trop classiques, avec un détail délicat qui se remarque juste ce qu'il faut.",
+    "description": "Les Prunelle sont composées de pétales violettes façonnées à la main.\n\nOn choisit les Prunelle pour changer des bijoux trop classiques, avec un détail délicat qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -898,7 +898,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-062.webp",
       "./assets/catalogue-saugardevalerie/photos/row-062-2.webp"
     ],
-    "description": "Les Nacria sont composées de pétales couleur nacré façonées à la main unes à unes ornées d'un pistile doré , montées sur des apprêts créolesdorées en acier inoxydable.\n\nLes Nacria donnent tout de suite une touche élégante et lumineuse et finissent joliment une tenue de soirée ou tout simple votre tenue du jour;",
+    "description": "Les Nacria sont composées de pétales couleur nacré façonnées à la main une à une ornées d'un pistile doré.\n\nLes Nacria donnent tout de suite une touche élégante et lumineuse et finissent joliment une tenue de soirée ou tout simple votre tenue du jour;",
     "characteristics": [
       "Pâte polymère effet nacré",
       "Apprêts dorés en acier inoxydable",
@@ -919,7 +919,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-063.webp",
       "./assets/catalogue-saugardevalerie/photos/row-063-2.webp"
     ],
-    "description": "Les Viola sont composées de pétales violettes façonées à la main unes à une ornées d' un coeur perlé, montées sur des apprêts créoles en acier inoxydable couleur argent.\n\nOn choisit les Viola pour changer des bijoux trop classiques, avec un détail délicat qui change votre tenue en un clin d'oeil.",
+    "description": "Les Viola sont composées de pétales violettes façonnées à la main une à une ornées d' un coeur perlé.\n\nOn choisit les Viola pour changer des bijoux trop classiques, avec un détail délicat qui change votre tenue en un clin d'oeil.",
     "characteristics": [
       "Pâte polymère et perle nacré fantaisie",
       "Apprêts créoles couleur argent en acier inoxydable",
@@ -940,7 +940,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-066.webp",
       "./assets/catalogue-saugardevalerie/photos/row-066-2.webp"
     ],
-    "description": "Les Liera sont composées de pétales façonées à la main unes à unes, marbrée de \"vert et de teracotta\" ce qui les rends uniques par leur couleur originale pénsées avec soins. montées sur des apprêts en acier inoxydable dorés.\n\nLes Liera sont parfaites pour attirer le regard avec élégance, tout en gardant un rendu affirmé sans trop charger votre visage.",
+    "description": "Les Liera sont composées de pétales façonnées à la main une à une, marbrée de \"vert et de terracotta\" ce qui les rends uniques par leur couleur originale pénsées avec soins.\n\nLes Liera sont parfaites pour attirer le regard avec élégance, tout en gardant un rendu affirmé sans trop charger votre visage.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts en acier inoxydable doré",
@@ -961,7 +961,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-067.webp",
       "./assets/catalogue-saugardevalerie/photos/row-067-2.webp"
     ],
-    "description": "Les Azurine sont composées de pétales couleur bleus azur façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts dorés en acier inoxydable.\n\nLes Azurine donnent tout de suite une note fraîche et colorée avec un détail délicat qui change votre tenue en un clin d'oeil.",
+    "description": "Les Azurine sont composées de pétales couleur bleus azur façonnées à la main une à une ornées d'un pistile doré.\n\nLes Azurine donnent tout de suite une note fraîche et colorée avec un détail délicat qui change votre tenue en un clin d'oeil.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -983,7 +983,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-068-2.webp",
       "./assets/catalogue-saugardevalerie/photos/row-068-3.webp"
     ],
-    "description": "Les Mauvéa sont composées de pétales couleur mauves façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Mauvéa pour changer des bijoux trop classiques, avec un détail délicat qui se remarque juste ce qu'il faut.",
+    "description": "Les Mauvéa sont composées de pétales couleur mauves façonnées à la main une à une ornées d'un pistile doré.\n\nOn choisit les Mauvéa pour changer des bijoux trop classiques, avec un détail délicat qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -1005,7 +1005,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-069.webp",
       "./assets/catalogue-saugardevalerie/photos/row-069-2.webp"
     ],
-    "description": "Les Rosélia sont composées de deux fleurs roses à coeur doré, composées de pétales couleur rose pastel façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts doré en acier inoxydable.\n\nUn bijou comme les Rosélia apporte une note tendre et romantique, aussi agréable avec une tenue simple qu'avec une tenue plus habillée.",
+    "description": "Les Rosélia sont composées de deux fleurs roses à coeur doré, composées de pétales couleur rose pastel façonnées à la main une à une ornées d'un pistile doré.\n\nUn bijou comme les Rosélia apporte une note tendre et romantique, aussi agréable avec une tenue simple qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -1027,7 +1027,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-070.webp",
       "./assets/catalogue-saugardevalerie/photos/row-070-2.webp"
     ],
-    "description": "Les Violetta sont composées de deux fleurs mauve à coeur doré, composées de pétales rose façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts doré en acier inoxydable.\n\nAvec leur ton mauve, les Violetta apportent une touche colorée pleine de caractère sans trop charger votre tenue en soirée ou au quotidien .",
+    "description": "Les Violetta sont composées de deux fleurs mauve à coeur doré, composées de pétales rose façonnées à la main une à une ornées d'un pistile doré.\n\nAvec leur ton mauve, les Violetta apportent une touche colorée pleine de caractère sans trop charger votre tenue en soirée ou au quotidien.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts créoles dorées de 3cm en acier inoxydable",
@@ -1049,7 +1049,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-073-2.webp",
       "./assets/catalogue-saugardevalerie/photos/row-073-3.webp"
     ],
-    "description": "orné d'un petit coeur noir, montées sur des apprêts dorés ou couleur argent en acier inoxydable. ( au choix)\n\nOn choisit les Petits Coquelicot pour attirer le regard avec élégance, avec un détail affirmé qui se remarque juste ce qu'il faut.",
+    "description": "orné d'un petit coeur noir. ( au choix)\n\nOn choisit les Petits Coquelicot pour attirer le regard avec élégance, avec un détail affirmé qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts en acier inoxydable deux",
@@ -1071,7 +1071,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-075.webp",
       "./assets/catalogue-saugardevalerie/photos/row-075-2.webp"
     ],
-    "description": "Les Vaninée sont composées de deux fleurs blanches à centre jaune, pétales façonées à la main unes à unes, montées sur des apprêts dorés en acier inoxydable.\n\nAvec leur jaune lumineux, les Vaninée apportent une note solaire sans trop charger votre tenue.",
+    "description": "Les Vaninée sont composées de deux fleurs blanches à centre jaune, pétales façonnées à la main une à une.\n\nAvec leur jaune lumineux, les Vaninée apportent une note solaire sans trop charger votre tenue.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts créole dorés 3 cm en acier inoxydable",
@@ -1091,7 +1091,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-082.webp"
     ],
-    "description": "Les Orangeade sont de pétales couleur oranges façonées à la main unes à unes ornées d'une perle nacrées , montées sur des apprêts créoles dorés en acier inoxydable.\n\nLes Orangeade donnent tout de suite une touche pep's et finissent joliment une tenue de soirée ou du quotidien.",
+    "description": "Les Orangeade sont de pétales couleur oranges façonnées à la main une à une ornées d'une perle nacrées.\n\nLes Orangeade donnent tout de suite une touche pep's et finissent joliment une tenue de soirée ou du quotidien.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts créoles dorés en acier inoxydable",
@@ -1112,7 +1112,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-030.webp",
       "./assets/catalogue-saugardevalerie/photos/row-083.webp"
     ],
-    "description": "Les Sélène sont deux belles fleurs éclosent à coeur doré, composées de pétales couleur fushia façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts gouttes dorés en acier inoxydable.\n\nOn choisit les Sélène pour changer des bijoux trop classiques, avec un détail délicat qui se remarque juste ce qu'il faut.",
+    "description": "Les Sélène sont deux belles fleurs éclosent à coeur doré, composées de pétales couleur fushia façonnées à la main une à une ornées d'un pistile doré.\n\nOn choisit les Sélène pour changer des bijoux trop classiques, avec un détail délicat qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts goutte dorés en acier inoxydable",
@@ -1132,7 +1132,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-084.webp"
     ],
-    "description": "Les Azuline sont des boucle d'oreilles puces, composées de petites pétales bleue azure façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Azuline apporte une note légère et colorée, aussi agréable avec une tenue de soirée qu'avec une tenue plus simple.",
+    "description": "Les Azuline sont des boucle d'oreilles puces, composées de petites pétales bleue azure façonnées à la main une à une ornées d'un pistile doré.\n\nUn bijou comme les Azuline apporte une note légère et colorée, aussi agréable avec une tenue de soirée qu'avec une tenue plus simple.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
@@ -1153,7 +1153,7 @@ const products = [
       "./assets/catalogue-saugardevalerie/photos/row-088.webp",
       "./assets/catalogue-saugardevalerie/photos/row-088-2.webp"
     ],
-    "description": "Les Camelia sont sont composées de pétales couleur blanches légèrement pailletées, façonées à la main unes à unes ornées d'un pistile doré , montées sur des apprêts créoles dorés en acier inoxydable.\n\nOn choisit les Camelia pour compléter une tenue avec douceur et élégance, avec un détail facile à porter qui se remarque juste ce qu'il faut.",
+    "description": "Les Camelia sont sont composées de pétales couleur blanches légèrement pailletées, façonnées à la main une à une ornées d'un pistile doré.\n\nOn choisit les Camelia pour compléter une tenue avec douceur et élégance, avec un détail facile à porter qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts en acier inoxydable",
@@ -1173,7 +1173,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-089.webp"
     ],
-    "description": "Viola Fushia sont deux belles fleurs éclosent à coeur doré, composées de pétales couleur fushia et gris légèrement pailletées, façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts gouttes dorés en acier inoxydable.\n\n\nOn choisit les Viola Fushia pour changer des bijoux trop classiques, avec un détail délicat qui se remarque juste ce qu'il faut.",
+    "description": "Viola Fushia sont deux belles fleurs éclosent à coeur doré, composées de pétales couleur fushia et gris légèrement pailletées, façonnées à la main une à une ornées d'un pistile doré.\n\nOn choisit les Viola Fushia pour changer des bijoux trop classiques, avec un détail délicat qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts goutte dorés en acier inoxydable",
@@ -1193,7 +1193,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-090.webp"
     ],
-    "description": "Boucle Soline \n\nLes Bouton Soline sont deux belles fleurs éclosent à coeur doré, composées de pétales couleur fushia légèrement pailletées, façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts créoles dorés en acier inoxydable.\n\nAvec leur ton violet, les Soline apportent une touche colorée pleine de caractère sans trop charger votre tenue..",
+    "description": "Boucle Soline\n\nLes Bouton Soline sont deux belles fleurs éclosent à coeur doré, composées de pétales couleur fushia légèrement pailletées, façonnées à la main une à une ornées d'un pistile doré.\n\nAvec leur ton violet, les Soline apportent une touche colorée pleine de caractère sans trop charger votre tenue..",
     "characteristics": [
       "Pâte polymère",
       "Apprêts en acier inoxydable",
@@ -1213,7 +1213,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-093.webp"
     ],
-    "description": "Les Frangipane sont composées de deux fleurs blanches à centre jaune, chaques pétales façonées à la main unes à unes, montées sur des apprêts créoles dorés en acier inoxydable.\n\nOn choisit les Frangipane pour apporter de l'éclat aux beaux jours, avec un détail chaleureux qui se remarque juste ce qu'il faut.",
+    "description": "Les Frangipane sont composées de deux fleurs blanches à centre jaune, chaque pétales façonnées à la main une à une.\n\nOn choisit les Frangipane pour apporter de l'éclat aux beaux jours, avec un détail chaleureux qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts créoles dorés en acier inoxydable",
@@ -1233,7 +1233,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-096.webp"
     ],
-    "description": "Les Givrées sont composées de fleurs grises légèrement pailletées juste se quil faut pour éteinceler chaques pétales façonées à la main unes, montées sur des apprêts gouttes dorées en acier inoxydable.\n\nLes Givrées sont parfaites pour compléter une tenue habillée ou simple de tout les jours avec douceur, tout en gardant un rendu facile à porter.",
+    "description": "Les Givrées sont composées de fleurs grises légèrement pailletées juste se quil faut pour étinceler chaque pétales façonnées à la main unes.\n\nLes Givrées sont parfaites pour compléter une tenue habillée ou simple de tous les jours avec douceur, tout en gardant un rendu facile à porter.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts gouttes dorées en acier inoxydable",
@@ -1254,7 +1254,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-101.webp"
     ],
-    "description": "Les Viola parme sont composées de petites fleurs couleur violettes et grise légèrement pailletées chaques pétales sont façonées à la main unes à unes ornées, d'un pistile doré, montées sur des apprêts gouttes dorées en acier inoxydable.\n\nLes Viola parme sont parfaites pour changer des bijoux trop classiques, tout en gardant un rendu délicat et éléguant.",
+    "description": "Les Viola parme sont composées de petites fleurs couleur violettes et grise légèrement pailletées chaque pétales sont façonnées à la main une à une ornées, d'un pistile doré.\n\nLes Viola parme sont parfaites pour changer des bijoux trop classiques, tout en gardant un rendu délicat et éléguant.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts gouttes dorées en acier inoxydable",
@@ -1274,9 +1274,9 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-106.webp"
     ],
-    "description": "Les Thaiti sont des boucles d'oreilles puce, composées de fleurs couleur bleus marbré et feuille d'or, chaques pétales sont façonées à la main unes à unes, ornées d'un pistile doré, montées sur des apprêts dorées en acier inoxydable.\n\ngrace à leur mélange de bleu et leur touche de doré,Les Thaiti sont parfaites pour réveiller une tenue sobre, tout en gardant un rendu lumineux.",
+    "description": "Les Thaiti sont des boucles d'oreilles puce, composées de fleurs couleur bleus marbré et feuille d'or, chaque pétales sont façonnées à la main une à une, ornées d'un pistile doré.\n\ngrace à leur mélange de bleu et leur touche de doré, Les Thaiti sont parfaites pour réveiller une tenue sobre, tout en gardant un rendu lumineux.",
     "characteristics": [
-      "Pâte polymère et aprêts dorés",
+      "Pâte polymère et apprêts dorés",
       "Apprêts en acier inoxydable",
       "Agréables à porter au quotidien ou pour une tenue de soirée",
       "Taille: 3 cm",
@@ -1294,9 +1294,9 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-111.webp"
     ],
-    "description": "Les Solea sont composées de pétales acryliques jaunes de petites perlesjaunes ornées d'un apprêt doré style ancien, montées sur des apprêts dorés en acier inoxydable.\n\nLes Solea sont parfaites pour apporter de l'éclats, tout en gardant un rendu chaleureux et stylé",
+    "description": "Les Solea sont composées de pétales acryliques jaunes de petites perlesjaunes ornées d'un apprêt doré style ancien.\n\nLes Solea sont parfaites pour apporter de l'éclats, tout en gardant un rendu chaleureux et stylé",
     "characteristics": [
-      "Perles pétales acryliques, perles et aprêts dorés style ancien",
+      "Perles pétales acryliques, perles et apprêts dorés style ancien",
       "Apprêts dorés en acier inoxydable",
       "Agréables à porter au quotidien",
       "Taille: 5 cm de longueur",
@@ -1314,9 +1314,9 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-112.webp"
     ],
-    "description": "Les Neptune sont composées de perles turquoise marbrées et nacrées ornées d'aprêts éventails dorés, montées sur des apprêts dorés en acier inoxydable.\n\nLes Neptune donnent tout de suite une touche élégante et lumineuse et finissent joliment une tenue du quotidien comme une tenue de soirée.",
+    "description": "Les Neptune sont composées de perles turquoise marbrées et nacrées ornées d'apprêts éventails dorés.\n\nLes Neptune donnent tout de suite une touche élégante et lumineuse et finissent joliment une tenue du quotidien comme une tenue de soirée.",
     "characteristics": [
-      "Perles marbrées et nacrées turquoises aprêts dorés",
+      "Perles marbrées et nacrées turquoises apprêts dorés",
       "Apprêts dorés en acier inoxydable Pensées pour rester légères",
       "Taille: 3cm de longueur Neptune est faite à la main et reste unique"
     ],
@@ -1332,9 +1332,9 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-113.webp"
     ],
-    "description": "Les Ambra sont composées de petites perles fleurs fantaisies orange de perles crystal rose clairese ornées d'un aprêt feuilles bronze dorées, montées sur des apprêts gouttes dorées en acier inoxydable.\n\nOn choisit les Ambra pour briller avec discrétion, avec un détail végétal qui se remarque juste ce qu'il faut.",
+    "description": "Les Ambra sont composées de petites perles fleurs fantaisies orange de perles crystal rose claires ornées d'un apprêt feuilles bronze dorées.\n\nOn choisit les Ambra pour briller avec discrétion, avec un détail végétal qui se remarque juste ce qu'il faut.",
     "characteristics": [
-      "Perles perles fantaisies et crystal ton orangés aprêts feilles dorées",
+      "Perles perles fantaisies et crystal ton orangés apprêts feilles dorées",
       "Apprêts goutte dorées en acier inoxydable",
       "Pensées pour rester légères",
       "Taille: 4cm de longueur",
@@ -1352,9 +1352,9 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-114.webp"
     ],
-    "description": "Les Cyane sont composées de perles de verre et nacées turquoise ornées d'aprêtd feuilles dorées , montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Cyane apporte un mouvement naturel et lumineux, aussi agréable avec une simple qu'avec une tenue plus habillée.",
+    "description": "Les Cyane sont composées de perles de verre et nacrées turquoise ornées d'aprêtd feuilles dorées.\n\nUn bijou comme les Cyane apporte un mouvement naturel et lumineux, aussi agréable avec une simple qu'avec une tenue plus habillée.",
     "characteristics": [
-      "Perles de verre et naceés turquoise aprêts feuilles dorées",
+      "Perles de verre et naceés turquoise apprêts feuilles dorées",
       "Apprêts dorés en acier inoxydable",
       "Faciles à mettre avec vos tenues préférées.Taille:3 cm de longueur",
       "Réalisées à la main, les Cyane ont chacune leurs petits détails uniques"
@@ -1371,9 +1371,9 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-115.webp"
     ],
-    "description": "Les Marina blue sont composées de perles turquoise marbrées et nacrées ornées de franges en éventail bleu azur, montées sur des apprêts gouttes dorés en acier inoxydable.\n\nAvec leurs reflets doux, les Marina blue apportent une touche élégante et lumineuse tout en gardant une tenue chic et simple à la fois.",
+    "description": "Les Marina blue sont composées de perles turquoise marbrées et nacrées ornées de franges en éventail bleu azur.\n\nAvec leurs reflets doux, les Marina blue apportent une touche élégante et lumineuse tout en gardant une tenue chic et simple à la fois.",
     "characteristics": [
-      "Perles marbées et nacrées turquoises aprêts coton turquoise",
+      "Perles marbées et nacrées turquoises apprêts coton turquoise",
       "Apprêts gouttes dorées en acier inoxydable",
       "Confortables pour la journée.Taille: 4 cm de longueur",
       "Marina blue est une pièce artisanale unique, faite main avec soin"
@@ -1390,9 +1390,9 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-116.webp"
     ],
-    "description": "Les Nocturne sont composées de perles noires et perles crystal ornées d'un aprêt éventail noirs, montées sur des apprêts dorés en acier inoxydable.\n\nLes Nocturne sont parfaites pour briller avec discrétion, tout en gardant un rendu raffiné.",
+    "description": "Les Nocturne sont composées de perles noires et perles crystal ornées d'un apprêt éventail noirs.\n\nLes Nocturne sont parfaites pour briller avec discrétion, tout en gardant un rendu raffiné.",
     "characteristics": [
-      "Perles acrylyques et aprêts acier noir",
+      "Perles acrylyques et apprêts acier noir",
       "Apprêts dorés en acier inoxydable",
       "Agréables à porter au quotidien.Taille:3 cm de longueur",
       "Les Nocturne sont façonnées à la main, en modèle unique"
@@ -1409,7 +1409,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-117.webp"
     ],
-    "description": "Les Talis sont composées de perles fantaisies couleur pêche, une petite perle bois naturel et une autre rose saumoné ornées de feuilles couleur dorées , montées sur des apprêts gouttes en acier inoxydable.\n\nLes Talis donnent tout de suite un mouvement naturel et lumineux et finissent joliment une tenue du quotidien.",
+    "description": "Les Talis sont composées de perles fantaisies couleur pêche, une petite perle bois naturel et une autre rose saumoné ornées de feuilles couleur dorées.\n\nLes Talis donnent tout de suite un mouvement naturel et lumineux et finissent joliment une tenue du quotidien.",
     "characteristics": [
       "Perles acryliques saumon et perles fantaisie fleurs",
       "Apprêts dorés en acier inoxydable",
@@ -1428,7 +1428,7 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-118.webp"
     ],
-    "description": "Les Eventia sont composées de perles bleu roi et de grands éventails couleur dorés, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Eventia pour briller avec discrétion, avec un détail raffiné qui se remarque juste ce qu'il faut.",
+    "description": "Les Eventia sont composées de perles bleu roi et de grands éventails couleur dorés.\n\nOn choisit les Eventia pour briller avec discrétion, avec un détail raffiné qui se remarque juste ce qu'il faut.",
     "characteristics": [
       "Perles en verre ton bleuté",
       "Apprêts dorés en acier inoxydable",
@@ -1448,9 +1448,9 @@ const products = [
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-119.webp"
     ],
-    "description": "Les Auguste sont composées d'un aprêt esgargot bronze et de deux perles de verre couleur ambres et rose pale montées, sur des apprêts fantaisie dorés en acier inoxydable.\n\nUn bijou comme les Auguste apporte une présence chaleureuse, et rigolotte avec cette paires de boucles d'oreilles vous etes sur d'etre la personne la plus fun de la journée. Agréable avec une simple ou pour mettre une petite touche d'originalité avec plus habillée.",
+    "description": "Les Auguste sont composées d'un apprêt escargot bronze et de deux perles de verre couleur ambres et rose pâle.\n\nUn bijou comme les Auguste apporte une présence chaleureuse, et rigolote avec cette paires de boucles d'oreilles vous êtes sur d'être la personne la plus fun de la journée. Agréable avec une simple ou pour mettre une petite touche d'originalité avec plus habillée.",
     "characteristics": [
-      "Perles de verre ambre et rose pale /petit escargot bronze",
+      "Perles de verre ambre et rose pâle /petit escargot bronze",
       "Apprêt rectangulaire dorés en acier inoxydable",
       "Faciles à mettre avec vos tenues préférées",
       "Taille:3 cm",
