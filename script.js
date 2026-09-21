@@ -1479,7 +1479,6 @@ function renderProducts(filter = "all") {
               <span class="price">${euro(product.price)}</span>
             </div>
             <h3>${product.name}</h3>
-            <div class="product-description">${paragraphs(product.description)}</div>
             <button class="button primary" type="button" data-add="${product.id}">
               Ajouter au panier
             </button>
