@@ -778,8 +778,8 @@ body.modal-open {
   gap: 10px;
   margin: 0 0 22px;
   padding: 16px;
-  background: var(--paper);
-  border: 1px solid var(--line);
+  background: #e4f1ed;
+  border: 1px solid rgba(121, 138, 114, 0.34);
   border-radius: 8px;
 }
 
@@ -810,8 +810,8 @@ body.modal-open {
   color: var(--ink);
   font-weight: 800;
   cursor: pointer;
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: rgba(255, 249, 240, 0.9);
+  border: 1px solid rgba(121, 138, 114, 0.2);
   border-radius: 8px;
 }
 
