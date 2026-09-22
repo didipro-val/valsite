@@ -204,9 +204,9 @@ const products = [
     "category": "faconnees",
     "tag": "Façonnées",
     "price": 8,
-    "image": "./assets/catalogue-saugardevalerie/photos/row-011.webp",
+    "image": "./assets/catalogue-saugardevalerie/photos/row-017.webp",
     "gallery": [
-      "./assets/catalogue-saugardevalerie/photos/row-011.webp"
+      "./assets/catalogue-saugardevalerie/photos/row-017.webp"
     ],
     "description": "Les Rosalie sont composées de médaillons couleur teracotta ornée d'une fleur dorée en relief, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Rosalie pour adoucir une tenue simple, avec un détail discret qui se remarque juste ce qu'il faut.",
     "characteristics": [
@@ -358,9 +358,9 @@ const products = [
     "category": "faconnees",
     "tag": "Façonnées",
     "price": 12,
-    "image": "./assets/catalogue-saugardevalerie/photos/row-017.webp",
+    "image": "./assets/catalogue-saugardevalerie/photos/row-011.webp",
     "gallery": [
-      "./assets/catalogue-saugardevalerie/photos/row-017.webp"
+      "./assets/catalogue-saugardevalerie/photos/row-011.webp"
     ],
     "description": "Les Rose sont composées de petites gouttes de couleur roses pastel avec le motif d'une feuille de rose, montées sur des apprêts dorés en acier inoxydable.\n\nLes Rose sont parfaites pour adoucir une tenue simple, tout en gardant un rendu chic et élégant.",
     "characteristics": [
