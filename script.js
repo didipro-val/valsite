@@ -17,7 +17,8 @@ const products = [
       "Taille : 4 cm",
       "Alba est une pièce artisanale unique, faite main avec soin"
     ],
-    "sourceRow": 2
+    "sourceRow": 2,
+    "stock": 1
   },
   {
     "id": "violetta",
@@ -39,7 +40,8 @@ const products = [
       "Taille : 3 cm",
       "Les Violetta sont façonnées à la main, en modèle unique"
     ],
-    "sourceRow": 3
+    "sourceRow": 3,
+    "stock": 1
   },
   {
     "id": "azura",
@@ -65,7 +67,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "naya",
@@ -91,7 +94,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "prune",
@@ -111,7 +115,8 @@ const products = [
       "Taille:3,5 cm",
       "Prune est une création faite main, unique par ses détails"
     ],
-    "sourceRow": 6
+    "sourceRow": 6,
+    "stock": 1
   },
   {
     "id": "daisy",
@@ -138,7 +143,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "manta",
@@ -158,7 +164,8 @@ const products = [
       "Taille:3,5 cm",
       "Chaque paire de Manta est confectionnée à la main et possède son caractère unique"
     ],
-    "sourceRow": 8
+    "sourceRow": 8,
+    "stock": 1
   },
   {
     "id": "liliane",
@@ -177,7 +184,8 @@ const products = [
       "Taille: 1,50 cm",
       "Liliane est un bijou fait main, pensé comme une pièce unique"
     ],
-    "sourceRow": 9
+    "sourceRow": 9,
+    "stock": 1
   },
   {
     "id": "plume",
@@ -196,7 +204,8 @@ const products = [
       "Un format facile à porter.Taille: 3,5 cm",
       "Chaque modèle Plume est fait à la main, avec une finition toujours unique"
     ],
-    "sourceRow": 10
+    "sourceRow": 10,
+    "stock": 1
   },
   {
     "id": "rosalie",
@@ -215,7 +224,8 @@ const products = [
       "Pensées pour rester légères.Taille: 2,5 cm",
       "Créées à la main, les Rosalie restent uniques et ne ressemblent à aucune autre paire"
     ],
-    "sourceRow": 11
+    "sourceRow": 11,
+    "stock": 1
   },
   {
     "id": "palma",
@@ -242,7 +252,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "pivoine",
@@ -269,7 +280,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "terracotta",
@@ -296,7 +308,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "celeste",
@@ -323,7 +336,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "gaia",
@@ -350,7 +364,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "rose",
@@ -377,7 +392,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "luna",
@@ -404,7 +420,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "miel",
@@ -431,7 +448,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "clea",
@@ -459,7 +477,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "azule",
@@ -486,7 +505,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "avia",
@@ -513,7 +533,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "soleia",
@@ -540,7 +561,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "lagune",
@@ -560,7 +582,8 @@ const products = [
       "Taille : 4,5 cm",
       "Créées à la main, les Lagune ne ressemblent à aucune autre paire"
     ],
-    "sourceRow": 24
+    "sourceRow": 24,
+    "stock": 1
   },
   {
     "id": "selene",
@@ -587,7 +610,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "oria",
@@ -614,7 +638,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "dune",
@@ -641,7 +666,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "flamme",
@@ -668,7 +694,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "roselia",
@@ -697,7 +724,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "onatha",
@@ -717,7 +745,8 @@ const products = [
       "Taille: 2,5 cm",
       "Les Onatha sont façonnées à la main, en modèle unique"
     ],
-    "sourceRow": 30
+    "sourceRow": 30,
+    "stock": 1
   },
   {
     "id": "cristal",
@@ -737,7 +766,8 @@ const products = [
       "Taille: 2,5 cm",
       "Cette paire de boucles d'oreilles est réalisée à la main, ce qui rend son effet cristal uniques"
     ],
-    "sourceRow": 31
+    "sourceRow": 31,
+    "stock": 1
   },
   {
     "id": "nea",
@@ -757,7 +787,8 @@ const products = [
       "Taille:3,5 cm",
       "Les Néa sont une création artisanale, unique et faite à la main"
     ],
-    "sourceRow": 32
+    "sourceRow": 32,
+    "stock": 1
   },
   {
     "id": "azalee",
@@ -777,7 +808,8 @@ const products = [
       "Taille: 4,5 cm",
       "Azalée est une paire unique, façonnée à la main avec attention"
     ],
-    "sourceRow": 33
+    "sourceRow": 33,
+    "stock": 1
   },
   {
     "id": "azelie",
@@ -797,7 +829,8 @@ const products = [
       "taille: 4 à 4,5 cm",
       "Azélie est une paire unique, façonnée à la main avec attention"
     ],
-    "sourceRow": 34
+    "sourceRow": 34,
+    "stock": 1
   },
   {
     "id": "moka",
@@ -818,7 +851,8 @@ const products = [
       "Les",
       "Moka est une paire unique faite à la main"
     ],
-    "sourceRow": 35
+    "sourceRow": 35,
+    "stock": 1
   },
   {
     "id": "selea",
@@ -838,7 +872,8 @@ const products = [
       "Taille: longueur 4,5 cm",
       "Séléa est une création unique, façonnée à la main"
     ],
-    "sourceRow": 36
+    "sourceRow": 36,
+    "stock": 1
   },
   {
     "id": "margot",
@@ -865,7 +900,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "flora",
@@ -892,7 +928,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "petalia",
@@ -911,7 +948,8 @@ const products = [
       "Pensées pour rester légères.Taille: 5 cm de longueur",
       "Pétalia sont réalisées à la main, ce qui rend les uniques et originales"
     ],
-    "sourceRow": 39
+    "sourceRow": 39,
+    "stock": 1
   },
   {
     "id": "citronelle",
@@ -931,7 +969,8 @@ const products = [
       "Taille: 2 cm",
       "Faites à la main, les Citronelle gardent le charme d'une création unique"
     ],
-    "sourceRow": 40
+    "sourceRow": 40,
+    "stock": 1
   },
   {
     "id": "clea-2",
@@ -952,7 +991,8 @@ const products = [
       "Taille 4 cm de longueur",
       "Cléa est une création faite main, unique par ses détails"
     ],
-    "sourceRow": 41
+    "sourceRow": 41,
+    "stock": 1
   },
   {
     "id": "eclat-floral",
@@ -979,7 +1019,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "prunelle",
@@ -1006,11 +1047,12 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "nacria-deux-paires-disponibles",
-    "name": "Nacria ( deux paires disponibles)",
+    "name": "Nacria",
     "category": "florales",
     "tag": "Florales",
     "price": 12,
@@ -1026,11 +1068,12 @@ const products = [
       "taille:2cm",
       "Nacria est une paire unique, façonnée à la main avec attention"
     ],
-    "sourceRow": 44
+    "sourceRow": 44,
+    "stock": 2
   },
   {
     "id": "viola-deux-paires-disponibles",
-    "name": "Viola (deux paires disponibles)",
+    "name": "Viola",
     "category": "florales",
     "tag": "Florales",
     "price": 12,
@@ -1046,7 +1089,8 @@ const products = [
       "taille: 2,5 cm",
       "Les Viola portent la touche du fait main avec passion et d'une pièce unique"
     ],
-    "sourceRow": 45
+    "sourceRow": 45,
+    "stock": 2
   },
   {
     "id": "grandes-mauvea",
@@ -1074,7 +1118,8 @@ const products = [
         "Attache dorée",
         "Attache argentée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "liera",
@@ -1101,11 +1146,12 @@ const products = [
         "Attache dorée",
         "Attache argentée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "azurine-deux-paires-disponibles",
-    "name": "Azurine ( deux paires disponibles)",
+    "name": "Azurine",
     "category": "florales",
     "tag": "Florales",
     "price": 12,
@@ -1121,11 +1167,12 @@ const products = [
       "taille: 2,5 à 3 cm",
       "Azurine est une pièce artisanale unique, faite main avec soin"
     ],
-    "sourceRow": 48
+    "sourceRow": 48,
+    "stock": 2
   },
   {
     "id": "mauvea-deux-paires-disponibles",
-    "name": "Mauvéa ( deux paires disponibles)",
+    "name": "Mauvéa",
     "category": "florales",
     "tag": "Florales",
     "price": 12,
@@ -1141,7 +1188,8 @@ const products = [
       "Taille: 3 à 4 cm",
       "Les Mauvéa sont façonnées à la main, en modèle unique"
     ],
-    "sourceRow": 49
+    "sourceRow": 49,
+    "stock": 2
   },
   {
     "id": "roselia-2",
@@ -1163,7 +1211,8 @@ const products = [
       "Taille: 2,5 cm",
       "Les Rosélia sont façonnées à la main, en modèle unique"
     ],
-    "sourceRow": 50
+    "sourceRow": 50,
+    "stock": 1
   },
   {
     "id": "violetta-2",
@@ -1185,11 +1234,12 @@ const products = [
       "Taille: 2,5 cm",
       "Faites à la main, les Violetta gardent le charme d'une création unique"
     ],
-    "sourceRow": 51
+    "sourceRow": 51,
+    "stock": 1
   },
   {
     "id": "petits-coquelicot-huit-paires-disponible",
-    "name": "Petits Coquelicot ( huit paires disponible)",
+    "name": "Petits Coquelicot",
     "category": "florales",
     "tag": "Florales",
     "price": 10,
@@ -1213,11 +1263,12 @@ const products = [
         "Attache dorée",
         "Attache argentée"
       ]
-    }
+    },
+    "stock": 8
   },
   {
     "id": "vaninee-deux-paires-disponibles",
-    "name": "Vaninée (deux paires disponibles)",
+    "name": "Vaninée",
     "category": "florales",
     "tag": "Florales",
     "price": 10,
@@ -1233,11 +1284,12 @@ const products = [
       "Taille:3 cm",
       "Les Vaninée sont une création artisanale, unique et faite à la main"
     ],
-    "sourceRow": 53
+    "sourceRow": 53,
+    "stock": 2
   },
   {
     "id": "p-orangeade",
-    "name": "P Orangeade",
+    "name": "Orangeade",
     "category": "florales",
     "tag": "Florales",
     "price": 12,
@@ -1253,7 +1305,8 @@ const products = [
       "taille:3,5 cm",
       "Réalisées à la main, les Orangeade ont chacune leurs petits détails uniques"
     ],
-    "sourceRow": 54
+    "sourceRow": 54,
+    "stock": 1
   },
   {
     "id": "violetta-3",
@@ -1282,7 +1335,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "azuline",
@@ -1302,7 +1356,8 @@ const products = [
       "taille:1,5 à 2 cm",
       "Les Azuline sont façonnées à la main, en modèle unique"
     ],
-    "sourceRow": 56
+    "sourceRow": 56,
+    "stock": 1
   },
   {
     "id": "camelia",
@@ -1322,7 +1377,8 @@ const products = [
       "taille 3,5 cm",
       "Les Camelia sont travaillées à la main avec passsion pour un rendu unique"
     ],
-    "sourceRow": 57
+    "sourceRow": 57,
+    "stock": 1
   },
   {
     "id": "viola-fushia",
@@ -1349,7 +1405,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "soline",
@@ -1369,7 +1426,8 @@ const products = [
       "Taille: 2,5 cm",
       "Soline est un bijou fait main, pensé comme une pièce unique"
     ],
-    "sourceRow": 59
+    "sourceRow": 59,
+    "stock": 1
   },
   {
     "id": "tiare",
@@ -1389,7 +1447,8 @@ const products = [
       "Taille:4 cm",
       "Créées à la main, les Tiaré restent uniques et ne ressemblent à aucune autre paire"
     ],
-    "sourceRow": 60
+    "sourceRow": 60,
+    "stock": 1
   },
   {
     "id": "les-givrees",
@@ -1417,11 +1476,12 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "viola-parme-deux-paires-disponibles",
-    "name": "Viola parme ( deux paires disponibles)",
+    "name": "Viola parme",
     "category": "florales",
     "tag": "Florales",
     "price": 10,
@@ -1444,7 +1504,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 2
   },
   {
     "id": "thaiti",
@@ -1464,7 +1525,8 @@ const products = [
       "Taille: 3 cm",
       "Les Thaiti sont travaillées à la main pour un rendu unique"
     ],
-    "sourceRow": 63
+    "sourceRow": 63,
+    "stock": 1
   },
   {
     "id": "solea",
@@ -1491,7 +1553,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "neptune",
@@ -1509,7 +1572,8 @@ const products = [
       "Apprêts dorés en acier inoxydable Pensées pour rester légères",
       "Taille: 3cm de longueur Neptune est faite à la main et reste unique"
     ],
-    "sourceRow": 65
+    "sourceRow": 65,
+    "stock": 1
   },
   {
     "id": "ambra",
@@ -1536,7 +1600,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "cyane",
@@ -1562,7 +1627,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "marina-blue",
@@ -1581,7 +1647,8 @@ const products = [
       "Confortables pour la journée.Taille: 4 cm de longueur",
       "Marina blue est une pièce artisanale unique, faite main avec soin"
     ],
-    "sourceRow": 68
+    "sourceRow": 68,
+    "stock": 1
   },
   {
     "id": "nocturne",
@@ -1607,7 +1674,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "talis",
@@ -1633,7 +1701,8 @@ const products = [
         "Attache dorée",
         "Pince à vis dorée"
       ]
-    }
+    },
+    "stock": 1
   },
   {
     "id": "eventia",
@@ -1653,7 +1722,8 @@ const products = [
       "Taille: 3,5 cmde longueur",
       "Faites à la main, les Eventia gardent le charme d'une création unique"
     ],
-    "sourceRow": 71
+    "sourceRow": 71,
+    "stock": 1
   },
   {
     "id": "auguste",
@@ -1673,7 +1743,8 @@ const products = [
       "Taille:3 cm",
       "Auguste est une création faite main, unique par son originalité"
     ],
-    "sourceRow": 72
+    "sourceRow": 72,
+    "stock": 1
   }
 ];
 
@@ -2035,7 +2106,15 @@ const productOrder = {
   }
 };
 
+const CART_STORAGE_KEY = "valmeo-cart-reservation-v1";
+const STOCK_STORAGE_KEY = "valmeo-confirmed-stock-v1";
+const CART_HOLD_DURATION = 30 * 60 * 1000;
+
 const cart = new Map();
+let activeFilter = "florales";
+let cartExpiresAt = 0;
+let cartExpiryTimer = null;
+let confirmedStockAdjustments = loadConfirmedStockAdjustments();
 const productGrid = document.querySelector("[data-products]");
 const cartPanel = document.querySelector("[data-cart-panel]");
 const overlay = document.querySelector("[data-overlay]");
@@ -2084,6 +2163,15 @@ function escapeAttribute(value) {
   return String(value || "").replace(/"/g, "&quot;");
 }
 
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function productNeedsChoice(product) {
   return Boolean(product.choice?.options?.length);
 }
@@ -2104,6 +2192,134 @@ function cartKey(id, choice = "") {
   return `${id}::${choice}`;
 }
 
+function loadConfirmedStockAdjustments() {
+  try {
+    return JSON.parse(localStorage.getItem(STOCK_STORAGE_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function saveConfirmedStockAdjustments() {
+  localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(confirmedStockAdjustments));
+}
+
+function productBaseStock(product) {
+  const confirmedQuantity = Number(confirmedStockAdjustments[product.id] || 0);
+  return Math.max(0, Number(product.stock || 0) - confirmedQuantity);
+}
+
+function cartQuantityForProduct(productId) {
+  return [...cart.values()]
+    .filter((item) => item.id === productId)
+    .reduce((sum, item) => sum + item.quantity, 0);
+}
+
+function availableStock(product) {
+  return Math.max(0, productBaseStock(product) - cartQuantityForProduct(product.id));
+}
+
+function stockLabel(product) {
+  const stock = availableStock(product);
+  return `${stock} ${stock > 1 ? "articles disponibles" : "article disponible"}`;
+}
+
+function productIsOutOfStock(product) {
+  return availableStock(product) <= 0;
+}
+
+function getCartRowsForStorage() {
+  return [...cart.values()].map((item) => ({
+    id: item.id,
+    selectedChoice: item.selectedChoice || "",
+    quantity: item.quantity
+  }));
+}
+
+function scheduleCartExpiry() {
+  if (cartExpiryTimer) window.clearTimeout(cartExpiryTimer);
+  if (!cartExpiresAt) return;
+
+  const delay = cartExpiresAt - Date.now();
+  if (delay <= 0) {
+    expireCartReservation();
+    return;
+  }
+
+  cartExpiryTimer = window.setTimeout(expireCartReservation, delay);
+}
+
+function saveCartReservation() {
+  if (!cart.size) {
+    cartExpiresAt = 0;
+    localStorage.removeItem(CART_STORAGE_KEY);
+    if (cartExpiryTimer) window.clearTimeout(cartExpiryTimer);
+    return;
+  }
+
+  cartExpiresAt = Date.now() + CART_HOLD_DURATION;
+  localStorage.setItem(
+    CART_STORAGE_KEY,
+    JSON.stringify({
+      expiresAt: cartExpiresAt,
+      rows: getCartRowsForStorage()
+    })
+  );
+  scheduleCartExpiry();
+}
+
+function clearCartReservation() {
+  cart.clear();
+  cartExpiresAt = 0;
+  localStorage.removeItem(CART_STORAGE_KEY);
+  if (cartExpiryTimer) window.clearTimeout(cartExpiryTimer);
+}
+
+function restoreCartReservation() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || "null");
+    if (!saved?.expiresAt || saved.expiresAt <= Date.now()) {
+      localStorage.removeItem(CART_STORAGE_KEY);
+      return;
+    }
+
+    saved.rows?.forEach((row) => {
+      const product = products.find((item) => item.id === row.id);
+      if (!product) return;
+
+      const quantity = Math.min(Number(row.quantity || 0), productBaseStock(product));
+      if (quantity <= 0) return;
+
+      const selectedChoice = row.selectedChoice || "";
+      cart.set(cartKey(product.id, selectedChoice), {
+        ...product,
+        cartKey: cartKey(product.id, selectedChoice),
+        selectedChoice,
+        quantity
+      });
+    });
+
+    cartExpiresAt = saved.expiresAt;
+    scheduleCartExpiry();
+  } catch {
+    localStorage.removeItem(CART_STORAGE_KEY);
+  }
+}
+
+function expireCartReservation() {
+  if (!cart.size) return;
+  clearCartReservation();
+  updateCart();
+  renderProducts(activeFilter);
+  if (activeProductId) openProduct(activeProductId);
+  formNote.textContent = "Le panier a expiré après 30 minutes. Les stocks ont été libérés.";
+}
+
+function refreshStockViews() {
+  updateCart();
+  renderProducts(activeFilter);
+}
+
 function getProductOrder(product) {
   return productOrder[product.id] || { order: 9999, row: product.sourceRow || 9999, original: 9999 };
 }
@@ -2120,41 +2336,54 @@ function compareProducts(a, b) {
 }
 
 function renderProducts(filter = "all") {
+  activeFilter = filter;
   const visibleProducts = [...(filter === "all" ? products : products.filter((product) => product.category === filter))].sort(compareProducts);
 
   productGrid.innerHTML = visibleProducts
     .map(
-      (product) => `
-        <article class="product-card ${productNeedsChoice(product) ? "requires-choice" : ""}">
-          <button class="product-image" type="button" data-open-product="${product.id}" aria-label="Agrandir la photo de ${product.name}">
-            <img src="${product.image}" alt="${product.name}" loading="lazy">
+      (product) => {
+        const outOfStock = productIsOutOfStock(product);
+        const actionAttributes = outOfStock
+          ? 'disabled aria-disabled="true"'
+          : productNeedsChoice(product)
+            ? `data-open-product="${product.id}"`
+            : `data-add="${product.id}"`;
+        const actionLabel = outOfStock ? "Rupture de stock" : productNeedsChoice(product) ? "Détails" : "Ajouter au panier";
+
+        return `
+        <article class="product-card ${productNeedsChoice(product) ? "requires-choice" : ""} ${outOfStock ? "out-of-stock" : ""}">
+          ${outOfStock ? '<span class="stock-ribbon">Rupture de stock</span>' : ""}
+          <button class="product-image" type="button" data-open-product="${product.id}" aria-label="Agrandir la photo de ${escapeAttribute(product.name)}">
+            <img src="${product.image}" alt="${escapeAttribute(product.name)}" loading="lazy">
           </button>
           <div class="product-content">
             <div class="product-meta">
               <span class="product-tag">${product.tag}</span>
               <span class="price">${euro(product.price)}</span>
             </div>
-            <h3>${product.name}</h3>
-            <button class="button primary" type="button" ${productNeedsChoice(product) ? `data-open-product="${product.id}"` : `data-add="${product.id}"`}>
-              ${productNeedsChoice(product) ? "Détails" : "Ajouter au panier"}
+            <h3>${escapeHtml(product.name)} <span class="product-stock">(${stockLabel(product)})</span></h3>
+            <button class="button primary" type="button" ${actionAttributes}>
+              ${actionLabel}
             </button>
           </div>
         </article>
-      `
+      `;
+      }
     )
     .join("");
 }
 
 function renderModalChoice(product) {
+  const outOfStock = productIsOutOfStock(product);
   activeChoice = "";
   modalAdd.dataset.choice = "";
 
   if (!productNeedsChoice(product)) {
     modalChoice.hidden = true;
     modalChoice.innerHTML = "";
-    modalAdd.disabled = false;
-    modalAdd.removeAttribute("aria-disabled");
-    modalAdd.textContent = "Ajouter au panier";
+    modalAdd.disabled = outOfStock;
+    modalAdd.toggleAttribute("aria-disabled", outOfStock);
+    modalAdd.textContent = outOfStock ? "Rupture de stock" : "Ajouter au panier";
     return;
   }
 
@@ -2176,15 +2405,17 @@ function renderModalChoice(product) {
   `;
   modalAdd.disabled = true;
   modalAdd.setAttribute("aria-disabled", "true");
-  modalAdd.textContent = "Choisis une option";
+  modalAdd.textContent = outOfStock ? "Rupture de stock" : "Choisis une option";
 }
 
 function selectModalChoice(option) {
+  const product = products.find((item) => item.id === activeProductId);
   activeChoice = option;
   modalAdd.dataset.choice = option;
-  modalAdd.disabled = false;
-  modalAdd.removeAttribute("aria-disabled");
-  modalAdd.textContent = "Ajouter au panier";
+  const outOfStock = product ? productIsOutOfStock(product) : true;
+  modalAdd.disabled = outOfStock;
+  modalAdd.toggleAttribute("aria-disabled", outOfStock);
+  modalAdd.textContent = outOfStock ? "Rupture de stock" : "Ajouter au panier";
   modalChoice.querySelectorAll("[data-choice-option]").forEach((button) => {
     const isActive = button.dataset.choiceOption === option;
     button.classList.toggle("active", isActive);
@@ -2236,7 +2467,7 @@ function openProduct(id) {
   activeProductId = id;
   modalTitle.innerHTML = "";
   const name = document.createElement("span");
-  name.textContent = product.name;
+  name.textContent = `${product.name} (${stockLabel(product)})`;
   const separator = document.createElement("span");
   separator.textContent = "·";
   const price = document.createElement("span");
@@ -2280,20 +2511,25 @@ function updateCart() {
 
   cartItems.innerHTML = rows
     .map(
-      (item) => `
+      (item) => {
+        const product = products.find((candidate) => candidate.id === item.id) || item;
+        const canIncrease = availableStock(product) > 0;
+
+        return `
         <div class="cart-row">
           <img src="${item.image}" alt="${item.name}">
           <div>
-            <p>${item.name}</p>
+            <p>${escapeHtml(item.name)}</p>
             <small>${euro(item.price)} l'unite${item.selectedChoice ? ` · ${item.selectedChoice}` : ""}</small>
           </div>
           <div class="qty-controls" aria-label="Quantite pour ${item.name}">
             <button type="button" data-decrease="${item.cartKey}" aria-label="Retirer une unite">-</button>
             <strong>${item.quantity}</strong>
-            <button type="button" data-increase="${item.cartKey}" aria-label="Ajouter une unite">+</button>
+            <button type="button" data-increase="${item.cartKey}" aria-label="Ajouter une unite" ${canIncrease ? "" : "disabled"}>+</button>
           </div>
         </div>
-      `
+      `;
+      }
     )
     .join("");
 }
@@ -2307,6 +2543,12 @@ function addToCart(id, selectedChoice = "") {
     return;
   }
 
+  if (availableStock(product) <= 0) {
+    renderProducts(activeFilter);
+    if (activeProductId === id) renderModalChoice(product);
+    return;
+  }
+
   const key = cartKey(id, selectedChoice);
   const existing = cart.get(key);
 
@@ -2317,13 +2559,19 @@ function addToCart(id, selectedChoice = "") {
     quantity: existing ? existing.quantity + 1 : 1
   });
 
+  saveCartReservation();
   updateCart();
+  renderProducts(activeFilter);
+  if (activeProductId === id) openProduct(id);
   openCart();
 }
 
 function changeQuantity(id, direction) {
   const item = cart.get(id);
   if (!item) return;
+  const product = products.find((candidate) => candidate.id === item.id) || item;
+
+  if (direction > 0 && availableStock(product) <= 0) return;
 
   const quantity = item.quantity + direction;
   if (quantity <= 0) {
@@ -2332,7 +2580,9 @@ function changeQuantity(id, direction) {
     cart.set(id, { ...item, quantity });
   }
 
+  saveCartReservation();
   updateCart();
+  renderProducts(activeFilter);
 }
 
 function openCart() {
@@ -2404,10 +2654,21 @@ document.addEventListener("keydown", (event) => {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const totalQuantity = [...cart.values()].reduce((sum, item) => sum + item.quantity, 0);
-  formNote.textContent = totalQuantity
-    ? "Demande preparee. Le paiement reste volontairement simule pour cette version."
-    : "Ajoute au moins une piece au panier avant de finaliser la demande.";
+  if (!totalQuantity) {
+    formNote.textContent = "Ajoute au moins une piece au panier avant de finaliser la demande.";
+    return;
+  }
+
+  cart.forEach((item) => {
+    confirmedStockAdjustments[item.id] = Number(confirmedStockAdjustments[item.id] || 0) + item.quantity;
+  });
+  saveConfirmedStockAdjustments();
+  clearCartReservation();
+  updateCart();
+  renderProducts(activeFilter);
+  formNote.textContent = "Demande preparee. Le stock a ete mis a jour pour cette session.";
 });
 
+restoreCartReservation();
 renderProducts("florales");
 updateCart();
