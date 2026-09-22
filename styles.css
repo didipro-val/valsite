@@ -754,8 +754,7 @@ body.modal-open {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 18px;
+  gap: 0 0.28em;
 }
 
 .modal-title-line .modal-price {

@@ -2195,10 +2195,12 @@ function openProduct(id) {
   modalTitle.innerHTML = "";
   const name = document.createElement("span");
   name.textContent = product.name;
+  const separator = document.createElement("span");
+  separator.textContent = "·";
   const price = document.createElement("span");
   price.className = "modal-price";
   price.textContent = euro(product.price);
-  modalTitle.append(name, price);
+  modalTitle.append(name, separator, price);
   modalMeta.textContent = product.tag;
   modalDescription.innerHTML = paragraphs(product.description);
   modalCharacteristics.innerHTML = product.characteristics.length
