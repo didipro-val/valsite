@@ -262,6 +262,14 @@ h3 {
   background: var(--clay);
 }
 
+.button:disabled,
+.button[aria-disabled="true"] {
+  color: rgba(31, 35, 32, 0.48);
+  cursor: not-allowed;
+  background: #d8d0c5;
+  box-shadow: none;
+}
+
 .button.secondary {
   color: var(--ink);
   background: var(--surface);
@@ -765,6 +773,54 @@ body.modal-open {
   color: var(--muted);
 }
 
+.modal-choice {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 22px;
+  padding: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.modal-choice[hidden] {
+  display: none;
+}
+
+.modal-choice h3,
+.modal-choice p {
+  margin: 0;
+}
+
+.modal-choice p {
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
+
+.choice-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.choice-option {
+  min-height: 44px;
+  padding: 10px 12px;
+  color: var(--ink);
+  font-weight: 800;
+  cursor: pointer;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.choice-option.active {
+  color: var(--surface);
+  background: var(--sage);
+  border-color: var(--sage);
+}
+
 .modal-close {
   position: fixed;
   top: 18px;
@@ -933,9 +989,20 @@ body.modal-open {
   }
 
   .product-tag,
-  .product-content .button,
   .product-description {
     display: none;
+  }
+
+  .product-content .button {
+    display: none;
+  }
+
+  .product-card.requires-choice .product-content .button {
+    grid-column: 1 / -1;
+    display: inline-flex;
+    min-height: 34px;
+    margin-top: 5px;
+    font-size: 0.75rem;
   }
 
   .price {
@@ -1000,5 +1067,9 @@ body.modal-open {
   .modal-close {
     top: 10px;
     right: 10px;
+  }
+
+  .choice-options {
+    grid-template-columns: 1fr;
   }
 }
