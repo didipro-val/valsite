@@ -2053,6 +2053,12 @@ const modalCharacteristics = document.querySelector("[data-modal-characteristics
 const modalThumbnails = document.querySelector("[data-modal-thumbnails]");
 const modalAdd = document.querySelector("[data-modal-add]");
 const modalChoice = document.querySelector("[data-modal-choice]");
+const choicePreviewImage = "./assets/choice-guides/attaches-pince-vis.jpeg?v=1";
+const choicePreview = document.createElement("div");
+choicePreview.className = "choice-photo-preview";
+choicePreview.hidden = true;
+choicePreview.innerHTML = `<img src="${choicePreviewImage}" alt="Photo des pinces à vis">`;
+document.body.appendChild(choicePreview);
 
 let activeProductId = null;
 let activeChoice = "";
@@ -2080,6 +2086,18 @@ function escapeAttribute(value) {
 
 function productNeedsChoice(product) {
   return Boolean(product.choice?.options?.length);
+}
+
+function productUsesEarAttachmentGuide(product) {
+  return product.choice?.code === "C2";
+}
+
+function renderChoiceOptionLabel(product, option) {
+  if (productUsesEarAttachmentGuide(product) && option === "Pince à vis dorée") {
+    return `${option} <span class="choice-photo-trigger" data-choice-preview-trigger>(photo)</span>`;
+  }
+
+  return option;
 }
 
 function cartKey(id, choice = "") {
@@ -2142,14 +2160,14 @@ function renderModalChoice(product) {
 
   modalChoice.hidden = false;
   modalChoice.innerHTML = `
-    <h3>Choix obligatoire</h3>
+    <h3>${productUsesEarAttachmentGuide(product) ? "Choisissez l'attache adaptée à vos oreilles" : "Choix obligatoire"}</h3>
     <p>Sélectionne une option avant d'ajouter cet article au panier.</p>
     <div class="choice-options" role="radiogroup" aria-label="Choix pour ${product.name}">
       ${product.choice.options
         .map(
           (option) => `
             <button type="button" class="choice-option" role="radio" aria-checked="false" data-choice-option="${escapeAttribute(option)}">
-              ${option}
+              ${renderChoiceOptionLabel(product, option)}
             </button>
           `
         )
@@ -2172,6 +2190,30 @@ function selectModalChoice(option) {
     button.classList.toggle("active", isActive);
     button.setAttribute("aria-checked", String(isActive));
   });
+}
+
+function positionChoicePreview(x, y) {
+  const margin = 14;
+  const offset = 18;
+  const previewRect = choicePreview.getBoundingClientRect();
+  const left = Math.min(window.innerWidth - previewRect.width - margin, Math.max(margin, x + offset));
+  const top = Math.min(window.innerHeight - previewRect.height - margin, Math.max(margin, y - previewRect.height - offset));
+  choicePreview.style.left = `${left}px`;
+  choicePreview.style.top = `${top}px`;
+}
+
+function showChoicePreview(event) {
+  const trigger = event.target.closest("[data-choice-preview-trigger]");
+  if (!trigger) return;
+
+  choicePreview.hidden = false;
+  const rect = trigger.getBoundingClientRect();
+  positionChoicePreview(event.clientX || rect.left + rect.width / 2, event.clientY || rect.top);
+}
+
+function hideChoicePreview(event) {
+  if (!event.target.closest("[data-choice-preview-trigger]")) return;
+  choicePreview.hidden = true;
 }
 
 function renderModalImage(product, image) {
@@ -2218,6 +2260,7 @@ function closeProduct() {
   productModal.classList.remove("open");
   productModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
+  choicePreview.hidden = true;
   activeProductId = null;
   activeChoice = "";
 }
@@ -2340,8 +2383,19 @@ document.addEventListener("click", (event) => {
   if (event.target.closest("[data-close-product]") || event.target === productModal) closeProduct();
 });
 
+document.addEventListener("mouseover", showChoicePreview);
+document.addEventListener("mousemove", (event) => {
+  if (event.target.closest("[data-choice-preview-trigger]") && !choicePreview.hidden) {
+    positionChoicePreview(event.clientX, event.clientY);
+  }
+});
+document.addEventListener("mouseout", hideChoicePreview);
+document.addEventListener("focusin", showChoicePreview);
+document.addEventListener("focusout", hideChoicePreview);
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
+    choicePreview.hidden = true;
     closeProduct();
     closeCart();
   }
