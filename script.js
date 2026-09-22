@@ -745,9 +745,9 @@ const products = [
     "category": "florales",
     "tag": "Florales",
     "price": 8,
-    "image": "./assets/catalogue-saugardevalerie/photos/row-032.webp",
+    "image": "./assets/catalogue-saugardevalerie/photos/row-032.webp?v=2",
     "gallery": [
-      "./assets/catalogue-saugardevalerie/photos/row-032.webp"
+      "./assets/catalogue-saugardevalerie/photos/row-032.webp?v=2"
     ],
     "description": "Les Néa sont composées de deux petites fleurs blanches à coeur jaune, montées sur des apprêts dorés en acier inoxydable.\n\nOn choisit les Néa pour illuminer son quotidien comme un air de primptemps, avec un détail joyeux qui se remarque juste ce qu'il faut.",
     "characteristics": [
@@ -846,9 +846,9 @@ const products = [
     "category": "florales",
     "tag": "Florales",
     "price": 6,
-    "image": "./assets/catalogue-saugardevalerie/photos/row-037.webp",
+    "image": "./assets/catalogue-saugardevalerie/photos/row-037.webp?v=2",
     "gallery": [
-      "./assets/catalogue-saugardevalerie/photos/row-037.webp"
+      "./assets/catalogue-saugardevalerie/photos/row-037.webp?v=2"
     ],
     "description": "Les Margot sont composées de grandes marguerites blanches à coeur jaune, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Margot apporte une fraîcheur printanière, par son coté originale elle seront unique à porter autant avec une tenue simple qu'avec une tenue plus habillée.",
     "characteristics": [
