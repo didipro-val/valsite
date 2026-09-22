@@ -750,6 +750,18 @@ body.modal-open {
   margin-bottom: 16px;
 }
 
+.modal-title-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 18px;
+}
+
+.modal-title-line .modal-price {
+  white-space: nowrap;
+}
+
 .modal-description {
   color: var(--muted);
   line-height: 1.7;

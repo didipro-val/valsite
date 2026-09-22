@@ -2192,8 +2192,14 @@ function openProduct(id) {
   const product = products.find((item) => item.id === id);
   if (!product) return;
   activeProductId = id;
-  modalTitle.textContent = product.name;
-  modalMeta.textContent = `${product.tag} · ${euro(product.price)}`;
+  modalTitle.innerHTML = "";
+  const name = document.createElement("span");
+  name.textContent = product.name;
+  const price = document.createElement("span");
+  price.className = "modal-price";
+  price.textContent = euro(product.price);
+  modalTitle.append(name, price);
+  modalMeta.textContent = product.tag;
   modalDescription.innerHTML = paragraphs(product.description);
   modalCharacteristics.innerHTML = product.characteristics.length
     ? product.characteristics.map((item) => `<li>${item}</li>`).join("")
