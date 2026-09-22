@@ -2355,5 +2355,5 @@ form.addEventListener("submit", (event) => {
     : "Ajoute au moins une piece au panier avant de finaliser la demande.";
 });
 
-renderProducts();
+renderProducts("florales");
 updateCart();
