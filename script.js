@@ -1082,9 +1082,9 @@ const products = [
     "category": "florales",
     "tag": "Florales",
     "price": 16,
-    "image": "./assets/catalogue-saugardevalerie/photos/row-047.webp?v=5",
+    "image": "./assets/catalogue-saugardevalerie/photos/row-047.webp?v=6",
     "gallery": [
-      "./assets/catalogue-saugardevalerie/photos/row-047.webp?v=5"
+      "./assets/catalogue-saugardevalerie/photos/row-047.webp?v=6"
     ],
     "description": "Les Liera sont composées de pétales façonées à la main unes à unes, marbrée de \"vert et de teracotta\" ce qui les rends uniques par leur couleur originale pénsées avec soins. montées sur des apprêts en acier inoxydable dorés.\n\nLes Liera sont parfaites pour attirer le regard avec élégance, tout en gardant un rendu affirmé sans trop charger votre visage.",
     "characteristics": [
