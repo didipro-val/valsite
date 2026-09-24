@@ -111,7 +111,16 @@ async function getCheckoutSession(request, env, url) {
     const session = await stripe.checkout.sessions.retrieve(sessionId, { expand: ["customer", "line_items"] });
     const paid = session.payment_status === "paid" || session.payment_status === "no_payment_required";
     const orderId = String(session.metadata?.order_id || "");
-    const status = paid && orderId ? await callInventory(env, { action: "status", orderId }) : { ok: false };
+    let status = paid && orderId ? await callInventory(env, { action: "status", orderId }) : { ok: false };
+    if (paid && status.confirmed && !status.emailSent) {
+      const retry = await callInventory(env, {
+        action: "confirm",
+        orderId,
+        stripeSessionId: session.id,
+        order: checkoutDetails(session)
+      });
+      if (retry.ok) status = retry;
+    }
     return corsResponse(request, env, {
       ok: true,
       paid,
