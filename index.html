@@ -8,7 +8,7 @@
       content="Valmeo Creation par Valerie Palacin : boucles d'oreilles et petites merveilles faites main a s'offrir ou a offrir."
     />
     <title>Valmeo Creation | Boutique artisanale</title>
-    <link rel="stylesheet" href="./styles.css?v=20" />
+    <link rel="stylesheet" href="./styles.css?v=21" />
   </head>
   <body>
     <header class="site-header">
@@ -21,7 +21,7 @@
       <nav class="desktop-nav" aria-label="Navigation principale">
         <a href="#boutique">Boutique</a>
         <a href="#atelier">Atelier</a>
-        <a href="#commande">Commande</a>
+        <a href="./commande.html">Commande</a>
       </nav>
       <button class="cart-toggle" type="button" aria-label="Ouvrir le panier">
         <span>Panier</span>
@@ -106,34 +106,6 @@
         </div>
       </section>
 
-      <section class="section order-section" id="commande">
-        <div class="section-heading">
-          <p class="eyebrow">Commande</p>
-          <h2>Finaliser ma commande</h2>
-        </div>
-        <form class="checkout-form" data-checkout-form>
-          <label>
-            Nom
-            <input name="name" type="text" autocomplete="name" required />
-          </label>
-          <label>
-            Email
-            <input name="email" type="email" autocomplete="email" required />
-          </label>
-          <label>
-            Message
-            <textarea
-              name="message"
-              rows="4"
-              placeholder="Precise une couleur, une taille ou une personnalisation..."
-            ></textarea>
-          </label>
-          <button class="button primary" type="submit">Payer par carte</button>
-          <p class="form-note" data-form-note>
-            Paiement sécurisé par Stripe. L'adresse de livraison sera demandée à l'étape suivante.
-          </p>
-        </form>
-      </section>
     </main>
 
     <aside class="cart-panel" data-cart-panel aria-label="Panier" aria-hidden="true">
@@ -147,7 +119,7 @@
           <span>Total</span>
           <strong data-cart-total>0 €</strong>
         </div>
-        <a class="button primary full" href="#commande" data-close-cart-link>Commander</a>
+        <a class="button primary full" href="./commande.html" data-close-cart-link>Commander</a>
       </div>
     </aside>
     <aside class="product-modal" data-product-modal aria-label="Fiche produit" aria-hidden="true">

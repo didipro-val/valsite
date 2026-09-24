@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Finaliser une commande Valmeo Création et régler en toute sécurité avec Stripe." />
+    <title>Finaliser ma commande | Valmeo Création</title>
+    <link rel="stylesheet" href="./styles.css?v=21" />
+  </head>
+  <body class="checkout-page">
+    <header class="checkout-header">
+      <a class="brand" href="./index.html" aria-label="Retour à la boutique Valmeo Création">
+        <span class="brand-mark"><img src="./assets/valmeo-logo-hero.png" alt="" /></span>
+        <span>Valmeo Création</span>
+      </a>
+      <a class="checkout-back" href="./index.html#boutique">← Retour à la boutique</a>
+    </header>
+
+    <main class="checkout-main">
+      <ol class="checkout-steps" aria-label="Étapes de la commande">
+        <li class="is-done"><span>1</span> Panier</li>
+        <li class="is-active"><span>2</span> Livraison</li>
+        <li><span>3</span> Paiement</li>
+      </ol>
+
+      <section class="checkout-status" data-checkout-status hidden aria-live="polite"></section>
+
+      <div class="checkout-layout" data-checkout-content>
+        <section class="checkout-card checkout-details">
+          <p class="eyebrow">Livraison</p>
+          <h1>Où devons-nous envoyer votre commande&nbsp;?</h1>
+          <p class="checkout-intro">Renseignez vos coordonnées avant de passer au paiement sécurisé.</p>
+
+          <form class="checkout-form checkout-form-detailed" data-order-form>
+            <fieldset>
+              <legend>Vos coordonnées</legend>
+              <div class="form-grid two-columns">
+                <label class="full-column">
+                  Nom et prénom
+                  <input name="name" type="text" autocomplete="name" maxlength="200" required />
+                </label>
+                <label>
+                  Adresse e-mail
+                  <input name="email" type="email" autocomplete="email" maxlength="254" required />
+                </label>
+                <label>
+                  Téléphone
+                  <input name="phone" type="tel" autocomplete="tel" maxlength="30" required />
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Adresse de livraison</legend>
+              <div class="form-grid two-columns">
+                <label class="full-column">
+                  Adresse
+                  <input name="line1" type="text" autocomplete="address-line1" maxlength="200" required />
+                </label>
+                <label class="full-column">
+                  Complément d’adresse <small>(facultatif)</small>
+                  <input name="line2" type="text" autocomplete="address-line2" maxlength="200" />
+                </label>
+                <label>
+                  Code postal
+                  <input name="postalCode" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required />
+                </label>
+                <label>
+                  Ville
+                  <input name="city" type="text" autocomplete="address-level2" maxlength="100" required />
+                </label>
+                <label class="full-column">
+                  Pays
+                  <input value="France" type="text" disabled />
+                  <input name="country" value="FR" type="hidden" />
+                </label>
+              </div>
+            </fieldset>
+
+            <label>
+              Un message pour Valmeo <small>(facultatif)</small>
+              <textarea name="message" rows="3" maxlength="450" placeholder="Une précision utile concernant votre commande…"></textarea>
+            </label>
+
+            <p class="checkout-error" data-checkout-error role="alert"></p>
+            <button class="button primary checkout-submit" type="submit">
+              Continuer vers le paiement sécurisé
+            </button>
+            <p class="checkout-privacy">Vos coordonnées sont transmises de façon sécurisée à Stripe pour traiter et livrer votre commande.</p>
+          </form>
+        </section>
+
+        <aside class="checkout-card order-summary" aria-labelledby="summary-title">
+          <h2 id="summary-title">Votre commande</h2>
+          <div class="summary-items" data-summary-items></div>
+          <div class="summary-lines">
+            <p><span>Sous-total</span><strong data-summary-subtotal>0,00&nbsp;€</strong></p>
+            <p><span>Livraison en France</span><strong data-summary-shipping>3,50&nbsp;€</strong></p>
+            <p class="summary-total"><span>Total</span><strong data-summary-total>3,50&nbsp;€</strong></p>
+          </div>
+          <p class="secure-note"><span aria-hidden="true">🔒</span> Paiement sécurisé par Stripe<br />CB, Visa et Mastercard</p>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="checkout-footer">Bijoux artisanaux créés avec soin en France.</footer>
+    <script src="./commande.js?v=1"></script>
+  </body>
+</html>

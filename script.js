@@ -2110,7 +2110,6 @@ const CART_STORAGE_KEY = "valmeo-cart-reservation-v1";
 const CART_HOLD_DURATION = 30 * 60 * 1000;
 const STOCK_SYNC_INTERVAL = 60 * 1000;
 const STOCK_API_URL = "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec";
-const CHECKOUT_API_URL = "https://valmeo-checkout.valmeo-creation.workers.dev";
 
 const cart = new Map();
 let activeFilter = "florales";
@@ -2123,8 +2122,6 @@ const overlay = document.querySelector("[data-overlay]");
 const cartItems = document.querySelector("[data-cart-items]");
 const cartCount = document.querySelector("[data-cart-count]");
 const cartTotal = document.querySelector("[data-cart-total]");
-const form = document.querySelector("[data-checkout-form]");
-const formNote = document.querySelector("[data-form-note]");
 const productModal = document.querySelector("[data-product-modal]");
 const modalImage = document.querySelector("[data-modal-image]");
 const modalTitle = document.querySelector("[data-modal-title]");
@@ -2196,10 +2193,6 @@ function cartKey(id, choice = "") {
 
 function stockApiConfigured() {
   return /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(STOCK_API_URL);
-}
-
-function checkoutApiConfigured() {
-  return /^https:\/\/[^\s]+$/.test(CHECKOUT_API_URL) && !CHECKOUT_API_URL.includes("__VALMEO_");
 }
 
 function productBaseStock(product) {
@@ -2373,24 +2366,6 @@ async function syncStockFromSheet({ silent = false } = {}) {
     }
     return false;
   }
-}
-
-async function createCheckoutSession(items, customer) {
-  if (!checkoutApiConfigured()) throw new Error("Le paiement Stripe n'est pas encore configuré.");
-
-  const response = await fetch(`${CHECKOUT_API_URL.replace(/\/$/, "")}/create-checkout-session`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ items, customer }),
-    cache: "no-store"
-  });
-  const payload = await response.json();
-  if (!response.ok || !payload.url) {
-    const error = new Error(payload.message || "Impossible de préparer le paiement.");
-    error.payload = payload;
-    throw error;
-  }
-  return payload;
 }
 
 function getProductOrder(product) {
@@ -2724,77 +2699,10 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const totalQuantity = [...cart.values()].reduce((sum, item) => sum + item.quantity, 0);
-  if (!totalQuantity) {
-    formNote.textContent = "Ajoute au moins une piece au panier avant de finaliser la demande.";
-    return;
-  }
-
-  const submitButton = form.querySelector('button[type="submit"]');
-  const items = [...cart.values()].map((item) => ({
-    id: item.id,
-    quantity: item.quantity,
-    selectedChoice: item.selectedChoice || ""
-  }));
-  const formData = new FormData(form);
-  const customer = {
-    name: String(formData.get("name") || "").trim(),
-    email: String(formData.get("email") || "").trim(),
-    message: String(formData.get("message") || "").trim()
-  };
-
-  submitButton.disabled = true;
-  formNote.textContent = "Préparation du paiement sécurisé…";
-
-  try {
-    const result = await createCheckoutSession(items, customer);
-    window.location.assign(result.url);
-  } catch (error) {
-    if (error.payload?.stocks) applyStockSnapshot(error.payload.stocks);
-    formNote.textContent =
-      error.payload?.code === "INSUFFICIENT_STOCK"
-        ? "Un article vient de devenir indisponible. Le panier a été actualisé."
-        : error.message || "Impossible de préparer le paiement. Réessaie dans quelques instants.";
-  } finally {
-    submitButton.disabled = false;
-  }
-});
-
-async function handleCheckoutReturn() {
-  const params = new URLSearchParams(window.location.search);
-  const checkoutResult = params.get("checkout");
-  if (checkoutResult === "success") {
-    const sessionId = params.get("session_id") || "";
-    formNote.textContent = "Vérification du paiement…";
-    try {
-      if (!checkoutApiConfigured()) throw new Error("Le service de paiement n'est pas configuré.");
-      const url = new URL(`${CHECKOUT_API_URL.replace(/\/$/, "")}/checkout-session`);
-      url.searchParams.set("session_id", sessionId);
-      const response = await fetch(url, { cache: "no-store" });
-      const payload = await response.json();
-      if (!response.ok || !payload.paid) throw new Error(payload.message || "Paiement non confirmé.");
-      clearCartReservation();
-      form.reset();
-      updateCart();
-      renderProducts(activeFilter);
-      formNote.textContent = "Paiement confirmé. Merci pour ta commande ! Un reçu va être envoyé par e-mail.";
-    } catch (error) {
-      formNote.textContent = `${error.message} Si ton compte a été débité, ne recommence pas et contacte-nous.`;
-    }
-    history.replaceState({}, "", `${window.location.pathname}#commande`);
-  } else if (checkoutResult === "cancelled") {
-    formNote.textContent = "Paiement annulé. Ton panier a été conservé pour que tu puisses réessayer.";
-    history.replaceState({}, "", `${window.location.pathname}#commande`);
-  }
-}
-
 restoreCartReservation();
 renderProducts("florales");
 updateCart();
 syncStockFromSheet({ silent: true });
-handleCheckoutReturn();
 stockSyncTimer = window.setInterval(() => syncStockFromSheet({ silent: true }), STOCK_SYNC_INTERVAL);
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") syncStockFromSheet({ silent: true });

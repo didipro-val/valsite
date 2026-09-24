@@ -27,6 +27,7 @@ Créer une clé Stripe restreinte dans le sandbox avec uniquement :
 
 - Checkout Sessions : écriture, pour créer les sessions ;
 - Checkout Sessions : lecture, pour vérifier le paiement au retour.
+- Customers : écriture, pour transmettre à Stripe les coordonnées saisies sur la page de livraison et préremplir le paiement.
 
 Les secrets sont enregistrés dans le Secrets Store Cloudflare avec la portée `workers`, puis reliés au Worker dans `wrangler.jsonc` :
 

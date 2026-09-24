@@ -42,7 +42,7 @@ async function createCheckoutSession(request, env) {
     return corsResponse(request, env, { ok: false, message: error.message }, 400);
   }
 
-  const orderId = crypto.randomUUID();
+  const orderId = createOrderReference();
   const inventoryItems = aggregateInventoryItems(order.items);
   const reserve = await callInventory(env, { action: "reserve", orderId, items: inventoryItems });
   if (!reserve.ok) return corsResponse(request, env, reserve, reserve.code === "INSUFFICIENT_STOCK" ? 409 : 502);
@@ -50,6 +50,21 @@ async function createCheckoutSession(request, env) {
   try {
     const stripe = await createStripeClient(env);
     const siteUrl = new URL(env.SITE_URL);
+    const customer = await stripe.customers.create({
+      name: order.customer.name,
+      email: order.customer.email,
+      phone: order.customer.phone,
+      address: stripeAddress(order.customer.address),
+      shipping: {
+        name: order.customer.name,
+        phone: order.customer.phone,
+        address: stripeAddress(order.customer.address)
+      },
+      metadata: {
+        order_id: orderId,
+        customer_message: order.customer.message.slice(0, 450)
+      }
+    }, { idempotencyKey: `customer-${orderId}` });
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       integration_identifier: INTEGRATION_IDENTIFIER,
@@ -65,16 +80,15 @@ async function createCheckoutSession(request, env) {
           }
         }
       })),
-      customer_email: order.customer.email,
+      customer: customer.id,
+      customer_update: { address: "auto", name: "auto", shipping: "auto" },
       shipping_address_collection: { allowed_countries: ["FR"] },
       shipping_options: shippingOptions(env),
       expires_at: Math.floor(Date.now() / 1000) + RESERVATION_SECONDS,
-      success_url: new URL("?checkout=success&session_id={CHECKOUT_SESSION_ID}#commande", siteUrl).href,
-      cancel_url: new URL("?checkout=cancelled#commande", siteUrl).href,
+      success_url: new URL("commande.html?checkout=success&session_id={CHECKOUT_SESSION_ID}", siteUrl).href,
+      cancel_url: new URL("commande.html?checkout=cancelled", siteUrl).href,
       metadata: {
-        order_id: orderId,
-        customer_name: order.customer.name.slice(0, 200),
-        customer_message: order.customer.message.slice(0, 450)
+        order_id: orderId
       }
     }, { idempotencyKey: `checkout-${orderId}` });
 
@@ -94,10 +108,16 @@ async function getCheckoutSession(request, env, url) {
   }
   try {
     const stripe = await createStripeClient(env);
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    const session = await stripe.checkout.sessions.retrieve(sessionId, { expand: ["customer", "line_items"] });
+    const paid = session.payment_status === "paid" || session.payment_status === "no_payment_required";
+    const orderId = String(session.metadata?.order_id || "");
+    const status = paid && orderId ? await callInventory(env, { action: "status", orderId }) : { ok: false };
     return corsResponse(request, env, {
       ok: true,
-      paid: session.payment_status === "paid" || session.payment_status === "no_payment_required"
+      paid,
+      ...checkoutDetails(session),
+      confirmed: Boolean(status.confirmed),
+      emailSent: Boolean(status.emailSent)
     });
   } catch (error) {
     console.error("Stripe Checkout retrieval failed", safeError(error));
@@ -133,7 +153,13 @@ async function handleWebhook(request, env) {
     (event.type === "checkout.session.completed" || event.type === "checkout.session.async_payment_succeeded") &&
     session.payment_status !== "unpaid"
   ) {
-    const result = await callInventory(env, { action: "confirm", orderId, stripeSessionId: session.id });
+    const fullSession = await stripe.checkout.sessions.retrieve(session.id, { expand: ["customer", "line_items"] });
+    const result = await callInventory(env, {
+      action: "confirm",
+      orderId,
+      stripeSessionId: session.id,
+      order: checkoutDetails(fullSession)
+    });
     if (!result.ok) return json({ ok: false, message: "Confirmation du stock impossible." }, 502);
   }
 
@@ -159,9 +185,22 @@ function normalizeOrder(payload) {
   }
   const email = String(payload?.customer?.email || "").trim().toLowerCase();
   const name = String(payload?.customer?.name || "").trim();
+  const phone = String(payload?.customer?.phone || "").trim();
   const message = String(payload?.customer?.message || "").trim();
+  const address = {
+    line1: String(payload?.customer?.address?.line1 || "").trim(),
+    line2: String(payload?.customer?.address?.line2 || "").trim(),
+    postalCode: String(payload?.customer?.address?.postalCode || "").trim(),
+    city: String(payload?.customer?.address?.city || "").trim(),
+    country: "FR"
+  };
   if (!name || name.length > 200) throw new Error("Nom invalide.");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) throw new Error("E-mail invalide.");
+  if (phone.length < 6 || phone.length > 30) throw new Error("Numéro de téléphone invalide.");
+  if (address.line1.length < 3 || address.line1.length > 200) throw new Error("Adresse invalide.");
+  if (address.line2.length > 200) throw new Error("Complément d’adresse invalide.");
+  if (!/^\d{5}$/.test(address.postalCode)) throw new Error("Code postal invalide.");
+  if (address.city.length < 2 || address.city.length > 100) throw new Error("Ville invalide.");
   if (message.length > 450) throw new Error("Le message est trop long.");
 
   const items = payload.items.map((row) => {
@@ -175,7 +214,56 @@ function normalizeOrder(payload) {
     return { id, product, quantity, selectedChoice };
   });
   if (items.reduce((sum, item) => sum + item.quantity, 0) > 20) throw new Error("Quantité totale invalide.");
-  return { items, customer: { name, email, message } };
+  return { items, customer: { name, email, phone, address, message } };
+}
+
+function createOrderReference() {
+  const date = new Date().toISOString().slice(0, 10).replaceAll("-", "");
+  const suffix = crypto.randomUUID().replaceAll("-", "").slice(0, 8).toUpperCase();
+  return `VAL-${date}-${suffix}`;
+}
+
+function stripeAddress(address) {
+  return {
+    line1: address.line1,
+    line2: address.line2 || undefined,
+    postal_code: address.postalCode,
+    city: address.city,
+    country: "FR"
+  };
+}
+
+function checkoutDetails(session) {
+  const customer = typeof session.customer === "object" && session.customer ? session.customer : null;
+  const address = customer?.shipping?.address || customer?.address || session.customer_details?.address || {};
+  const name = customer?.shipping?.name || customer?.name || session.customer_details?.name || "";
+  const phone = customer?.shipping?.phone || customer?.phone || session.customer_details?.phone || "";
+  const email = customer?.email || session.customer_details?.email || "";
+  const lines = session.line_items?.data || [];
+  return {
+    orderReference: String(session.metadata?.order_id || ""),
+    amountTotal: Number(session.amount_total || 0),
+    shippingTotal: Number(session.total_details?.amount_shipping || 0),
+    currency: String(session.currency || "eur"),
+    customer: {
+      name,
+      email,
+      phone,
+      address: {
+        line1: String(address.line1 || ""),
+        line2: String(address.line2 || ""),
+        postalCode: String(address.postal_code || ""),
+        city: String(address.city || ""),
+        country: String(address.country || "FR")
+      },
+      message: String(customer?.metadata?.customer_message || "")
+    },
+    items: lines.map((line) => ({
+      description: String(line.description || "Article Valmeo"),
+      quantity: Number(line.quantity || 1),
+      amountTotal: Number(line.amount_total || 0)
+    }))
+  };
 }
 
 function aggregateInventoryItems(items) {

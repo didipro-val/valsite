@@ -1,8 +1,5 @@
 const SPREADSHEET_ID = "1xF_Y1zMhjSqj2QSV4YUWs7UnjFFYEkbKH91ObCDcXPw";
-const 
-
-
-= "Catalogue";
+const SHEET_NAME = "Catalogue";
 const HEADER_ROW = 1;
 const STOCK_COLUMN = 6;
 const TITLE_COLUMN = 5;
@@ -31,7 +28,7 @@ function doPost(e) {
   try {
     const request = parseRequest_(e);
     validateSecret_(request.secret);
-    if (!["reserve", "confirm", "release"].includes(request.action)) {
+    if (!["reserve", "confirm", "release", "status"].includes(request.action)) {
       return jsonResponse_({ ok: false, code: "UNKNOWN_ACTION", message: "Action inconnue." });
     }
 
@@ -40,8 +37,9 @@ function doPost(e) {
     lock.waitLock(10000);
     cleanupExpiredReservations_();
 
+    if (request.action === "status") return statusOrder_(orderId);
     if (request.action === "reserve") return reserveOrder_(orderId, normalizeItems_(request.items));
-    if (request.action === "confirm") return confirmOrder_(orderId, request.stripeSessionId);
+    if (request.action === "confirm") return confirmOrder_(orderId, request.stripeSessionId, request.order);
     return releaseOrder_(orderId);
   } catch (error) {
     return jsonResponse_({ ok: false, code: "SERVER_ERROR", message: error.message });
@@ -84,12 +82,22 @@ function reserveOrder_(orderId, requestedItems) {
   return jsonResponse_({ ok: true, stocks: availableStocks_(catalogue) });
 }
 
-function confirmOrder_(orderId, stripeSessionId) {
+function confirmOrder_(orderId, stripeSessionId, orderDetails) {
   const properties = PropertiesService.getScriptProperties();
   const orderKey = `order:${orderId}`;
   const catalogue = readCatalogue_();
-  if (properties.getProperty(orderKey)) {
-    return jsonResponse_({ ok: true, duplicate: true, stocks: availableStocks_(catalogue) });
+  const existingOrder = properties.getProperty(orderKey);
+  if (existingOrder) {
+    const record = JSON.parse(existingOrder);
+    const notification = sendOrderEmails_(orderKey, record);
+    return jsonResponse_({
+      ok: true,
+      duplicate: true,
+      confirmed: true,
+      emailSent: notification.customerEmailSent,
+      ownerEmailSent: notification.ownerEmailSent,
+      stocks: availableStocks_(catalogue)
+    });
   }
 
   const reservationKey = `reservation:${orderId}`;
@@ -105,13 +113,164 @@ function confirmOrder_(orderId, stripeSessionId) {
   });
   SpreadsheetApp.flush();
   properties.deleteProperty(reservationKey);
-  properties.setProperty(orderKey, JSON.stringify({
+  const record = {
     completedAt: new Date().toISOString(),
     stripeSessionId: String(stripeSessionId || ""),
-    items: reservation.items
-  }));
+    items: reservation.items,
+    order: normalizeOrderDetails_(orderDetails),
+    customerEmailSent: false,
+    ownerEmailSent: false
+  };
+  properties.setProperty(orderKey, JSON.stringify(record));
+  const notification = sendOrderEmails_(orderKey, record);
   const updatedCatalogue = readCatalogue_();
-  return jsonResponse_({ ok: true, stocks: availableStocks_(updatedCatalogue) });
+  return jsonResponse_({
+    ok: true,
+    confirmed: true,
+    emailSent: notification.customerEmailSent,
+    ownerEmailSent: notification.ownerEmailSent,
+    stocks: availableStocks_(updatedCatalogue)
+  });
+}
+
+function statusOrder_(orderId) {
+  const raw = PropertiesService.getScriptProperties().getProperty(`order:${orderId}`);
+  if (!raw) return jsonResponse_({ ok: true, confirmed: false, emailSent: false, ownerEmailSent: false });
+  const record = JSON.parse(raw);
+  return jsonResponse_({
+    ok: true,
+    confirmed: true,
+    emailSent: Boolean(record.customerEmailSent),
+    ownerEmailSent: Boolean(record.ownerEmailSent)
+  });
+}
+
+function normalizeOrderDetails_(value) {
+  const customer = value && value.customer || {};
+  const address = customer.address || {};
+  const items = Array.isArray(value && value.items) ? value.items.slice(0, 20).map((item) => ({
+    description: String(item && item.description || "Article Valmeo").slice(0, 250),
+    quantity: Math.max(1, Math.floor(Number(item && item.quantity) || 1)),
+    amountTotal: Math.max(0, Math.floor(Number(item && item.amountTotal) || 0))
+  })) : [];
+  return {
+    orderReference: String(value && value.orderReference || "").slice(0, 80),
+    amountTotal: Math.max(0, Math.floor(Number(value && value.amountTotal) || 0)),
+    shippingTotal: Math.max(0, Math.floor(Number(value && value.shippingTotal) || 0)),
+    customer: {
+      name: String(customer.name || "").slice(0, 200),
+      email: String(customer.email || "").slice(0, 254),
+      phone: String(customer.phone || "").slice(0, 30),
+      message: String(customer.message || "").slice(0, 450),
+      address: {
+        line1: String(address.line1 || "").slice(0, 200),
+        line2: String(address.line2 || "").slice(0, 200),
+        postalCode: String(address.postalCode || "").slice(0, 20),
+        city: String(address.city || "").slice(0, 100),
+        country: "FR"
+      }
+    },
+    items
+  };
+}
+
+function sendOrderEmails_(orderKey, record) {
+  const properties = PropertiesService.getScriptProperties();
+  const order = record.order || {};
+  const customer = order.customer || {};
+  if (!customer.email || !order.orderReference) return record;
+
+  const subject = `Commande ${order.orderReference} confirmée`;
+  const itemLines = (order.items || []).map((item) =>
+    `${item.description} × ${item.quantity} — ${formatEuros_(item.amountTotal)}`
+  ).join("\n");
+  const addressLines = [
+    customer.name,
+    customer.address && customer.address.line1,
+    customer.address && customer.address.line2,
+    `${customer.address && customer.address.postalCode || ""} ${customer.address && customer.address.city || ""}`.trim(),
+    "France"
+  ].filter(Boolean).join("\n");
+  const customerText = [
+    `Bonjour ${customer.name},`,
+    "",
+    "Votre paiement a bien été confirmé. Merci pour votre commande Valmeo Création.",
+    "",
+    `Référence : ${order.orderReference}`,
+    itemLines,
+    `Livraison : ${formatEuros_(order.shippingTotal)}`,
+    `Total payé : ${formatEuros_(order.amountTotal)}`,
+    "",
+    "Adresse de livraison :",
+    addressLines,
+    "",
+    "Votre commande va maintenant être préparée avec soin."
+  ].join("\n");
+
+  if (!record.customerEmailSent) {
+    MailApp.sendEmail({
+      to: customer.email,
+      subject,
+      body: customerText,
+      htmlBody: emailHtml_("Merci pour votre commande !", customerText),
+      name: "Valmeo Création"
+    });
+    record.customerEmailSent = true;
+    properties.setProperty(orderKey, JSON.stringify(record));
+  }
+
+  if (!record.ownerEmailSent) {
+    const ownerEmail = properties.getProperty("ORDER_NOTIFICATION_EMAIL") || Session.getEffectiveUser().getEmail();
+    if (ownerEmail) {
+      const ownerText = [
+        "Une nouvelle commande payée doit être préparée.",
+        "",
+        `Référence : ${order.orderReference}`,
+        `Client : ${customer.name}`,
+        `E-mail : ${customer.email}`,
+        `Téléphone : ${customer.phone}`,
+        "",
+        "Articles :",
+        itemLines,
+        `Total payé : ${formatEuros_(order.amountTotal)}`,
+        "",
+        "Adresse de livraison :",
+        addressLines,
+        customer.message ? `\nMessage du client :\n${customer.message}` : ""
+      ].join("\n");
+      MailApp.sendEmail({
+        to: ownerEmail,
+        replyTo: customer.email,
+        subject: `Nouvelle ${subject.toLowerCase()}`,
+        body: ownerText,
+        htmlBody: emailHtml_("Nouvelle commande payée", ownerText),
+        name: "Commandes Valmeo"
+      });
+      record.ownerEmailSent = true;
+      properties.setProperty(orderKey, JSON.stringify(record));
+    }
+  }
+  return record;
+}
+
+function emailHtml_(title, text) {
+  return `<div style="font-family:Arial,sans-serif;color:#292823;line-height:1.6;max-width:620px;margin:auto">` +
+    `<h1 style="font-family:Georgia,serif;color:#bd7151">${escapeHtml_(title)}</h1>` +
+    `<div style="white-space:pre-line;background:#fff9f0;border:1px solid #e6d9ca;border-radius:12px;padding:24px">${escapeHtml_(text)}</div>` +
+    `<p style="color:#746d63;font-size:12px">Valmeo Création — bijoux artisanaux</p></div>`;
+}
+
+function escapeHtml_(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function formatEuros_(cents) {
+  return (Number(cents || 0) / 100).toFixed(2).replace(".", ",") + " €";
 }
 
 function releaseOrder_(orderId) {
