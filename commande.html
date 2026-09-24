@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Finaliser une commande Valmeo Création et régler en toute sécurité avec Stripe." />
     <title>Finaliser ma commande | Valmeo Création</title>
-    <link rel="stylesheet" href="./styles.css?v=21" />
+    <link rel="stylesheet" href="./styles.css?v=22" />
   </head>
   <body class="checkout-page">
     <header class="checkout-header">
@@ -82,6 +82,11 @@
               <textarea name="message" rows="3" maxlength="450" placeholder="Une précision utile concernant votre commande…"></textarea>
             </label>
 
+            <label class="legal-consent">
+              <input name="terms" type="checkbox" required />
+              <span>Je reconnais avoir lu et accepté les <a href="./cgv.html" target="_blank">conditions générales de vente</a> et la <a href="./confidentialite.html" target="_blank">politique de confidentialité</a>.</span>
+            </label>
+
             <p class="checkout-error" data-checkout-error role="alert"></p>
             <button class="button primary checkout-submit" type="submit">
               Continuer vers le paiement sécurisé
@@ -103,7 +108,26 @@
       </div>
     </main>
 
-    <footer class="checkout-footer">Bijoux artisanaux créés avec soin en France.</footer>
+    <footer class="site-footer compact-footer">
+      <div class="footer-brand">
+        <img src="./assets/valmeo-logo-hero.png" alt="" />
+        <div><strong>Valmeo Création</strong><span>Bijoux artisanaux créés avec soin en France.</span></div>
+      </div>
+      <details class="footer-policies">
+        <summary>Conditions générales et politiques</summary>
+        <nav aria-label="Informations légales">
+          <a href="./remboursements.html">Politique de remboursement</a>
+          <a href="./confidentialite.html">Politique de confidentialité</a>
+          <a href="./conditions-utilisation.html">Conditions d’utilisation</a>
+          <a href="./livraison.html">Politique d’expédition</a>
+          <a href="./contact.html">Coordonnées</a>
+          <a href="./cgv.html">Conditions générales de vente</a>
+          <a href="./mentions-legales.html">Mentions légales</a>
+          <a href="./cookies.html">Préférences en matière de cookies</a>
+        </nav>
+      </details>
+      <div class="footer-bottom"><span>© 2026 Valmeo Création</span></div>
+    </footer>
     <script src="./commande.js?v=1"></script>
   </body>
 </html>
