@@ -2107,14 +2107,16 @@ const productOrder = {
 };
 
 const CART_STORAGE_KEY = "valmeo-cart-reservation-v1";
-const STOCK_STORAGE_KEY = "valmeo-confirmed-stock-v1";
 const CART_HOLD_DURATION = 30 * 60 * 1000;
+const STOCK_SYNC_INTERVAL = 60 * 1000;
+const STOCK_API_URL = "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec";
+const CHECKOUT_API_URL = "https://valmeo-checkout.valmeo-creation.workers.dev";
 
 const cart = new Map();
 let activeFilter = "florales";
 let cartExpiresAt = 0;
 let cartExpiryTimer = null;
-let confirmedStockAdjustments = loadConfirmedStockAdjustments();
+let stockSyncTimer = null;
 const productGrid = document.querySelector("[data-products]");
 const cartPanel = document.querySelector("[data-cart-panel]");
 const overlay = document.querySelector("[data-overlay]");
@@ -2192,21 +2194,16 @@ function cartKey(id, choice = "") {
   return `${id}::${choice}`;
 }
 
-function loadConfirmedStockAdjustments() {
-  try {
-    return JSON.parse(localStorage.getItem(STOCK_STORAGE_KEY) || "{}");
-  } catch {
-    return {};
-  }
+function stockApiConfigured() {
+  return /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(STOCK_API_URL);
 }
 
-function saveConfirmedStockAdjustments() {
-  localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(confirmedStockAdjustments));
+function checkoutApiConfigured() {
+  return /^https:\/\/[^\s]+$/.test(CHECKOUT_API_URL) && !CHECKOUT_API_URL.includes("__VALMEO_");
 }
 
 function productBaseStock(product) {
-  const confirmedQuantity = Number(confirmedStockAdjustments[product.id] || 0);
-  return Math.max(0, Number(product.stock || 0) - confirmedQuantity);
+  return Math.max(0, Number(product.stock || 0));
 }
 
 function cartQuantityForProduct(productId) {
@@ -2318,6 +2315,82 @@ function expireCartReservation() {
 function refreshStockViews() {
   updateCart();
   renderProducts(activeFilter);
+}
+
+function applyStockSnapshot(stocks) {
+  if (!stocks || typeof stocks !== "object") return;
+
+  products.forEach((product) => {
+    const liveStock = Number(stocks[product.id]);
+    if (Number.isFinite(liveStock) && liveStock >= 0) {
+      product.stock = Math.floor(liveStock);
+    }
+  });
+
+  let cartChanged = false;
+  products.forEach((product) => {
+    let remaining = productBaseStock(product);
+    [...cart.entries()]
+      .filter(([, item]) => item.id === product.id)
+      .forEach(([key, item]) => {
+        const nextQuantity = Math.min(item.quantity, remaining);
+        remaining -= nextQuantity;
+
+        if (nextQuantity <= 0) {
+          cart.delete(key);
+          cartChanged = true;
+        } else if (nextQuantity !== item.quantity) {
+          cart.set(key, { ...item, quantity: nextQuantity });
+          cartChanged = true;
+        }
+      });
+  });
+
+  if (cartChanged) saveCartReservation();
+  refreshStockViews();
+  if (activeProductId) openProduct(activeProductId);
+}
+
+async function syncStockFromSheet({ silent = false } = {}) {
+  if (!stockApiConfigured()) return false;
+
+  try {
+    const url = new URL(STOCK_API_URL);
+    url.searchParams.set("action", "stocks");
+    url.searchParams.set("t", String(Date.now()));
+    const response = await fetch(url, { cache: "no-store", redirect: "follow" });
+    const payload = await response.json();
+    if (!response.ok || !payload.ok || !payload.stocks) {
+      throw new Error(payload.message || "Réponse de stock invalide");
+    }
+
+    applyStockSnapshot(payload.stocks);
+    return true;
+  } catch (error) {
+    console.error("Synchronisation du stock impossible", error);
+    if (!silent) {
+      formNote.textContent = "Le stock en direct est momentanément indisponible. Réessaie dans quelques instants.";
+    }
+    return false;
+  }
+}
+
+async function createCheckoutSession(items, customer) {
+  if (!checkoutApiConfigured()) throw new Error("Le paiement Stripe n'est pas encore configuré.");
+
+  const response = await fetch(`${CHECKOUT_API_URL.replace(/\/$/, "")}/create-checkout-session`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ items, customer }),
+    cache: "no-store"
+  });
+  const payload = await response.json();
+  if (!response.ok || !payload.url) {
+    const error = new Error(payload.message || "Impossible de préparer le paiement.");
+    error.payload = payload;
+    throw error;
+  }
+  return payload;
 }
 
 function getProductOrder(product) {
@@ -2651,7 +2724,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const totalQuantity = [...cart.values()].reduce((sum, item) => sum + item.quantity, 0);
   if (!totalQuantity) {
@@ -2659,16 +2732,70 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  cart.forEach((item) => {
-    confirmedStockAdjustments[item.id] = Number(confirmedStockAdjustments[item.id] || 0) + item.quantity;
-  });
-  saveConfirmedStockAdjustments();
-  clearCartReservation();
-  updateCart();
-  renderProducts(activeFilter);
-  formNote.textContent = "Demande preparee. Le stock a ete mis a jour pour cette session.";
+  const submitButton = form.querySelector('button[type="submit"]');
+  const items = [...cart.values()].map((item) => ({
+    id: item.id,
+    quantity: item.quantity,
+    selectedChoice: item.selectedChoice || ""
+  }));
+  const formData = new FormData(form);
+  const customer = {
+    name: String(formData.get("name") || "").trim(),
+    email: String(formData.get("email") || "").trim(),
+    message: String(formData.get("message") || "").trim()
+  };
+
+  submitButton.disabled = true;
+  formNote.textContent = "Préparation du paiement sécurisé…";
+
+  try {
+    const result = await createCheckoutSession(items, customer);
+    window.location.assign(result.url);
+  } catch (error) {
+    if (error.payload?.stocks) applyStockSnapshot(error.payload.stocks);
+    formNote.textContent =
+      error.payload?.code === "INSUFFICIENT_STOCK"
+        ? "Un article vient de devenir indisponible. Le panier a été actualisé."
+        : error.message || "Impossible de préparer le paiement. Réessaie dans quelques instants.";
+  } finally {
+    submitButton.disabled = false;
+  }
 });
+
+async function handleCheckoutReturn() {
+  const params = new URLSearchParams(window.location.search);
+  const checkoutResult = params.get("checkout");
+  if (checkoutResult === "success") {
+    const sessionId = params.get("session_id") || "";
+    formNote.textContent = "Vérification du paiement…";
+    try {
+      if (!checkoutApiConfigured()) throw new Error("Le service de paiement n'est pas configuré.");
+      const url = new URL(`${CHECKOUT_API_URL.replace(/\/$/, "")}/checkout-session`);
+      url.searchParams.set("session_id", sessionId);
+      const response = await fetch(url, { cache: "no-store" });
+      const payload = await response.json();
+      if (!response.ok || !payload.paid) throw new Error(payload.message || "Paiement non confirmé.");
+      clearCartReservation();
+      form.reset();
+      updateCart();
+      renderProducts(activeFilter);
+      formNote.textContent = "Paiement confirmé. Merci pour ta commande ! Un reçu va être envoyé par e-mail.";
+    } catch (error) {
+      formNote.textContent = `${error.message} Si ton compte a été débité, ne recommence pas et contacte-nous.`;
+    }
+    history.replaceState({}, "", `${window.location.pathname}#commande`);
+  } else if (checkoutResult === "cancelled") {
+    formNote.textContent = "Paiement annulé. Ton panier a été conservé pour que tu puisses réessayer.";
+    history.replaceState({}, "", `${window.location.pathname}#commande`);
+  }
+}
 
 restoreCartReservation();
 renderProducts("florales");
 updateCart();
+syncStockFromSheet({ silent: true });
+handleCheckoutReturn();
+stockSyncTimer = window.setInterval(() => syncStockFromSheet({ silent: true }), STOCK_SYNC_INTERVAL);
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") syncStockFromSheet({ silent: true });
+});

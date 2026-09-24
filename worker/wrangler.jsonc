@@ -1,0 +1,32 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "valmeo-checkout",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "secrets_store_secrets": [
+    {
+      "binding": "STRIPE_RESTRICTED_KEY",
+      "store_id": "6cbfd7007ba545439fc8d4fa4c51a77d",
+      "secret_name": "STRIPE_RESTRICTED_KEY"
+    },
+    {
+      "binding": "INVENTORY_API_SECRET",
+      "store_id": "6cbfd7007ba545439fc8d4fa4c51a77d",
+      "secret_name": "INVENTORY_API_SECRET"
+    },
+    {
+      "binding": "STRIPE_WEBHOOK_SECRET",
+      "store_id": "6cbfd7007ba545439fc8d4fa4c51a77d",
+      "secret_name": "STRIPE_WEBHOOK_SECRET"
+    }
+  ],
+  "vars": {
+    "SITE_URL": "https://didipro-val.github.io/valsite/",
+    "ALLOWED_ORIGIN": "https://didipro-val.github.io",
+    "INVENTORY_API_URL": "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec",
+    "SHIPPING_RATE_CENTS": "350",
+    "SHIPPING_LABEL": "Livraison France"
+  }
+}

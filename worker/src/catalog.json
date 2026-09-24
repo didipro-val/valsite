@@ -1,0 +1,357 @@
+{
+  "alba": {
+    "name": "Alba",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-002.webp?v=5"
+  },
+  "violetta": {
+    "name": "Violetta",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-003.webp?v=5"
+  },
+  "azura": {
+    "name": "Azura",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-004.webp?v=5"
+  },
+  "naya": {
+    "name": "Naya",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-005.webp?v=5"
+  },
+  "prune": {
+    "name": "Prune",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-006.webp?v=5"
+  },
+  "daisy": {
+    "name": "Daisy",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-007.webp?v=5"
+  },
+  "manta": {
+    "name": "Manta",
+    "unitAmount": 600,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-008.webp?v=5"
+  },
+  "liliane": {
+    "name": "Liliane",
+    "unitAmount": 600,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-009.webp?v=5"
+  },
+  "plume": {
+    "name": "Plume",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-010.webp?v=5"
+  },
+  "rosalie": {
+    "name": "Rosalie",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-017.webp?v=5"
+  },
+  "palma": {
+    "name": "Palma",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-012.webp?v=5"
+  },
+  "pivoine": {
+    "name": "Pivoine",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-013.webp?v=5"
+  },
+  "terracotta": {
+    "name": "Terracotta",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-014.webp?v=5"
+  },
+  "celeste": {
+    "name": "Celeste",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-015.webp?v=5"
+  },
+  "gaia": {
+    "name": "Gaia",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-016.webp?v=5"
+  },
+  "rose": {
+    "name": "Rose",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-011.webp?v=5"
+  },
+  "luna": {
+    "name": "Luna",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-018.webp?v=5"
+  },
+  "miel": {
+    "name": "Miel",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-019.webp?v=5"
+  },
+  "clea": {
+    "name": "Cléa",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-020.webp?v=5"
+  },
+  "azule": {
+    "name": "Azule",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-021.webp?v=5"
+  },
+  "avia": {
+    "name": "Avia",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-022.webp?v=5"
+  },
+  "soleia": {
+    "name": "Soleia",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-023.webp?v=5"
+  },
+  "lagune": {
+    "name": "Lagune",
+    "unitAmount": 1300,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-024.webp?v=5"
+  },
+  "selene": {
+    "name": "Sélène",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-025.webp?v=5"
+  },
+  "oria": {
+    "name": "Oria",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-026.webp?v=5"
+  },
+  "dune": {
+    "name": "Dune",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-027.webp?v=5"
+  },
+  "flamme": {
+    "name": "Flamme",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-028.webp?v=5"
+  },
+  "roselia": {
+    "name": "Rosélia",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-029.webp?v=5"
+  },
+  "onatha": {
+    "name": "Onatha",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-030.webp?v=5"
+  },
+  "cristal": {
+    "name": "Cristal",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-031.webp?v=5"
+  },
+  "nea": {
+    "name": "Néa",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-032.webp?v=5"
+  },
+  "azalee": {
+    "name": "Azalée",
+    "unitAmount": 1600,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-033.webp?v=5"
+  },
+  "azelie": {
+    "name": "Azélie",
+    "unitAmount": 1600,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-034.webp?v=5"
+  },
+  "moka": {
+    "name": "Moka",
+    "unitAmount": 500,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-035.webp?v=5"
+  },
+  "selea": {
+    "name": "Séléa",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-036.webp?v=5"
+  },
+  "margot": {
+    "name": "Margot",
+    "unitAmount": 600,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-037.webp?v=5"
+  },
+  "flora": {
+    "name": "Flora",
+    "unitAmount": 600,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-038.webp?v=5"
+  },
+  "petalia": {
+    "name": "Pétalia",
+    "unitAmount": 600,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-039.webp?v=5"
+  },
+  "citronelle": {
+    "name": "Citronelle",
+    "unitAmount": 500,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-040.webp?v=5"
+  },
+  "clea-2": {
+    "name": "Cléa",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-041.webp?v=5"
+  },
+  "eclat-floral": {
+    "name": "Éclat Floral",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-042.webp?v=5"
+  },
+  "prunelle": {
+    "name": "Prunelle",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-043.webp?v=5"
+  },
+  "nacria-deux-paires-disponibles": {
+    "name": "Nacria",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-044.webp?v=5"
+  },
+  "viola-deux-paires-disponibles": {
+    "name": "Viola",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-045.webp?v=5"
+  },
+  "grandes-mauvea": {
+    "name": "Grandes Mauvéa",
+    "unitAmount": 1600,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-046.webp?v=5"
+  },
+  "liera": {
+    "name": "Liera",
+    "unitAmount": 1600,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-047.webp?v=6"
+  },
+  "azurine-deux-paires-disponibles": {
+    "name": "Azurine",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-048.webp?v=5"
+  },
+  "mauvea-deux-paires-disponibles": {
+    "name": "Mauvéa",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-049.webp?v=5"
+  },
+  "roselia-2": {
+    "name": "Rosélia",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-050.webp?v=5"
+  },
+  "violetta-2": {
+    "name": "Violetta",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-051.webp?v=5"
+  },
+  "petits-coquelicot-huit-paires-disponible": {
+    "name": "Petits Coquelicot",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-052.webp?v=5"
+  },
+  "vaninee-deux-paires-disponibles": {
+    "name": "Vaninée",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-053.webp?v=5"
+  },
+  "p-orangeade": {
+    "name": "Orangeade",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-054.webp?v=5"
+  },
+  "violetta-3": {
+    "name": "Violetta",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-055.webp?v=5"
+  },
+  "azuline": {
+    "name": "Azuline",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-056.webp?v=5"
+  },
+  "camelia": {
+    "name": "Camelia",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-057.webp?v=5"
+  },
+  "viola-fushia": {
+    "name": "Viola Fushia",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-058.webp?v=5"
+  },
+  "soline": {
+    "name": "Soline",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-059.webp?v=5"
+  },
+  "tiare": {
+    "name": "Tiaré",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-060.webp?v=5"
+  },
+  "les-givrees": {
+    "name": "Les Givrées",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-061.webp?v=5"
+  },
+  "viola-parme-deux-paires-disponibles": {
+    "name": "Viola parme",
+    "unitAmount": 1000,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-062.webp?v=5"
+  },
+  "thaiti": {
+    "name": "Thaiti",
+    "unitAmount": 1200,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-063.webp?v=5"
+  },
+  "solea": {
+    "name": "Solea",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-064.webp?v=5"
+  },
+  "neptune": {
+    "name": "Neptune",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-065.webp?v=5"
+  },
+  "ambra": {
+    "name": "Ambra",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-066.webp?v=5"
+  },
+  "cyane": {
+    "name": "Cyane",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-067.webp?v=5"
+  },
+  "marina-blue": {
+    "name": "Marina blue",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-068.webp?v=5"
+  },
+  "nocturne": {
+    "name": "Nocturne",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-069.webp?v=5"
+  },
+  "talis": {
+    "name": "Talis",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-070.webp?v=5"
+  },
+  "eventia": {
+    "name": "Eventia",
+    "unitAmount": 800,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-071.webp?v=5"
+  },
+  "auguste": {
+    "name": "Auguste",
+    "unitAmount": 600,
+    "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-072.webp?v=5"
+  }
+}

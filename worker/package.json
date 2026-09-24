@@ -1,0 +1,17 @@
+{
+  "name": "valmeo-checkout-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "catalog": "node scripts/generate-catalog.mjs",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check": "node --check src/index.js && node scripts/generate-catalog.mjs --check"
+  },
+  "dependencies": {
+    "stripe": "22.6.0"
+  },
+  "devDependencies": {
+    "wrangler": "latest"
+  }
+}
