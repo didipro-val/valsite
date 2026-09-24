@@ -7,6 +7,12 @@ const REFERENCE_COLUMN = 11;
 // Filet de sécurité si le webhook d'expiration n'arrive pas. La session Stripe expire après 30 minutes.
 const RESERVATION_TTL_MS = 60 * 60 * 1000;
 
+// À exécuter manuellement une seule fois après l'installation pour autoriser l'envoi des confirmations.
+function autoriserEmails() {
+  const quotaRestant = MailApp.getRemainingDailyQuota();
+  console.log(`Autorisation e-mail active. Quota restant : ${quotaRestant}`);
+}
+
 function doGet(e) {
   const action = String((e && e.parameter && e.parameter.action) || "stocks");
   
