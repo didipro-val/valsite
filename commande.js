@@ -135,6 +135,7 @@ function renderConfirmation(order) {
     <p class="eyebrow">Commande validée</p>
     <h1>Merci pour votre commande&nbsp;!</h1>
     <p class="confirmation-lead">${emailMessage}</p>
+    <p>Votre numéro et votre lien de suivi La Poste vous seront envoyés par e-mail dès l’expédition.</p>
     <div class="confirmation-reference"><span>Référence de commande</span><strong>${escapeHtml(order.orderReference)}</strong></div>
     ${confirmationItemsHtml(order.items)}
     <div class="confirmation-grid">

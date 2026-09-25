@@ -4,6 +4,19 @@ const HEADER_ROW = 1;
 const STOCK_COLUMN = 6;
 const TITLE_COLUMN = 5;
 const REFERENCE_COLUMN = 11;
+const EXPEDITIONS_SHEET_NAME = "Expéditions";
+const EXPEDITIONS_HEADERS = [
+  "Référence",
+  "Commande payée le",
+  "Client",
+  "E-mail",
+  "Téléphone",
+  "Statut",
+  "Numéro de suivi",
+  "E-mail de suivi envoyé le"
+];
+const TRACKING_COLUMN = 7;
+const TRACKING_EMAIL_SENT_COLUMN = 8;
 // Filet de sécurité si le webhook d'expiration n'arrive pas. La session Stripe expire après 30 minutes.
 const RESERVATION_TTL_MS = 60 * 60 * 1000;
 
@@ -11,6 +24,24 @@ const RESERVATION_TTL_MS = 60 * 60 * 1000;
 function autoriserEmails() {
   const quotaRestant = MailApp.getRemainingDailyQuota();
   console.log(`Autorisation e-mail active. Quota restant : ${quotaRestant}`);
+}
+
+// À exécuter manuellement une seule fois. Crée l'onglet Expéditions et installe
+// le déclencheur qui envoie l'e-mail de suivi lorsqu'un numéro La Poste est saisi.
+function installerSuiviExpeditions() {
+  ensureExpeditionsSheet_();
+  const handler = "traiterNumeroSuivi_";
+  const triggerExists = ScriptApp.getProjectTriggers().some((trigger) =>
+    trigger.getHandlerFunction() === handler
+  );
+  if (!triggerExists) {
+    ScriptApp.newTrigger(handler)
+      .forSpreadsheet(SPREADSHEET_ID)
+      .onEdit()
+      .create();
+  }
+  const quotaRestant = MailApp.getRemainingDailyQuota();
+  console.log(`Suivi des expéditions actif. Quota e-mail restant : ${quotaRestant}`);
 }
 
 function doGet(e) {
@@ -95,6 +126,7 @@ function confirmOrder_(orderId, stripeSessionId, orderDetails) {
   const existingOrder = properties.getProperty(orderKey);
   if (existingOrder) {
     const record = JSON.parse(existingOrder);
+    ensureExpeditionRow_(record);
     const notification = sendOrderEmails_(orderKey, record);
     return jsonResponse_({
       ok: true,
@@ -128,6 +160,7 @@ function confirmOrder_(orderId, stripeSessionId, orderDetails) {
     ownerEmailSent: false
   };
   properties.setProperty(orderKey, JSON.stringify(record));
+  ensureExpeditionRow_(record);
   const notification = sendOrderEmails_(orderKey, record);
   const updatedCatalogue = readCatalogue_();
   return jsonResponse_({
@@ -210,7 +243,8 @@ function sendOrderEmails_(orderKey, record) {
     "Adresse de livraison :",
     addressLines,
     "",
-    "Votre commande va maintenant être préparée avec soin."
+    "Votre commande va maintenant être préparée avec soin.",
+    "Vous recevrez un second e-mail avec le numéro et le lien de suivi dès son expédition."
   ].join("\n");
 
   if (!record.customerEmailSent) {
@@ -257,6 +291,108 @@ function sendOrderEmails_(orderKey, record) {
     }
   }
   return record;
+}
+
+function ensureExpeditionsSheet_() {
+  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+  let sheet = spreadsheet.getSheetByName(EXPEDITIONS_SHEET_NAME);
+  if (!sheet) sheet = spreadsheet.insertSheet(EXPEDITIONS_SHEET_NAME);
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, EXPEDITIONS_HEADERS.length).setValues([EXPEDITIONS_HEADERS]);
+    sheet.setFrozenRows(1);
+    sheet.getRange(1, 1, 1, EXPEDITIONS_HEADERS.length).setFontWeight("bold");
+    sheet.setColumnWidths(1, EXPEDITIONS_HEADERS.length, 150);
+    sheet.setColumnWidth(2, 190);
+    sheet.setColumnWidth(3, 190);
+    sheet.setColumnWidth(4, 240);
+    sheet.setColumnWidth(8, 190);
+  }
+  return sheet;
+}
+
+function ensureExpeditionRow_(record) {
+  const order = record.order || {};
+  const customer = order.customer || {};
+  const reference = String(order.orderReference || "").trim();
+  if (!reference || !customer.email) return;
+  const sheet = ensureExpeditionsSheet_();
+  const existing = sheet.getRange(1, 1, Math.max(1, sheet.getLastRow()), 1)
+    .createTextFinder(reference)
+    .matchEntireCell(true)
+    .findNext();
+  if (existing) return;
+  sheet.appendRow([
+    reference,
+    record.completedAt ? new Date(record.completedAt) : new Date(),
+    customer.name || "",
+    customer.email || "",
+    customer.phone || "",
+    "À préparer",
+    "",
+    ""
+  ]);
+}
+
+function traiterNumeroSuivi_(event) {
+  if (!event || !event.range) return;
+  const range = event.range;
+  const sheet = range.getSheet();
+  if (sheet.getName() !== EXPEDITIONS_SHEET_NAME || range.getLastColumn() < TRACKING_COLUMN || range.getColumn() > TRACKING_COLUMN) return;
+
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const firstRow = Math.max(2, range.getRow());
+    const lastRow = range.getLastRow();
+    for (let row = firstRow; row <= lastRow; row += 1) sendTrackingEmailForRow_(sheet, row);
+  } finally {
+    if (lock.hasLock()) lock.releaseLock();
+  }
+}
+
+function sendTrackingEmailForRow_(sheet, row) {
+  const values = sheet.getRange(row, 1, 1, EXPEDITIONS_HEADERS.length).getDisplayValues()[0];
+  const reference = String(values[0] || "").trim();
+  const customerName = String(values[2] || "").trim();
+  const customerEmail = String(values[3] || "").trim().toLowerCase();
+  const trackingNumber = String(values[TRACKING_COLUMN - 1] || "").toUpperCase().replace(/\s+/g, "");
+  const alreadySent = String(values[TRACKING_EMAIL_SENT_COLUMN - 1] || "").trim();
+  if (!reference || !customerEmail || !trackingNumber || alreadySent) return;
+  if (!/^[A-Z0-9]{8,40}$/.test(trackingNumber)) throw new Error(`Numéro de suivi invalide à la ligne ${row}.`);
+
+  const trackingUrl = `https://www.laposte.fr/outils/suivre-vos-envois?code=${encodeURIComponent(trackingNumber)}`;
+  const text = [
+    `Bonjour ${customerName || ""},`.trim(),
+    "",
+    `Votre commande ${reference} vient d’être expédiée par La Poste en Lettre verte suivie.`,
+    `Numéro de suivi : ${trackingNumber}`,
+    "",
+    `Suivre l’acheminement : ${trackingUrl}`,
+    "",
+    "Merci pour votre commande et à bientôt,",
+    "Valmeo Création"
+  ].join("\n");
+  MailApp.sendEmail({
+    to: customerEmail,
+    subject: `Votre commande ${reference} a été expédiée`,
+    body: text,
+    htmlBody: trackingEmailHtml_(customerName, reference, trackingNumber, trackingUrl),
+    name: "Valmeo Création"
+  });
+  sheet.getRange(row, 6).setValue("Expédiée");
+  sheet.getRange(row, TRACKING_EMAIL_SENT_COLUMN).setValue(new Date());
+}
+
+function trackingEmailHtml_(customerName, reference, trackingNumber, trackingUrl) {
+  return `<div style="font-family:Arial,sans-serif;color:#292823;line-height:1.6;max-width:620px;margin:auto">` +
+    `<h1 style="font-family:Georgia,serif;color:#bd7151">Votre commande est en route !</h1>` +
+    `<div style="background:#fff9f0;border:1px solid #e6d9ca;border-radius:12px;padding:24px">` +
+    `<p>Bonjour ${escapeHtml_(customerName)},</p>` +
+    `<p>Votre commande <strong>${escapeHtml_(reference)}</strong> vient d’être expédiée par La Poste en Lettre verte suivie.</p>` +
+    `<p>Numéro de suivi : <strong>${escapeHtml_(trackingNumber)}</strong></p>` +
+    `<p style="margin:28px 0"><a href="${escapeHtml_(trackingUrl)}" style="background:#bd7151;color:#fff;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:bold">Suivre ma commande</a></p>` +
+    `<p>Merci pour votre commande et à bientôt.</p></div>` +
+    `<p style="color:#746d63;font-size:12px">Valmeo Création — bijoux artisanaux</p></div>`;
 }
 
 function emailHtml_(title, text) {
