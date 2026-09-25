@@ -1,6 +1,6 @@
 const CART_STORAGE_KEY = "valmeo-cart-reservation-v1";
 const CHECKOUT_API_URL = "https://valmeo-checkout.valmeo-creation.workers.dev";
-const SHIPPING_CENTS = 350;
+const SHIPPING_CENTS = 490;
 
 const content = document.querySelector("[data-checkout-content]");
 const statusPanel = document.querySelector("[data-checkout-status]");

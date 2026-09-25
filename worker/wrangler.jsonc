@@ -26,7 +26,7 @@
     "SITE_URL": "https://didipro-val.github.io/valsite/",
     "ALLOWED_ORIGIN": "https://didipro-val.github.io",
     "INVENTORY_API_URL": "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec",
-    "SHIPPING_RATE_CENTS": "350",
-    "SHIPPING_LABEL": "Livraison France"
+    "SHIPPING_RATE_CENTS": "490",
+    "SHIPPING_LABEL": "Lettre verte suivie"
   }
 }
