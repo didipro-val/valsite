@@ -35,9 +35,13 @@
             <fieldset>
               <legend>Vos coordonnées</legend>
               <div class="form-grid two-columns">
-                <label class="full-column">
-                  Nom et prénom
-                  <input name="name" type="text" autocomplete="name" maxlength="200" required />
+                <label>
+                  Prénom
+                  <input name="firstName" type="text" autocomplete="given-name" maxlength="100" required />
+                </label>
+                <label>
+                  Nom
+                  <input name="lastName" type="text" autocomplete="family-name" maxlength="100" required />
                 </label>
                 <label>
                   Adresse e-mail
@@ -129,6 +133,6 @@
       </details>
       <div class="footer-bottom"><span>© 2026 Valmeo Création</span></div>
     </footer>
-    <script src="./commande.js?v=3"></script>
+    <script src="./commande.js?v=4"></script>
   </body>
 </html>

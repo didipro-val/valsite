@@ -8,15 +8,16 @@ const EXPEDITIONS_SHEET_NAME = "Expéditions";
 const EXPEDITIONS_HEADERS = [
   "Référence",
   "Commande payée le",
-  "Client",
+  "Prénom",
+  "Nom",
   "E-mail",
   "Téléphone",
   "Statut",
   "Numéro de suivi",
   "E-mail de suivi envoyé le"
 ];
-const TRACKING_COLUMN = 7;
-const TRACKING_EMAIL_SENT_COLUMN = 8;
+const TRACKING_COLUMN = 8;
+const TRACKING_EMAIL_SENT_COLUMN = 9;
 // Filet de sécurité si le webhook d'expiration n'arrive pas. La session Stripe expire après 30 minutes.
 const RESERVATION_TTL_MS = 60 * 60 * 1000;
 
@@ -197,7 +198,9 @@ function normalizeOrderDetails_(value) {
     amountTotal: Math.max(0, Math.floor(Number(value && value.amountTotal) || 0)),
     shippingTotal: Math.max(0, Math.floor(Number(value && value.shippingTotal) || 0)),
     customer: {
-      name: String(customer.name || "").slice(0, 200),
+      firstName: String(customer.firstName || "").slice(0, 100),
+      lastName: String(customer.lastName || "").slice(0, 100),
+      name: String(customer.name || [customer.firstName, customer.lastName].filter(Boolean).join(" ")).slice(0, 200),
       email: String(customer.email || "").slice(0, 254),
       phone: String(customer.phone || "").slice(0, 30),
       message: String(customer.message || "").slice(0, 450),
@@ -218,20 +221,22 @@ function sendOrderEmails_(orderKey, record) {
   const order = record.order || {};
   const customer = order.customer || {};
   if (!customer.email || !order.orderReference) return record;
+  const customerName = [customer.firstName, customer.lastName].filter(Boolean).join(" ") || customer.name || "";
+  const customerGreeting = customer.firstName || customerName;
 
   const subject = `Commande ${order.orderReference} confirmée`;
   const itemLines = (order.items || []).map((item) =>
     `${item.description} × ${item.quantity} — ${formatEuros_(item.amountTotal)}`
   ).join("\n");
   const addressLines = [
-    customer.name,
+    customerName,
     customer.address && customer.address.line1,
     customer.address && customer.address.line2,
     `${customer.address && customer.address.postalCode || ""} ${customer.address && customer.address.city || ""}`.trim(),
     "France"
   ].filter(Boolean).join("\n");
   const customerText = [
-    `Bonjour ${customer.name},`,
+    `Bonjour ${customerGreeting},`,
     "",
     "Votre paiement a bien été confirmé. Merci pour votre commande Valmeo Création.",
     "",
@@ -266,7 +271,7 @@ function sendOrderEmails_(orderKey, record) {
         "Une nouvelle commande payée doit être préparée.",
         "",
         `Référence : ${order.orderReference}`,
-        `Client : ${customer.name}`,
+        `Client : ${customerName}`,
         `E-mail : ${customer.email}`,
         `Téléphone : ${customer.phone}`,
         "",
@@ -297,22 +302,28 @@ function ensureExpeditionsSheet_() {
   const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
   let sheet = spreadsheet.getSheetByName(EXPEDITIONS_SHEET_NAME);
   if (!sheet) sheet = spreadsheet.insertSheet(EXPEDITIONS_SHEET_NAME);
-  if (sheet.getLastRow() === 0) {
-    sheet.getRange(1, 1, 1, EXPEDITIONS_HEADERS.length).setValues([EXPEDITIONS_HEADERS]);
-    sheet.setFrozenRows(1);
-    sheet.getRange(1, 1, 1, EXPEDITIONS_HEADERS.length).setFontWeight("bold");
-    sheet.setColumnWidths(1, EXPEDITIONS_HEADERS.length, 150);
-    sheet.setColumnWidth(2, 190);
-    sheet.setColumnWidth(3, 190);
-    sheet.setColumnWidth(4, 240);
-    sheet.setColumnWidth(8, 190);
+  if (sheet.getLastRow() > 0 && String(sheet.getRange(1, 3).getValue()).trim() === "Client") {
+    // Migration de l'ancien tableau : conserve le nom complet dans la colonne Nom.
+    sheet.insertColumnBefore(3);
   }
+  if (sheet.getLastRow() === 0) {
+    sheet.setFrozenRows(1);
+  }
+  sheet.getRange(1, 1, 1, EXPEDITIONS_HEADERS.length).setValues([EXPEDITIONS_HEADERS]);
+  sheet.getRange(1, 1, 1, EXPEDITIONS_HEADERS.length).setFontWeight("bold");
+  sheet.setColumnWidths(1, EXPEDITIONS_HEADERS.length, 150);
+  sheet.setColumnWidth(2, 190);
+  sheet.setColumnWidth(3, 150);
+  sheet.setColumnWidth(4, 190);
+  sheet.setColumnWidth(5, 240);
+  sheet.setColumnWidth(9, 190);
   return sheet;
 }
 
 function ensureExpeditionRow_(record) {
   const order = record.order || {};
   const customer = order.customer || {};
+  const customerName = [customer.firstName, customer.lastName].filter(Boolean).join(" ") || customer.name || "";
   const reference = String(order.orderReference || "").trim();
   if (!reference || !customer.email) return;
   const sheet = ensureExpeditionsSheet_();
@@ -324,7 +335,8 @@ function ensureExpeditionRow_(record) {
   sheet.appendRow([
     reference,
     record.completedAt ? new Date(record.completedAt) : new Date(),
-    customer.name || "",
+    customer.firstName || "",
+    customer.lastName || customerName,
     customer.email || "",
     customer.phone || "",
     "À préparer",
@@ -336,7 +348,8 @@ function ensureExpeditionRow_(record) {
 function traiterNumeroSuivi_(event) {
   if (!event || !event.range) return;
   const range = event.range;
-  const sheet = range.getSheet();
+  let sheet = range.getSheet();
+  if (sheet.getName() === EXPEDITIONS_SHEET_NAME) sheet = ensureExpeditionsSheet_();
   if (sheet.getName() !== EXPEDITIONS_SHEET_NAME || range.getLastColumn() < TRACKING_COLUMN || range.getColumn() > TRACKING_COLUMN) return;
 
   const lock = LockService.getScriptLock();
@@ -353,8 +366,10 @@ function traiterNumeroSuivi_(event) {
 function sendTrackingEmailForRow_(sheet, row) {
   const values = sheet.getRange(row, 1, 1, EXPEDITIONS_HEADERS.length).getDisplayValues()[0];
   const reference = String(values[0] || "").trim();
-  const customerName = String(values[2] || "").trim();
-  const customerEmail = String(values[3] || "").trim().toLowerCase();
+  const customerFirstName = String(values[2] || "").trim();
+  const customerLastName = String(values[3] || "").trim();
+  const customerGreeting = customerFirstName || customerLastName;
+  const customerEmail = String(values[4] || "").trim().toLowerCase();
   const trackingNumber = String(values[TRACKING_COLUMN - 1] || "").toUpperCase().replace(/\s+/g, "");
   const alreadySent = String(values[TRACKING_EMAIL_SENT_COLUMN - 1] || "").trim();
   if (!reference || !customerEmail || !trackingNumber || alreadySent) return;
@@ -362,7 +377,7 @@ function sendTrackingEmailForRow_(sheet, row) {
 
   const trackingUrl = `https://www.laposte.fr/outils/suivre-vos-envois?code=${encodeURIComponent(trackingNumber)}`;
   const text = [
-    `Bonjour ${customerName || ""},`.trim(),
+    `Bonjour ${customerGreeting || ""},`.trim(),
     "",
     `Votre commande ${reference} vient d’être expédiée par La Poste en Lettre verte suivie.`,
     `Numéro de suivi : ${trackingNumber}`,
@@ -376,10 +391,10 @@ function sendTrackingEmailForRow_(sheet, row) {
     to: customerEmail,
     subject: `Votre commande ${reference} a été expédiée`,
     body: text,
-    htmlBody: trackingEmailHtml_(customerName, reference, trackingNumber, trackingUrl),
+    htmlBody: trackingEmailHtml_(customerGreeting, reference, trackingNumber, trackingUrl),
     name: "Valmeo Création"
   });
-  sheet.getRange(row, 6).setValue("Expédiée");
+  sheet.getRange(row, 7).setValue("Expédiée");
   sheet.getRange(row, TRACKING_EMAIL_SENT_COLUMN).setValue(new Date());
 }
 

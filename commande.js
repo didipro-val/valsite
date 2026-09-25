@@ -96,7 +96,8 @@ async function createCheckoutSession(customer) {
 function customerFromForm() {
   const data = new FormData(orderForm);
   return {
-    name: String(data.get("name") || "").trim(),
+    firstName: String(data.get("firstName") || "").trim(),
+    lastName: String(data.get("lastName") || "").trim(),
     email: String(data.get("email") || "").trim(),
     phone: String(data.get("phone") || "").trim(),
     address: {

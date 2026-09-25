@@ -62,6 +62,8 @@ async function createCheckoutSession(request, env) {
       },
       metadata: {
         order_id: orderId,
+        customer_first_name: order.customer.firstName,
+        customer_last_name: order.customer.lastName,
         customer_message: order.customer.message.slice(0, 450)
       }
     }, { idempotencyKey: `customer-${orderId}` });
@@ -195,7 +197,13 @@ function normalizeOrder(payload) {
     throw new Error("Le panier doit contenir entre 1 et 20 articles.");
   }
   const email = String(payload?.customer?.email || "").trim().toLowerCase();
-  const name = String(payload?.customer?.name || "").trim();
+  const firstName = String(payload?.customer?.firstName || "").trim();
+  const lastName = String(payload?.customer?.lastName || "").trim();
+  const legacyName = String(payload?.customer?.name || "").trim();
+  const hasSeparatedName = Boolean(firstName || lastName);
+  if (hasSeparatedName && (!firstName || firstName.length > 100)) throw new Error("Prénom invalide.");
+  if (hasSeparatedName && (!lastName || lastName.length > 100)) throw new Error("Nom invalide.");
+  const name = hasSeparatedName ? `${firstName} ${lastName}` : legacyName;
   const phone = String(payload?.customer?.phone || "").trim();
   const message = String(payload?.customer?.message || "").trim();
   const address = {
@@ -225,7 +233,7 @@ function normalizeOrder(payload) {
     return { id, product, quantity, selectedChoice };
   });
   if (items.reduce((sum, item) => sum + item.quantity, 0) > 20) throw new Error("Quantité totale invalide.");
-  return { items, customer: { name, email, phone, address, message } };
+  return { items, customer: { firstName, lastName, name, email, phone, address, message } };
 }
 
 function createOrderReference() {
@@ -248,6 +256,8 @@ function checkoutDetails(session) {
   const customer = typeof session.customer === "object" && session.customer ? session.customer : null;
   const address = customer?.shipping?.address || customer?.address || session.customer_details?.address || {};
   const name = customer?.shipping?.name || customer?.name || session.customer_details?.name || "";
+  const firstName = String(customer?.metadata?.customer_first_name || "");
+  const lastName = String(customer?.metadata?.customer_last_name || "");
   const phone = customer?.shipping?.phone || customer?.phone || session.customer_details?.phone || "";
   const email = customer?.email || session.customer_details?.email || "";
   const lines = session.line_items?.data || [];
@@ -257,6 +267,8 @@ function checkoutDetails(session) {
     shippingTotal: Number(session.total_details?.amount_shipping || 0),
     currency: String(session.currency || "eur"),
     customer: {
+      firstName,
+      lastName,
       name,
       email,
       phone,
