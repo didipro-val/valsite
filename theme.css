@@ -85,6 +85,7 @@ h2, .brand, .footer-brand strong, .order-summary h2, .checkout-form legend,
 .button:disabled, .button[aria-disabled="true"] { background: #e2ded2; color: #62665b; box-shadow: none; }
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #6c8059; outline-offset: 4px; }
 .intro-band {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: 0;
   padding: 0 5vw;
   border: 0;
