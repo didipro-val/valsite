@@ -2515,13 +2515,15 @@ function openProduct(id) {
   activeProductId = id;
   modalTitle.innerHTML = "";
   const name = document.createElement("span");
-  name.textContent = `${product.name} (${stockLabel(product)})`;
-  const separator = document.createElement("span");
-  separator.textContent = "·";
+  name.className = "modal-product-name";
+  name.textContent = product.name;
+  const stock = document.createElement("span");
+  stock.className = "modal-stock";
+  stock.textContent = stockLabel(product);
   const price = document.createElement("span");
   price.className = "modal-price";
   price.textContent = euro(product.price);
-  modalTitle.append(name, separator, price);
+  modalTitle.append(name, price, stock);
   modalMeta.textContent = product.tag;
   modalDescription.innerHTML = paragraphs(product.description);
   modalCharacteristics.innerHTML = product.characteristics.length
