@@ -9,6 +9,7 @@
     />
     <title>Valmeo Creation | Boutique artisanale</title>
     <link rel="stylesheet" href="./styles.css?v=23" />
+    <link rel="stylesheet" href="./hero.css?v=1" />
   </head>
   <body>
     <header class="site-header">
@@ -30,25 +31,28 @@
     </header>
 
     <main>
-      <section class="hero logo-hero" id="accueil">
-        <div class="hero-media" aria-hidden="true">
-          <img
-            src="./assets/valmeo-logo-hero.png"
-            alt=""
-          />
-        </div>
+      <section class="hero boheme-hero" id="accueil" aria-labelledby="hero-title">
         <div class="hero-content">
-          <p class="eyebrow">Pieces faites main en petites series</p>
-          <h1>Valmeo Creation</h1>
-          <p>
-            Valerie, ame creative : des boucles d'oreilles, une passion a
-            partager, et des petites merveilles a s'offrir ou a offrir.
-          </p>
+          <p class="eyebrow"><span aria-hidden="true">✳</span> L’esprit libre, le cœur artisan</p>
+          <h1 id="hero-title">Un peu de nature.<br />Beaucoup <em>d’âme.</em></h1>
+          <p class="hero-description">Des boucles d’oreilles comme de petits jardins à porter. Imaginées et façonnées à la main par Valérie, pour fleurir votre quotidien.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#boutique">Voir la boutique</a>
-            <a class="button secondary" href="#atelier">Decouvrir l'atelier</a>
+            <a class="button primary" href="#boutique">Trouver mes coups de cœur <span aria-hidden="true">↗</span></a>
+            <a class="hero-atelier-link" href="#atelier">Entrer dans l’atelier <span aria-hidden="true">→</span></a>
           </div>
+          <div class="hero-craft-note"><span class="craft-flower" aria-hidden="true">✿</span><span>Le charme du fait main.<br /><strong>La poésie des petites séries.</strong></span></div>
         </div>
+        <div class="hero-art" aria-label="Les boucles de Valmeo, logo au colibri illustré">
+          <div class="hero-art-orbit" aria-hidden="true"></div>
+          <div class="hero-emblem">
+            <div class="hero-bird" aria-hidden="true"><img src="./assets/valmeo-logo-hero.png" alt="" fetchpriority="high" /></div>
+            <p class="hero-signature">Les boucles <span>de Valmeo</span></p>
+            <span class="hero-signature-caption">Bijoux faits main · Créations de cœur</span>
+          </div>
+          <span class="hero-art-star" aria-hidden="true">✧</span>
+          <span class="hero-art-note" aria-hidden="true">Cultiver le joli.</span>
+        </div>
+        <div class="hero-bottom-line" aria-hidden="true"><span>Valmeo Création</span><span>Naturellement singulière</span><span>↓</span></div>
       </section>
 
       <section class="intro-band" aria-label="Promesses de la marque">
