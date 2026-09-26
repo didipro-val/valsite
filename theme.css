@@ -120,7 +120,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   max-width: 1476px;
   margin: 0 auto 80px;
   padding: 65px max(5vw, 30px);
-  gap: 7%;
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, .55fr);
+  align-items: start;
+  gap: clamp(38px, 6vw, 90px);
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -128,8 +130,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 .atelier h2 { font-size: clamp(2.4rem, 3.7vw, 3.8rem); line-height: 1.08; }
 .atelier-copy p:not(.eyebrow) { font-size: .95rem; }
+.atelier-lead { max-width: 760px; margin: 22px 0 30px; color: var(--ink) !important; font-size: 1.08rem !important; line-height: 1.75 !important; }
+.atelier-story { column-count: 2; column-gap: clamp(26px, 4vw, 54px); }
+.atelier-story p { margin: 0 0 22px; break-inside: avoid; }
+.atelier-story strong { color: var(--ink); font-weight: 700; }
+.atelier-story .atelier-highlight {
+  padding: 22px 24px;
+  color: var(--ink);
+  font: italic 500 1.45rem/1.35 "Valmeo Editorial", Georgia, serif;
+  background: rgba(255, 251, 244, .72);
+  border-left: 3px solid var(--clay);
+}
 .instagram-link { background: var(--ink); line-height: 1.5; }
-.atelier-gallery { min-height: 400px; align-items: center; gap: 18px; }
+.atelier-gallery { min-height: 400px; align-items: start; gap: 18px; position: sticky; top: 110px; }
 .atelier-gallery > img { height: 410px; border-radius: 48% 48% 12px 12px; object-fit: cover; }
 .instagram-card { margin-top: 40px; padding: 25px 20px; border: 0; box-shadow: 0 14px 30px #46543b0c; border-radius: 80px 80px 14px 14px; text-align: center; background: #fffbf4; }
 .instagram-card img { margin: 0 auto 20px; width: 92px; height: 92px; }
@@ -199,7 +212,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .withdrawal-model { background: #f3f4e9; border-color: #7a886a; }
 @media (max-width: 1050px) {
   .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 16px; }
-  .atelier { margin-bottom: 50px; gap: 30px; padding: 45px 5vw; }
+  .atelier { margin-bottom: 50px; gap: 36px; padding: 45px 5vw; }
   .atelier-gallery { min-height: 0; }
   .atelier-gallery > img { height: 340px; }
 }
@@ -207,6 +220,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .product-modal-shell { grid-template-columns: 1fr; }
   .modal-gallery > img { height: min(55vh, 520px); }
   .atelier { grid-template-columns: 1fr; }
+  .atelier-story { column-count: 1; }
   .atelier-gallery { max-width: 590px; width: 100%; justify-self: center; }
   .checkout-main { padding-top: 28px; }
 }
@@ -252,6 +266,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .stock-ribbon { font-size: .5rem; top: 10px; right: 6px; padding: 6px 8px; }
   .atelier { padding: 40px 22px; margin-bottom: 0; }
   .atelier h2 { font-size: 2.6rem; }
+  .atelier-lead { margin: 18px 0 25px; font-size: 1rem !important; }
+  .atelier-story p { margin-bottom: 18px; }
+  .atelier-story .atelier-highlight { padding: 18px 20px; font-size: 1.3rem; }
+  .atelier-gallery { position: static; }
   .atelier-gallery { grid-template-columns: 1fr 1fr; gap: 12px; }
   .instagram-card { padding: 28px 12px 20px; margin-top: 20px; }
   .instagram-card img { width: 65px; height: 65px; }
