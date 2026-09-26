@@ -2585,6 +2585,7 @@ function updateCart() {
 function addToCart(id, selectedChoice = "") {
   const product = products.find((item) => item.id === id);
   if (!product) return;
+  const addedFromProductModal = activeProductId === id;
 
   if (productNeedsChoice(product) && !selectedChoice) {
     openProduct(id);
@@ -2610,7 +2611,7 @@ function addToCart(id, selectedChoice = "") {
   saveCartReservation();
   updateCart();
   renderProducts(activeFilter);
-  if (activeProductId === id) openProduct(id);
+  if (addedFromProductModal) closeProduct();
   openCart();
 }
 
