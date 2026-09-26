@@ -25,7 +25,7 @@
   "vars": {
     "SITE_URL": "https://valmeocreation.fr/",
     "ALLOWED_ORIGIN": "https://valmeocreation.fr",
-    "INVENTORY_API_URL": "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec",
+    "INVENTORY_API_URL": "https://script.google.com/macros/s/AKfycbzHDeLKYKSnoq4Zkf3P23ML2xOXCW7315zQEMLAC_HJ1_zqIKe1x8wfxt-cMoenLNC1Sw/exec",
     "SHIPPING_RATE_CENTS": "490",
     "SHIPPING_LABEL": "Lettre verte suivie"
   }

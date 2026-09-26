@@ -27,6 +27,12 @@ function autoriserEmails() {
   console.log(`Autorisation e-mail active. Quota restant : ${quotaRestant}`);
 }
 
+// À exécuter manuellement une seule fois pour autoriser l'accès au tableur.
+function autoriserTableur() {
+  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+  console.log(`Accès au tableur autorisé : ${spreadsheet.getName()}`);
+}
+
 // À exécuter manuellement une seule fois. Crée l'onglet Expéditions et installe
 // le déclencheur qui envoie l'e-mail de suivi lorsqu'un numéro La Poste est saisi.
 function installerSuiviExpeditions() {
