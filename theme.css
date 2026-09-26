@@ -94,7 +94,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   box-shadow: none;
   background: #e9ecdf;
 }
-.intro-band div { padding: 28px 28px; }
+.intro-band div { display: flex; align-items: center; padding: 28px 28px; }
 .intro-band strong { font: italic 500 clamp(1.45rem, 2vw, 1.9rem)/1.2 "Valmeo Editorial", Georgia, serif; }
 .intro-band span {
   max-width: 480px;
