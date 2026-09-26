@@ -1447,6 +1447,29 @@ body.modal-open {
     padding: 10px 10px;
   }
 
+  .logo-hero {
+    display: block;
+    min-height: 0;
+    background: var(--surface);
+  }
+
+  .logo-hero::after {
+    display: none;
+  }
+
+  .logo-hero .hero-media {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #fff2df;
+  }
+
+  .logo-hero .hero-media img {
+    padding: 0;
+    object-fit: contain;
+  }
+
   .brand-mark {
     width: 38px;
     height: 38px;
@@ -1462,12 +1485,24 @@ body.modal-open {
   }
 
   h1 {
-    font-size: clamp(3.25rem, 18vw, 5.2rem);
+    font-size: clamp(3rem, 15vw, 4.35rem);
   }
 
   .hero-content {
-    width: calc(100% - 28px);
-    padding-left: 14px;
+    width: 100%;
+    padding: 30px 14px 38px;
+    color: var(--ink);
+    background: var(--surface);
+  }
+
+  .hero .eyebrow {
+    color: var(--clay);
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
   .hero-actions .button {
@@ -1543,10 +1578,6 @@ body.modal-open {
   }
 
   .product-content .button {
-    display: none;
-  }
-
-  .product-card.requires-choice .product-content .button {
     grid-column: 1 / -1;
     display: inline-flex;
     min-height: 34px;
