@@ -646,6 +646,11 @@ h3 {
   gap: clamp(22px, 4vw, 46px);
 }
 
+/* Keep the form and its default totals out of view while Stripe is being verified. */
+.checkout-layout[hidden] {
+  display: none;
+}
+
 .checkout-card {
   min-width: 0;
   padding: clamp(24px, 4vw, 42px);
