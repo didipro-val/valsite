@@ -145,7 +145,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   overflow: hidden;
 }
 .about-heading { max-width: 760px; margin-bottom: 28px; }
-.about-heading h2 { margin: 0; font: 500 clamp(4rem, 7vw, 7rem)/.95 "Valmeo Editorial", Georgia, serif; color: var(--ink); }
+.about-heading h2 { margin: 0; font: 500 clamp(3.4rem, 5.6vw, 5.8rem)/.98 "Valmeo Editorial", Georgia, serif; color: var(--ink); }
 .about-card {
   position: relative;
   display: grid;
@@ -393,7 +393,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .stock-ribbon { font-size: .5rem; top: 10px; right: 6px; padding: 6px 8px; }
   .about { padding: 58px 22px 70px; }
   .about-heading { margin-bottom: 16px; }
-  .about-heading h2 { font-size: 4.25rem; }
+  .about-heading h2 { font-size: 3.35rem; }
   .about-card { padding: 42px 0 54px; gap: 30px; }
   .about-card::after { width: 120px; right: -25px; opacity: .08; }
   .about-media { height: 390px; width: calc(100% - 14px); }
