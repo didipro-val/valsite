@@ -201,8 +201,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   transform: rotate(-2deg);
 }
 .about-collage .about-collage-secondary {
+  width: 43%;
   justify-self: end;
   transform: rotate(3deg);
+}
+.about-collage .about-collage-secondary img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .about-collage figure img {
   position: static;
