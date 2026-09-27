@@ -2110,6 +2110,12 @@ const CART_STORAGE_KEY = "valmeo-cart-reservation-v1";
 const CART_HOLD_DURATION = 30 * 60 * 1000;
 const STOCK_SYNC_INTERVAL = 60 * 1000;
 const FREE_SHIPPING_THRESHOLD = 35;
+const CATEGORY_INTROS = {
+  florales: "Des fleurs, des couleurs et une petite touche de nature. Trouvez les boucles qui vous ressemblent, comme une fleur que vous auriez choisie dans la nature.",
+  faconnees: "Des matières, des couleurs et le charme du geste artisanal. Trouvez les boucles qui vous ressemblent, façonnées avec soin pour révéler votre personnalité.",
+  perles: "Des perles, des couleurs et une délicate légèreté. Trouvez les boucles qui vous ressemblent, avec ce petit éclat qui fait toute la différence.",
+  creatives: "Des formes, des couleurs et de l'originalité. Trouvez les boucles qui vous ressemblent, imaginées pour exprimer ce petit quelque chose qui n’appartient qu’à vous."
+};
 const STOCK_API_URL = "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec";
 
 const cart = new Map();
@@ -2123,6 +2129,7 @@ const overlay = document.querySelector("[data-overlay]");
 const cartItems = document.querySelector("[data-cart-items]");
 const cartCount = document.querySelector("[data-cart-count]");
 const cartTotal = document.querySelector("[data-cart-total]");
+const categoryIntro = document.querySelector("[data-category-intro]");
 const cartShippingProgress = document.querySelector("[data-cart-shipping-progress]");
 const cartShippingMessage = document.querySelector("[data-cart-shipping-message]");
 const cartShippingTrack = document.querySelector("[data-cart-shipping-track]");
@@ -2393,6 +2400,7 @@ function compareProducts(a, b) {
 
 function renderProducts(filter = "all") {
   activeFilter = filter;
+  categoryIntro.textContent = CATEGORY_INTROS[filter] || CATEGORY_INTROS.florales;
   const visibleProducts = [...(filter === "all" ? products : products.filter((product) => product.category === filter))].sort(compareProducts);
 
   productGrid.innerHTML = visibleProducts
