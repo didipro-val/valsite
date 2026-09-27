@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import catalog from "./catalog.json" with { type: "json" };
+import { shippingOption } from "./shipping.js";
 
 const API_VERSION = "2026-08-26.dahlia";
 const RESERVATION_SECONDS = 30 * 60;
@@ -50,6 +51,11 @@ async function createCheckoutSession(request, env) {
   try {
     const stripe = await createStripeClient(env);
     const siteUrl = new URL(env.SITE_URL);
+    const subtotalCents = order.items.reduce(
+      (sum, item) => sum + item.product.unitAmount * item.quantity,
+      0
+    );
+    const shipping = shippingOption(env, subtotalCents);
     const customer = await stripe.customers.create({
       name: order.customer.name,
       email: order.customer.email,
@@ -85,12 +91,14 @@ async function createCheckoutSession(request, env) {
       customer: customer.id,
       customer_update: { address: "auto", name: "auto", shipping: "auto" },
       shipping_address_collection: { allowed_countries: ["FR"] },
-      shipping_options: shippingOptions(env),
+      shipping_options: [shipping.option],
       expires_at: Math.floor(Date.now() / 1000) + RESERVATION_SECONDS,
       success_url: new URL("commande.html?checkout=success&session_id={CHECKOUT_SESSION_ID}", siteUrl).href,
       cancel_url: new URL("commande.html?checkout=cancelled", siteUrl).href,
       metadata: {
-        order_id: orderId
+        order_id: orderId,
+        product_subtotal_cents: String(subtotalCents),
+        shipping_amount_cents: String(shipping.amount)
       }
     }, { idempotencyKey: `checkout-${orderId}` });
 
@@ -293,18 +301,6 @@ function aggregateInventoryItems(items) {
   const totals = new Map();
   for (const item of items) totals.set(item.id, (totals.get(item.id) || 0) + item.quantity);
   return [...totals].map(([id, quantity]) => ({ id, quantity }));
-}
-
-function shippingOptions(env) {
-  const amount = Number(env.SHIPPING_RATE_CENTS);
-  if (!Number.isInteger(amount) || amount < 0) throw new Error("SHIPPING_RATE_CENTS invalide");
-  return [{
-    shipping_rate_data: {
-      type: "fixed_amount",
-      fixed_amount: { amount, currency: "eur" },
-      display_name: env.SHIPPING_LABEL || "Livraison France"
-    }
-  }];
 }
 
 async function callInventory(env, payload) {

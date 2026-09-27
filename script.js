@@ -2109,6 +2109,7 @@ const productOrder = {
 const CART_STORAGE_KEY = "valmeo-cart-reservation-v1";
 const CART_HOLD_DURATION = 30 * 60 * 1000;
 const STOCK_SYNC_INTERVAL = 60 * 1000;
+const FREE_SHIPPING_THRESHOLD = 35;
 const STOCK_API_URL = "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec";
 
 const cart = new Map();
@@ -2122,6 +2123,10 @@ const overlay = document.querySelector("[data-overlay]");
 const cartItems = document.querySelector("[data-cart-items]");
 const cartCount = document.querySelector("[data-cart-count]");
 const cartTotal = document.querySelector("[data-cart-total]");
+const cartShippingProgress = document.querySelector("[data-cart-shipping-progress]");
+const cartShippingMessage = document.querySelector("[data-cart-shipping-message]");
+const cartShippingTrack = document.querySelector("[data-cart-shipping-track]");
+const cartShippingBar = document.querySelector("[data-cart-shipping-bar]");
 const productModal = document.querySelector("[data-product-modal]");
 const modalImage = document.querySelector("[data-modal-image]");
 const modalTitle = document.querySelector("[data-modal-title]");
@@ -2553,6 +2558,15 @@ function updateCart() {
 
   cartCount.textContent = totalQuantity;
   cartTotal.textContent = euro(totalPrice);
+
+  const remainingForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - totalPrice);
+  const freeShippingEarned = totalPrice >= FREE_SHIPPING_THRESHOLD;
+  cartShippingMessage.textContent = freeShippingEarned
+    ? "Livraison offerte débloquée !"
+    : `Encore ${euro(remainingForFreeShipping)} pour profiter de la livraison offerte.`;
+  cartShippingProgress.classList.toggle("is-earned", freeShippingEarned);
+  cartShippingTrack.setAttribute("aria-valuenow", String(Math.min(totalPrice, FREE_SHIPPING_THRESHOLD)));
+  cartShippingBar.style.width = `${Math.min(100, (totalPrice / FREE_SHIPPING_THRESHOLD) * 100)}%`;
 
   if (!rows.length) {
     cartItems.innerHTML = '<p class="empty-cart">Ton panier est vide pour le moment.</p>';

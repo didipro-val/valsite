@@ -9,8 +9,8 @@
     />
     <title>Valmeo Creation | Boutique artisanale</title>
     <link rel="stylesheet" href="./styles.css?v=23" />
-    <link rel="stylesheet" href="./hero.css?v=5" />
-    <link rel="stylesheet" href="./theme.css?v=17" />
+    <link rel="stylesheet" href="./hero.css?v=6" />
+    <link rel="stylesheet" href="./theme.css?v=18" />
   </head>
   <body>
     <header class="site-header">
@@ -61,8 +61,11 @@
       </section>
 
       <section class="section" id="boutique">
+        <div class="free-shipping-banner" role="note">
+          <strong>Livraison offerte dès 35&nbsp;€ d’achat</strong>
+          <span>La Lettre verte suivie est offerte automatiquement dès que votre panier atteint 35&nbsp;€.</span>
+        </div>
         <div class="section-heading">
-          <p class="eyebrow">Le jardin des créations</p>
           <h2>À chacune son coup de cœur.</h2>
           <p class="section-intro">Des fleurs, des couleurs et une petite touche de liberté. Trouvez les boucles qui vous ressemblent.</p>
         </div>
@@ -241,8 +244,14 @@
       </div>
       <div class="cart-items" data-cart-items></div>
       <div class="cart-footer">
+        <div class="cart-shipping-progress" data-cart-shipping-progress>
+          <p data-cart-shipping-message>Encore 35&nbsp;€ pour profiter de la livraison offerte.</p>
+          <div class="shipping-progress-track" role="progressbar" aria-label="Progression vers la livraison offerte" aria-valuemin="0" aria-valuemax="35" aria-valuenow="0" data-cart-shipping-track>
+            <span data-cart-shipping-bar></span>
+          </div>
+        </div>
         <div class="cart-total">
-          <span>Total</span>
+          <span>Sous-total</span>
           <strong data-cart-total>0 €</strong>
         </div>
         <a class="button primary full" href="./commande.html" data-close-cart-link>Commander</a>
@@ -272,6 +281,6 @@
     </aside>
     <div class="overlay" data-overlay></div>
 
-    <script src="./script.js?v=32"></script>
+    <script src="./script.js?v=33"></script>
   </body>
 </html>

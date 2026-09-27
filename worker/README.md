@@ -19,6 +19,7 @@ Les variables suivantes sont dans `wrangler.jsonc` :
 - `ALLOWED_ORIGIN` : origine autorisée par CORS ;
 - `INVENTORY_API_URL` : URL `/exec` publique du service Google Apps Script ;
 - `SHIPPING_RATE_CENTS` : frais de port en centimes (`490`, soit 4,90 €) ;
+- `FREE_SHIPPING_THRESHOLD_CENTS` : seuil du sous-total produits à partir duquel la livraison est offerte (`3500`, soit 35 €) ;
 - `SHIPPING_LABEL` : libellé affiché par Stripe.
 
 ## Secrets Cloudflare obligatoires

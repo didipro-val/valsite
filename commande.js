@@ -1,6 +1,7 @@
 const CART_STORAGE_KEY = "valmeo-cart-reservation-v1";
 const CHECKOUT_API_URL = "https://valmeo-checkout.valmeo-creation.workers.dev";
 const SHIPPING_CENTS = 490;
+const FREE_SHIPPING_THRESHOLD_CENTS = 3500;
 
 const content = document.querySelector("[data-checkout-content]");
 const statusPanel = document.querySelector("[data-checkout-status]");
@@ -8,6 +9,9 @@ const orderForm = document.querySelector("[data-order-form]");
 const errorPanel = document.querySelector("[data-checkout-error]");
 const summaryItems = document.querySelector("[data-summary-items]");
 const subtotalNode = document.querySelector("[data-summary-subtotal]");
+const shippingNode = document.querySelector("[data-summary-shipping]");
+const shippingLabelNode = document.querySelector("[data-summary-shipping-label]");
+const shippingMessageNode = document.querySelector("[data-checkout-shipping-message]");
 const totalNode = document.querySelector("[data-summary-total]");
 
 let cartRows = [];
@@ -73,8 +77,16 @@ function renderSummary() {
         <strong>${formatMoney(product.unitAmount * quantity)}</strong>
       </article>`;
   }).join("");
+  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD_CENTS ? 0 : SHIPPING_CENTS;
+  const remaining = Math.max(0, FREE_SHIPPING_THRESHOLD_CENTS - subtotal);
   subtotalNode.textContent = formatMoney(subtotal);
-  totalNode.textContent = formatMoney(subtotal + SHIPPING_CENTS);
+  shippingNode.textContent = shipping === 0 ? "Offerte" : formatMoney(shipping);
+  shippingLabelNode.textContent = shipping === 0 ? "Lettre verte suivie offerte" : "Lettre verte suivie";
+  shippingMessageNode.textContent = shipping === 0
+    ? "Vous profitez de la livraison offerte."
+    : `Encore ${formatMoney(remaining)} pour profiter de la livraison offerte.`;
+  shippingMessageNode.classList.toggle("is-earned", shipping === 0);
+  totalNode.textContent = formatMoney(subtotal + shipping);
 }
 
 async function createCheckoutSession(customer) {

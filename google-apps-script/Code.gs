@@ -248,7 +248,7 @@ function sendOrderEmails_(orderKey, record) {
     "",
     `Référence : ${order.orderReference}`,
     itemLines,
-    `Livraison : ${formatEuros_(order.shippingTotal)}`,
+    `Livraison : ${order.shippingTotal === 0 ? "Offerte" : formatEuros_(order.shippingTotal)}`,
     `Total payé : ${formatEuros_(order.amountTotal)}`,
     "",
     "Adresse de livraison :",

@@ -6,7 +6,8 @@
     "catalog": "node scripts/generate-catalog.mjs",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "check": "node --check src/index.js && node scripts/generate-catalog.mjs --check"
+    "check": "node --check src/index.js && node --check src/shipping.js && node scripts/generate-catalog.mjs --check",
+    "test": "node --test"
   },
   "dependencies": {
     "stripe": "22.6.0"
