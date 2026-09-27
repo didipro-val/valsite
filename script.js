@@ -2119,7 +2119,7 @@ const CATEGORY_INTROS = {
 const STOCK_API_URL = "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec";
 
 const cart = new Map();
-let activeFilter = "florales";
+let activeFilter = "faconnees";
 let cartExpiresAt = 0;
 let cartExpiryTimer = null;
 let stockSyncTimer = null;
@@ -2754,7 +2754,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 restoreCartReservation();
-renderProducts("florales");
+renderProducts("faconnees");
 updateCart();
 syncStockFromSheet({ silent: true });
 stockSyncTimer = window.setInterval(() => syncStockFromSheet({ silent: true }), STOCK_SYNC_INTERVAL);
