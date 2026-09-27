@@ -279,6 +279,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .instagram-link { background: var(--ink); line-height: 1.5; }
 .atelier-gallery { min-height: 400px; align-items: start; gap: 18px; position: sticky; top: 110px; }
 .atelier-gallery > img { height: 410px; border-radius: 48% 48% 12px 12px; object-fit: cover; }
+.atelier-gallery > .atelier-featured {
+  width: clamp(330px, 300%, 420px);
+  max-width: none;
+  justify-self: start;
+  object-position: center;
+}
 .atelier-gallery > .atelier-materials {
   grid-column: 1 / -1;
   width: 100%;
@@ -385,6 +391,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .atelier { grid-template-columns: 1fr; }
   .atelier-story { column-count: 1; }
   .atelier-gallery { max-width: 590px; width: 100%; justify-self: center; }
+  .atelier-gallery > .atelier-featured { width: 100%; max-width: 100%; }
   .checkout-main { padding-top: 28px; }
 }
 @media (max-width: 600px) {
