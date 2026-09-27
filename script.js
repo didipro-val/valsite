@@ -2126,6 +2126,9 @@ let stockSyncTimer = null;
 const productGrid = document.querySelector("[data-products]");
 const cartPanel = document.querySelector("[data-cart-panel]");
 const overlay = document.querySelector("[data-overlay]");
+const mobileMenu = document.querySelector("[data-mobile-menu]");
+const mobileMenuOverlay = document.querySelector("[data-mobile-menu-overlay]");
+const mobileMenuToggle = document.querySelector("[data-open-mobile-menu]");
 const cartItems = document.querySelector("[data-cart-items]");
 const cartCount = document.querySelector("[data-cart-count]");
 const cartTotal = document.querySelector("[data-cart-total]");
@@ -2679,7 +2682,48 @@ function changeQuantity(id, direction) {
   renderProducts(activeFilter);
 }
 
+function openMobileMenu() {
+  closeCart();
+  mobileMenu.classList.add("open");
+  mobileMenuOverlay.classList.add("open");
+  mobileMenu.setAttribute("aria-hidden", "false");
+  mobileMenuOverlay.setAttribute("aria-hidden", "false");
+  mobileMenuToggle.setAttribute("aria-expanded", "true");
+  mobileMenuToggle.setAttribute("aria-label", "Fermer le menu");
+  document.body.classList.add("mobile-menu-open");
+  mobileMenu.querySelector("[data-close-mobile-menu]").focus();
+}
+
+function closeMobileMenu({ restoreFocus = true } = {}) {
+  if (!mobileMenu.classList.contains("open")) return;
+  mobileMenu.classList.remove("open");
+  mobileMenuOverlay.classList.remove("open");
+  mobileMenu.setAttribute("aria-hidden", "true");
+  mobileMenuOverlay.setAttribute("aria-hidden", "true");
+  mobileMenuToggle.setAttribute("aria-expanded", "false");
+  mobileMenuToggle.setAttribute("aria-label", "Ouvrir le menu");
+  document.body.classList.remove("mobile-menu-open");
+  if (restoreFocus) mobileMenuToggle.focus();
+}
+
+function keepFocusInMobileMenu(event) {
+  if (event.key !== "Tab" || !mobileMenu.classList.contains("open")) return;
+  const focusable = [...mobileMenu.querySelectorAll("a[href], button:not([disabled])")];
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
 function openCart() {
+  closeMobileMenu({ restoreFocus: false });
   cartPanel.classList.add("open");
   overlay.classList.add("open");
   cartPanel.setAttribute("aria-hidden", "false");
@@ -2700,6 +2744,12 @@ document.addEventListener("click", (event) => {
   const modalThumb = event.target.closest("[data-modal-thumb]");
   const choiceButton = event.target.closest("[data-choice-option]");
   const openImageZoomButton = event.target.closest("[data-open-image-zoom]");
+  const openMobileMenuButton = event.target.closest("[data-open-mobile-menu]");
+  const mobileMenuLink = event.target.closest("[data-mobile-menu] a");
+
+  if (openMobileMenuButton) openMobileMenu();
+  if (event.target.closest("[data-close-mobile-menu]") || event.target === mobileMenuOverlay) closeMobileMenu();
+  if (mobileMenuLink) closeMobileMenu({ restoreFocus: false });
 
   if (openProductButton) openProduct(openProductButton.dataset.openProduct);
 
@@ -2742,15 +2792,25 @@ document.addEventListener("focusin", showChoicePreview);
 document.addEventListener("focusout", hideChoicePreview);
 
 document.addEventListener("keydown", (event) => {
+  keepFocusInMobileMenu(event);
+
   if (event.key === "Escape") {
     if (imageLightbox.classList.contains("open")) {
       closeImageLightbox();
+      return;
+    }
+    if (mobileMenu.classList.contains("open")) {
+      closeMobileMenu();
       return;
     }
     choicePreview.hidden = true;
     closeProduct();
     closeCart();
   }
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 900) closeMobileMenu({ restoreFocus: false });
 });
 
 restoreCartReservation();

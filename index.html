@@ -8,7 +8,7 @@
       content="Valmeo Creation par Valerie Palacin : boucles d'oreilles et petites merveilles faites main a s'offrir ou a offrir."
     />
     <title>Valmeo Creation | Boutique artisanale</title>
-    <link rel="stylesheet" href="./styles.css?v=25" />
+    <link rel="stylesheet" href="./styles.css?v=26" />
     <link rel="stylesheet" href="./hero.css?v=6" />
     <link rel="stylesheet" href="./theme.css?v=21" />
   </head>
@@ -27,6 +27,11 @@
         <a href="#atelier">Atelier</a>
         <a href="./commande.html">Commande</a>
       </nav>
+      <button class="mobile-menu-toggle" type="button" data-open-mobile-menu aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
       <button class="cart-toggle" type="button" aria-label="Ouvrir le panier">
         <span>Panier</span>
         <strong data-cart-count>0</strong>
@@ -239,6 +244,25 @@
       </div>
     </footer>
 
+    <div class="mobile-menu-overlay" data-mobile-menu-overlay aria-hidden="true"></div>
+    <aside class="mobile-menu" id="mobile-menu" data-mobile-menu role="dialog" aria-modal="true" aria-label="Menu principal" aria-hidden="true">
+      <div class="mobile-menu-header">
+        <div>
+          <span class="mobile-menu-kicker">Valmeo Création</span>
+          <h2>Menu</h2>
+        </div>
+        <button class="icon-button mobile-menu-close" type="button" data-close-mobile-menu aria-label="Fermer le menu">×</button>
+      </div>
+      <nav class="mobile-menu-nav" aria-label="Navigation mobile">
+        <a href="#accueil"><span>Accueil</span><span aria-hidden="true">→</span></a>
+        <a href="#boutique"><span>Bijoux</span><span aria-hidden="true">→</span></a>
+        <a href="#mon-univers"><span>Mon univers</span><span aria-hidden="true">→</span></a>
+        <a href="#atelier"><span>Atelier</span><span aria-hidden="true">→</span></a>
+        <a href="./commande.html"><span>Commande</span><span aria-hidden="true">→</span></a>
+      </nav>
+      <p class="mobile-menu-signature">Des bijoux uniques, créés à la main avec délicatesse et passion.</p>
+    </aside>
+
     <aside class="cart-panel" data-cart-panel aria-label="Panier" aria-hidden="true">
       <div class="cart-header">
         <h2>Panier</h2>
@@ -292,6 +316,6 @@
     </div>
     <div class="overlay" data-overlay></div>
 
-    <script src="./script.js?v=36"></script>
+    <script src="./script.js?v=37"></script>
   </body>
 </html>
