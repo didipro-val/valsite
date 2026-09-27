@@ -203,6 +203,28 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   justify-self: start;
   transform: rotate(-3deg);
 }
+.about-collage .about-collage-process {
+  position: absolute;
+  top: 2%;
+  right: -7%;
+  z-index: 2;
+  width: 31%;
+  height: auto;
+  aspect-ratio: 612 / 767;
+  border-radius: 15% 34% 13% 30% / 31% 14% 33% 16%;
+  transform: rotate(2deg);
+}
+.about-collage .about-collage-flowers {
+  position: absolute;
+  bottom: 1%;
+  left: -5%;
+  z-index: 2;
+  width: 31%;
+  height: auto;
+  aspect-ratio: 612 / 770;
+  border-radius: 34% 14% 31% 12% / 15% 32% 14% 34%;
+  transform: rotate(-2deg);
+}
 .about-collage .about-collage-secondary {
   justify-self: end;
   transform: rotate(3deg);
@@ -214,6 +236,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   border-radius: 0;
   object-fit: contain;
   box-shadow: none;
+}
+.about-collage .about-collage-process img,
+.about-collage .about-collage-flowers img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .about-copy { position: relative; z-index: 1; max-width: 690px; }
 .about-copy h3 { margin: 0 0 30px; font: 500 clamp(2.7rem, 4.5vw, 4.8rem)/1 "Valmeo Editorial", Georgia, serif; color: var(--clay); }
@@ -398,6 +426,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .about-card::after { width: 120px; right: -25px; opacity: .08; }
   .about-media { height: 390px; width: calc(100% - 14px); }
   .about-media::before { inset: -10px 12px 14px -10px; }
+  .about-collage .about-collage-process { right: -4%; width: 33%; }
+  .about-collage .about-collage-flowers { left: -3%; width: 33%; }
   .about-copy h3 { margin-bottom: 24px; font-size: 3rem; }
   .about-copy p { margin-bottom: 21px; font-size: 1.2rem; line-height: 1.68; }
   .about-copy .about-opening { font-size: 1.55rem; }
