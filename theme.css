@@ -273,6 +273,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   box-shadow: 0 20px 45px rgba(53, 76, 62, .18);
   transform: rotate(.5deg);
 }
+@media (min-width: 1200px) {
+  .atelier-gallery > .atelier-featured {
+    transform: translateX(20px) rotate(1deg);
+  }
+}
 .atelier-gallery > .atelier-materials {
   grid-column: 1 / -1;
   width: 100%;
