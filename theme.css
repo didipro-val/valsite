@@ -95,7 +95,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   background: #e9ecdf;
 }
 .intro-band div { display: flex; align-items: center; padding: 28px 28px; }
-.intro-band strong { font: italic 500 clamp(1.45rem, 2vw, 1.9rem)/1.2 "Valmeo Editorial", Georgia, serif; }
+.intro-band strong { font: italic 500 clamp(1.25rem, 1.7vw, 1.6rem)/1.25 "Valmeo Editorial", Georgia, serif; }
 .intro-band span {
   max-width: 480px;
   font: italic 500 clamp(1rem, 1.35vw, 1.25rem)/1.55 "Valmeo Editorial", Georgia, serif;
@@ -370,7 +370,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .intro-band { grid-template-columns: 1fr; padding: 0 22px; }
   .intro-band div { padding: 17px 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .intro-band div:last-child { border-bottom: 0; }
-  .intro-band strong { font-size: 1.35rem; }
+  .intro-band strong { font-size: 1.18rem; }
   .intro-band span { font-size: 1rem; margin-top: 5px; }
   .free-shipping-banner { align-items: flex-start; flex-direction: column; gap: 8px; margin-bottom: 30px; padding: 18px 20px; }
   .free-shipping-banner span { font-size: .8rem; }
