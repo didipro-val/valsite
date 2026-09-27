@@ -187,9 +187,7 @@ textarea {
   color: var(--ink);
   background:
     linear-gradient(rgba(255, 251, 244, 0.92), rgba(255, 251, 244, 0.97)),
-    url("./assets/motif-feuillage.png") right -32px bottom -18px / 175px auto no-repeat,
     var(--surface);
-  background-blend-mode: normal, multiply, normal;
   box-shadow: 18px 0 55px rgba(38, 54, 45, 0.2);
   visibility: hidden;
   transform: translateX(-105%);
