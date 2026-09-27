@@ -285,7 +285,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .product-modal { background: rgba(38, 54, 43, .7); backdrop-filter: blur(7px); padding: 32px; }
 .product-modal-shell { border-radius: 22px; min-height: 0; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: 0; max-width: 1150px; }
 .modal-gallery { background: #ecebdc; min-height: 0; padding: 25px; }
-.modal-gallery > img { height: min(65vh, 600px); border-radius: 14px; }
+.modal-image-zoom, .modal-image-zoom > img { border-radius: 14px; }
+.modal-image-zoom > img { height: min(65vh, 600px); }
 .modal-copy { padding: clamp(25px, 4vw, 48px); }
 .modal-copy h2 { font-size: clamp(2rem, 3.4vw, 3rem); }
 .modal-price { color: var(--clay); }
@@ -338,7 +339,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 @media (max-width: 820px) {
   .product-modal-shell { grid-template-columns: 1fr; }
-  .modal-gallery > img { height: min(55vh, 520px); }
+  .modal-image-zoom > img { height: min(55vh, 520px); }
   .about-card { grid-template-columns: 1fr; gap: 36px; }
   .about-card-reverse .about-media, .about-card-reverse .about-copy { order: initial; }
   .about-card-reverse .about-copy { padding-left: 0; }

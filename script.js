@@ -2136,6 +2136,9 @@ const modalCharacteristics = document.querySelector("[data-modal-characteristics
 const modalThumbnails = document.querySelector("[data-modal-thumbnails]");
 const modalAdd = document.querySelector("[data-modal-add]");
 const modalChoice = document.querySelector("[data-modal-choice]");
+const modalImageZoom = document.querySelector("[data-open-image-zoom]");
+const imageLightbox = document.querySelector("[data-image-lightbox]");
+const imageLightboxImage = document.querySelector("[data-image-lightbox-image]");
 const choicePreviewImage = "./assets/choice-guides/attaches-pince-vis.jpeg?v=1";
 const choicePreview = document.createElement("div");
 choicePreview.className = "choice-photo-preview";
@@ -2503,6 +2506,7 @@ function hideChoicePreview(event) {
 function renderModalImage(product, image) {
   modalImage.src = image;
   modalImage.alt = product.name;
+  modalImageZoom.setAttribute("aria-label", `Afficher la photo de ${product.name} en plein écran`);
   modalThumbnails.innerHTML = product.gallery
     .map(
       (galleryImage) => `
@@ -2512,6 +2516,22 @@ function renderModalImage(product, image) {
       `
     )
     .join("");
+}
+
+function openImageLightbox() {
+  if (!modalImage.src) return;
+  imageLightboxImage.src = modalImage.src;
+  imageLightboxImage.alt = modalImage.alt;
+  imageLightbox.classList.add("open");
+  imageLightbox.setAttribute("aria-hidden", "false");
+  imageLightbox.querySelector("[data-close-image-zoom]").focus();
+}
+
+function closeImageLightbox() {
+  if (!imageLightbox.classList.contains("open")) return;
+  imageLightbox.classList.remove("open");
+  imageLightbox.setAttribute("aria-hidden", "true");
+  modalImageZoom.focus();
 }
 
 function openProduct(id) {
@@ -2543,6 +2563,7 @@ function openProduct(id) {
 }
 
 function closeProduct() {
+  closeImageLightbox();
   productModal.classList.remove("open");
   productModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
@@ -2670,8 +2691,11 @@ document.addEventListener("click", (event) => {
   const openProductButton = event.target.closest("[data-open-product]");
   const modalThumb = event.target.closest("[data-modal-thumb]");
   const choiceButton = event.target.closest("[data-choice-option]");
+  const openImageZoomButton = event.target.closest("[data-open-image-zoom]");
 
   if (openProductButton) openProduct(openProductButton.dataset.openProduct);
+
+  if (openImageZoomButton) openImageLightbox();
 
   if (choiceButton) selectModalChoice(choiceButton.dataset.choiceOption);
 
@@ -2695,6 +2719,7 @@ document.addEventListener("click", (event) => {
   if (event.target.closest(".cart-toggle")) openCart();
   if (event.target.closest("[data-close-cart]") || event.target === overlay) closeCart();
   if (event.target.closest("[data-close-cart-link]")) closeCart();
+  if (event.target.closest("[data-close-image-zoom]") || event.target === imageLightbox) closeImageLightbox();
   if (event.target.closest("[data-close-product]") || event.target === productModal) closeProduct();
 });
 
@@ -2710,6 +2735,10 @@ document.addEventListener("focusout", hideChoicePreview);
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
+    if (imageLightbox.classList.contains("open")) {
+      closeImageLightbox();
+      return;
+    }
     choicePreview.hidden = true;
     closeProduct();
     closeCart();

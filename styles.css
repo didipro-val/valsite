@@ -1212,12 +1212,107 @@ body.modal-open {
   background: #f0e5d8;
 }
 
-.modal-gallery > img {
+.modal-image-zoom {
+  position: relative;
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  cursor: zoom-in;
+  background: #fff9f0;
+  border: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.modal-image-zoom > img {
+  display: block;
   width: 100%;
   height: min(72vh, 760px);
   object-fit: contain;
   background: #fff9f0;
   border-radius: 8px;
+}
+
+.modal-image-zoom > span {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 7px 12px;
+  color: #fff;
+  background: rgba(31, 35, 32, .78);
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.modal-image-zoom:hover > span,
+.modal-image-zoom:focus-visible > span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (hover: none) {
+  .modal-image-zoom > span {
+    opacity: .9;
+    transform: translateY(0);
+  }
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 2vw, 28px);
+  background: rgba(18, 26, 21, .94);
+  backdrop-filter: blur(9px);
+}
+
+.image-lightbox.open {
+  display: flex;
+}
+
+.image-lightbox-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  cursor: zoom-out;
+  background: transparent;
+  border: 0;
+}
+
+.image-lightbox-image img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100dvh - 32px);
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .35);
+}
+
+.image-lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  color: var(--ink);
+  background: var(--surface);
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.65rem;
+  box-shadow: var(--shadow);
 }
 
 .modal-thumbnails {
@@ -1442,7 +1537,7 @@ body.modal-open {
     min-height: auto;
   }
 
-  .modal-gallery > img {
+  .modal-image-zoom > img {
     height: min(58vh, 620px);
   }
 }
