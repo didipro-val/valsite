@@ -28,18 +28,17 @@ body, .checkout-page { background: #f8f4ec; }
 body::before,
 body::after {
   position: fixed;
-  top: 15vh;
   z-index: 0;
   width: clamp(150px, 16vw, 245px);
   height: clamp(230px, 30vw, 410px);
   pointer-events: none;
   content: "";
   background: url("./assets/motif-feuillage.png") center / contain no-repeat;
-  opacity: .12;
+  opacity: .16;
   mix-blend-mode: multiply;
 }
-body::before { left: -2.4vw; transform: rotate(-9deg); }
-body::after { right: -2.4vw; transform: scaleX(-1) rotate(-7deg); }
+body::before { top: 88px; left: -2.4vw; transform: rotate(-12deg); transform-origin: left top; }
+body::after { right: -2.4vw; bottom: 24px; transform: scaleX(-1) rotate(-9deg); transform-origin: right bottom; }
 body > header,
 body > main,
 body > footer { position: relative; z-index: 1; }
@@ -66,10 +65,10 @@ h2, .brand, .footer-brand strong, .order-summary h2, .checkout-form legend,
   pointer-events: none;
   content: "";
   background-image: url("./assets/motif-feuillage.png"), url("./assets/motif-feuillage.png");
-  background-position: left 7% center, right 6% center;
+  background-position: left -24px top -76px, right -28px bottom -78px;
   background-repeat: no-repeat;
   background-size: clamp(145px, 18vw, 245px) auto;
-  opacity: .1;
+  opacity: .14;
   mix-blend-mode: multiply;
   transform: translateY(3px);
 }
@@ -166,7 +165,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   pointer-events: none;
   content: "";
   background: url("./assets/motif-feuillage.png") center / contain no-repeat;
-  opacity: .08;
+  opacity: .11;
   mix-blend-mode: multiply;
 }
 .about-card-reverse .about-media { order: 2; }
@@ -411,17 +410,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 @media (max-width: 600px) {
   body::before,
   body::after {
-    top: 18vh;
     width: 92px;
     height: 175px;
-    opacity: .075;
+    opacity: .1;
   }
-  body::before { left: -30px; }
-  body::after { right: -30px; }
+  body::before { top: 72px; left: -30px; }
+  body::after { top: auto; right: -30px; bottom: 18px; }
   .site-header::before, .legal-header::before, .checkout-header::before {
     background-position: left -34px center, right -38px center;
     background-size: 135px auto;
-    opacity: .08;
+    opacity: .11;
   }
   .site-header, .legal-header, .checkout-header { padding: 10px 16px; gap: 12px; }
   .brand { font-size: 1.2rem; }
