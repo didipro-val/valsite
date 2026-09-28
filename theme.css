@@ -99,8 +99,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .section { max-width: 1640px; margin: 0 auto; padding: 80px 5vw 95px; }
 #boutique {
   background:
-    radial-gradient(ellipse 430px 620px at 100% 4%, rgba(174, 91, 57, .065), transparent 72%),
-    radial-gradient(ellipse 380px 560px at 0% 76%, rgba(97, 121, 83, .055), transparent 74%);
+    radial-gradient(ellipse 430px 620px at 100% 4%, rgba(174, 91, 57, .09), transparent 72%),
+    radial-gradient(ellipse 380px 560px at 0% 76%, rgba(97, 121, 83, .075), transparent 74%);
   background-repeat: no-repeat;
 }
 .section-heading { max-width: 700px; margin-bottom: 30px; }
@@ -129,8 +129,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   padding: 95px max(5vw, 30px) 105px;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 420px 520px at 0% 32%, rgba(111, 137, 94, .075), transparent 73%),
-    radial-gradient(ellipse 460px 520px at 100% 88%, rgba(185, 133, 92, .07), transparent 74%);
+    radial-gradient(ellipse 420px 520px at 0% 32%, rgba(111, 137, 94, .1), transparent 73%),
+    radial-gradient(ellipse 460px 520px at 100% 88%, rgba(185, 133, 92, .095), transparent 74%);
   background-repeat: no-repeat;
 }
 .about-heading { max-width: 760px; margin-bottom: 28px; }
