@@ -353,5 +353,10 @@
     "name": "Auguste",
     "unitAmount": 600,
     "image": "https://didipro-val.github.io/valsite/assets/catalogue-saugardevalerie/photos/row-072.webp?v=5"
+  },
+  "linea": {
+    "name": "Linea",
+    "unitAmount": 1600,
+    "image": "https://didipro-val.github.io/valsite/assets/esprit-nature/linea.jpg?v=1"
   }
 }

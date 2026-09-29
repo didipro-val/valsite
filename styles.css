@@ -487,6 +487,17 @@ h3 {
   gap: 16px;
 }
 
+.category-empty {
+  grid-column: 1 / -1;
+  margin: 8px 0 0;
+  padding: 28px;
+  color: var(--muted);
+  text-align: center;
+  background: rgba(255, 249, 240, 0.7);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+}
+
 .product-card {
   position: relative;
   overflow: hidden;
@@ -1633,6 +1644,10 @@ body.modal-open {
 }
 
 @media (max-width: 900px) {
+  .site-header > .brand {
+    display: none;
+  }
+
   .desktop-nav {
     display: none;
   }

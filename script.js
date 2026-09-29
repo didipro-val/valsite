@@ -1745,6 +1745,34 @@ const products = [
     ],
     "sourceRow": 72,
     "stock": 1
+  },
+  {
+    "id": "linea",
+    "name": "Linea",
+    "category": "esprit-nature",
+    "tag": "Esprit nature",
+    "price": 16,
+    "image": "./assets/esprit-nature/linea.jpg?v=1",
+    "gallery": [
+      "./assets/esprit-nature/linea.jpg?v=1"
+    ],
+    "description": "Les Linea, inspirées de la nature, sont composées de fleurs en dentelle aux tons naturels, associées à une perle orangée et une petite perle nacrée, montées sur des apprêts dorés en acier inoxydable.\n\nUn modèle léger et féminin qui mêle douceur des matières et esprit floral.",
+    "characteristics": [
+      "Dentelle et perles en verre",
+      "Apprêts dorés en acier inoxydable",
+      "Un style naturel facile à porter",
+      "Taille : 5 cm de long, 3,5 cm de large",
+      "Linea est une création unique, façonnée à la main avec attention"
+    ],
+    "sourceRow": 73,
+    "choice": {
+      "code": "C2",
+      "options": [
+        "Attache dorée",
+        "Pince à vis dorée"
+      ]
+    },
+    "stock": 1
   }
 ];
 
@@ -2103,6 +2131,11 @@ const productOrder = {
     "order": 2,
     "row": 72,
     "original": 70
+  },
+  "linea": {
+    "order": 1,
+    "row": 73,
+    "original": 71
   }
 };
 
@@ -2113,6 +2146,7 @@ const FREE_SHIPPING_THRESHOLD = 35;
 const CATEGORY_INTROS = {
   florales: "Des fleurs, des couleurs et une petite touche de nature. Trouvez les boucles qui vous ressemblent, comme une fleur que vous auriez choisie dans la nature.",
   faconnees: "Des matières, des couleurs et le charme du geste artisanal. Trouvez les boucles qui vous ressemblent, façonnées avec soin pour révéler votre personnalité.",
+  "esprit-nature": "Des formes organiques, des feuillages et des teintes inspirées du vivant. Découvrez des boucles qui célèbrent la nature avec douceur et caractère.",
   perles: "Des perles, des couleurs et une délicate légèreté. Trouvez les boucles qui vous ressemblent, avec ce petit éclat qui fait toute la différence.",
   creatives: "Des formes, des couleurs et de l'originalité. Trouvez les boucles qui vous ressemblent, imaginées pour exprimer ce petit quelque chose qui n’appartient qu’à vous."
 };
@@ -2405,6 +2439,18 @@ function renderProducts(filter = "all") {
   activeFilter = filter;
   categoryIntro.textContent = CATEGORY_INTROS[filter] || CATEGORY_INTROS.florales;
   const visibleProducts = [...(filter === "all" ? products : products.filter((product) => product.category === filter))].sort(compareProducts);
+
+  if (visibleProducts.length === 0) {
+    const emptyMessage = filter === "esprit-nature"
+      ? "Les premières boucles de la collection « Esprit nature » arrivent bientôt."
+      : "Aucun article n’est disponible dans cette catégorie pour le moment.";
+    productGrid.innerHTML = `
+      <p class="category-empty" role="status">
+        ${emptyMessage}
+      </p>
+    `;
+    return;
+  }
 
   productGrid.innerHTML = visibleProducts
     .map(
