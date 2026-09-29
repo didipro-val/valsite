@@ -583,6 +583,43 @@ function autoriserPhotosDrive() {
   console.log(`Accès Drive et publication Internet autorisés pour ${rootFolder.getName()}.`);
 }
 
+// Réparation ponctuelle après la première publication : replace Boisea juste
+// après le dernier véritable article, sans toucher aux colonnes techniques.
+function reparerPositionBoisea() {
+  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = spreadsheet.getSheetByName(SHEET_NAME);
+  if (!sheet) throw new Error(`Onglet ${SHEET_NAME} introuvable.`);
+  const reference = "boisea";
+  const rowCount = Math.max(1, sheet.getMaxRows() - 1);
+  const references = sheet.getRange(2, REFERENCE_COLUMN, rowCount, 1).getDisplayValues();
+  const sourceRows = [];
+  references.forEach((value, index) => {
+    if (String(value[0] || "").trim().toLowerCase() === reference) sourceRows.push(index + 2);
+  });
+  if (sourceRows.length !== 1) {
+    throw new Error(`Boisea doit apparaître une seule fois dans la colonne K (trouvé : ${sourceRows.length}).`);
+  }
+  const sourceRow = sourceRows[0];
+  const targetRow = derniereLigneArticleCatalogue_(sheet, reference) + 1;
+  if (sourceRow === targetRow) {
+    console.log(`Boisea est déjà à la bonne position, ligne ${targetRow}.`);
+    return;
+  }
+  if (String(sheet.getRange(targetRow, REFERENCE_COLUMN).getDisplayValue() || "").trim()) {
+    throw new Error(`La ligne cible ${targetRow} contient déjà une référence.`);
+  }
+  const sourceHeight = sheet.getRowHeight(sourceRow);
+  sheet.getRange(sourceRow, 1, 1, CATALOGUE_UPDATE_STATUS_COLUMN).copyTo(
+    sheet.getRange(targetRow, 1, 1, CATALOGUE_UPDATE_STATUS_COLUMN),
+    SpreadsheetApp.CopyPasteType.PASTE_NORMAL,
+    false
+  );
+  sheet.setRowHeight(targetRow, sourceHeight);
+  sheet.getRange(sourceRow, 1, 1, CATALOGUE_UPDATE_STATUS_COLUMN).clearContent();
+  SpreadsheetApp.flush();
+  console.log(`Boisea déplacé de la ligne ${sourceRow} à la ligne ${targetRow}.`);
+}
+
 // À exécuter une seule fois. Installe le déclencheur qui publie un article
 // lorsque la case « À publier » est cochée dans l'onglet Ajout articles.
 function installerPublicationAutomatique() {
@@ -776,7 +813,7 @@ function publierLigneArticle_(spreadsheet, sourceSheet, row) {
       SpreadsheetApp.flush();
       return;
     }
-    const destinationRow = catalogue.getLastRow() + 1;
+    const destinationRow = prochaineLigneCatalogue_(catalogue);
     const images = photoUrls.map(lirePhotoDrive_);
     const payload = {
       id: reference,
@@ -902,6 +939,21 @@ function ajouterAuCatalogue_(sheet, row, product) {
     SpreadsheetApp.newDataValidation().requireCheckbox().build()
   ).setValue(false);
   sheet.setRowHeight(row, 230);
+}
+
+function prochaineLigneCatalogue_(sheet) {
+  return derniereLigneArticleCatalogue_(sheet, "") + 1;
+}
+
+function derniereLigneArticleCatalogue_(sheet, referenceExclue) {
+  const rowCount = Math.max(1, sheet.getMaxRows() - 1);
+  const references = sheet.getRange(2, REFERENCE_COLUMN, rowCount, 1).getDisplayValues();
+  const excluded = String(referenceExclue || "").trim().toLowerCase();
+  for (let index = references.length - 1; index >= 0; index -= 1) {
+    const reference = String(references[index][0] || "").trim().toLowerCase();
+    if (reference && reference !== excluded) return index + 2;
+  }
+  return 1;
 }
 
 function categorieTechnique_(category) {
