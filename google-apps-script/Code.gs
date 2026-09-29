@@ -866,6 +866,8 @@ function supprimerPublicationWorker_(reference) {
 }
 
 function ajouterAuCatalogue_(sheet, row, product) {
+  const missingRows = row - sheet.getMaxRows();
+  if (missingRows > 0) sheet.insertRowsAfter(sheet.getMaxRows(), missingRows);
   const previousRow = Math.max(2, row - 1);
   sheet.getRange(previousRow, 1, 1, 11).copyTo(
     sheet.getRange(row, 1, 1, 11),
