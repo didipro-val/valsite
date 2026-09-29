@@ -808,14 +808,23 @@ function publierLigneArticle_(spreadsheet, sourceSheet, row) {
 function lirePhotoDrive_(url) {
   const match = String(url || "").match(/\/d\/([a-zA-Z0-9_-]+)/) || String(url || "").match(/[?&]id=([a-zA-Z0-9_-]+)/);
   if (!match) throw new Error("Lien de photo Google Drive invalide.");
-  const file = DriveApp.getFileById(match[1]);
-  const blob = file.getBlob();
+  const fileId = match[1];
+  const response = UrlFetchApp.fetch(
+    `https://drive.usercontent.google.com/download?id=${encodeURIComponent(fileId)}&export=download&confirm=t`,
+    { followRedirects: true, muteHttpExceptions: true }
+  );
+  const responseCode = response.getResponseCode();
+  if (responseCode < 200 || responseCode >= 300) {
+    throw new Error("Photo Drive inaccessible. Vérifiez que le partage est réglé sur « Toute personne disposant du lien ».");
+  }
+  const blob = response.getBlob();
   const contentType = String(blob.getContentType() || "").toLowerCase();
   if (!["image/jpeg", "image/png", "image/webp"].includes(contentType)) {
-    throw new Error(`Format de photo non pris en charge : ${file.getName()}`);
+    throw new Error("Le lien Drive ne renvoie pas une image. Vérifiez le partage public du fichier.");
   }
+  const extension = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" }[contentType];
   return {
-    name: file.getName(),
+    name: `photo-${fileId.slice(0, 8)}.${extension}`,
     contentType,
     data: Utilities.base64Encode(blob.getBytes())
   };
