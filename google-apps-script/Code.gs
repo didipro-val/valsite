@@ -618,6 +618,14 @@ function preparerMiseAJourCatalogue_() {
   const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = spreadsheet.getSheetByName(SHEET_NAME);
   if (!sheet) throw new Error(`Onglet ${SHEET_NAME} introuvable.`);
+  const properties = PropertiesService.getScriptProperties();
+  if (properties.getProperty("CATALOGUE_UPDATE_COLUMNS_READY") !== "true") {
+    sheet.insertColumnsAfter(REFERENCE_COLUMN, 5);
+    // La première installation avait pu écrire les nouveaux titres sur les
+    // colonnes techniques existantes. Elles viennent d'être décalées en Q:U.
+    sheet.getRange(1, REFERENCE_COLUMN + 6, 1, 5).clearContent().clearNote();
+    properties.setProperty("CATALOGUE_UPDATE_COLUMNS_READY", "true");
+  }
   const headers = [
     "Nouvelle photo principale",
     "Nouvelle photo 2",
