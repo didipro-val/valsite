@@ -25,5 +25,6 @@ Le panier et les filtres fonctionnent cote navigateur. Les quantites sont synchr
 2. Ajouter les photos dans le dossier Drive « Esprit nature » accessible depuis le lien en haut de l'onglet.
 3. Compléter une ligne par article. La catégorie `Esprit nature` est déjà sélectionnée par défaut.
 4. Quand la colonne `Contrôle` indique `Prêt`, cocher `À publier`.
+5. Lors de la publication, ajouter la photo principale en miniature dans la colonne `Image` de l'onglet `Catalogue`.
 
 La valeur `Esprit nature` du catalogue est convertie en identifiant technique `esprit-nature` pour le filtre du site. Les articles importés doivent donc conserver exactement ce nom de catégorie dans le Google Sheet.
