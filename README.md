@@ -29,4 +29,8 @@ Le panier et les filtres fonctionnent cote navigateur. Les quantites sont synchr
 
 La publication automatique est assurée par le déclencheur Apps Script `publierArticles_` et le catalogue dynamique Cloudflare KV. La fonction `installerPublicationAutomatique` doit être exécutée une seule fois après l'installation ou une réautorisation du script.
 
+## Modifier un article existant
+
+Dans l'onglet `Catalogue`, corriger les informations de la ligne sans changer la colonne `Référence`. Ajouter facultativement de nouveaux liens Google Drive dans les colonnes `Nouvelle photo principale`, `Nouvelle photo 2` et `Nouvelle photo 3`, puis cocher `Mettre à jour`. La colonne `Statut mise à jour` confirme la synchronisation avec le site ou contient une note détaillant l'erreur. Sans nouveau lien photo, les images actuelles sont conservées.
+
 La valeur `Esprit nature` du catalogue est convertie en identifiant technique `esprit-nature` pour le filtre du site. Les articles importés doivent donc conserver exactement ce nom de catégorie dans le Google Sheet.

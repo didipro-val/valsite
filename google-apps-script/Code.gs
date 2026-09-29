@@ -565,6 +565,9 @@ function jsonResponse_(payload) {
 
 const AJOUT_ARTICLES_SHEET_NAME = "Ajout articles";
 const PUBLICATION_WORKER_URL = "https://valmeo-checkout.valmeo-creation.workers.dev";
+const CATALOGUE_PHOTO_START_COLUMN = 12;
+const CATALOGUE_UPDATE_COLUMN = 15;
+const CATALOGUE_UPDATE_STATUS_COLUMN = 16;
 
 // À exécuter une seule fois. Installe le déclencheur qui publie un article
 // lorsque la case « À publier » est cochée dans l'onglet Ajout articles.
@@ -577,28 +580,148 @@ function installerPublicationAutomatique() {
     .forSpreadsheet(SPREADSHEET_ID)
     .onEdit()
     .create();
-  console.log("Publication automatique active.");
+  preparerMiseAJourCatalogue_();
+  console.log("Publication et mise à jour automatiques actives.");
 }
 
 function publierArticles_(event) {
   if (!event || !event.range) return;
   const range = event.range;
   const sheet = range.getSheet();
-  if (sheet.getName() !== AJOUT_ARTICLES_SHEET_NAME) return;
-  if (range.getColumn() > 1 || range.getLastColumn() < 1 || range.getLastRow() < 5) return;
+  const isNewProduct = sheet.getName() === AJOUT_ARTICLES_SHEET_NAME
+    && range.getColumn() <= 1
+    && range.getLastColumn() >= 1
+    && range.getLastRow() >= 5;
+  const isCatalogUpdate = sheet.getName() === SHEET_NAME
+    && range.getColumn() <= CATALOGUE_UPDATE_COLUMN
+    && range.getLastColumn() >= CATALOGUE_UPDATE_COLUMN
+    && range.getLastRow() >= 2;
+  if (!isNewProduct && !isCatalogUpdate) return;
 
   const lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
     SpreadsheetApp.flush();
-    const firstRow = Math.max(5, range.getRow());
+    const firstRow = Math.max(isNewProduct ? 5 : 2, range.getRow());
     for (let row = firstRow; row <= range.getLastRow(); row += 1) {
-      if (sheet.getRange(row, 1).getValue() !== true) continue;
-      publierLigneArticle_(event.source, sheet, row);
+      const checkboxColumn = isNewProduct ? 1 : CATALOGUE_UPDATE_COLUMN;
+      if (sheet.getRange(row, checkboxColumn).getValue() !== true) continue;
+      if (isNewProduct) publierLigneArticle_(event.source, sheet, row);
+      else mettreAJourLigneCatalogue_(event.source, sheet, row);
     }
   } finally {
     if (lock.hasLock()) lock.releaseLock();
   }
+}
+
+function preparerMiseAJourCatalogue_() {
+  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = spreadsheet.getSheetByName(SHEET_NAME);
+  if (!sheet) throw new Error(`Onglet ${SHEET_NAME} introuvable.`);
+  const headers = [
+    "Nouvelle photo principale",
+    "Nouvelle photo 2",
+    "Nouvelle photo 3",
+    "Mettre à jour",
+    "Statut mise à jour"
+  ];
+  sheet.getRange(1, 11).copyTo(
+    sheet.getRange(1, CATALOGUE_PHOTO_START_COLUMN, 1, headers.length),
+    SpreadsheetApp.CopyPasteType.PASTE_FORMAT,
+    false
+  );
+  sheet.getRange(1, CATALOGUE_PHOTO_START_COLUMN, 1, headers.length).setValues([headers]);
+  sheet.getRange(1, CATALOGUE_UPDATE_COLUMN).setNote(
+    "Après avoir terminé les modifications de la ligne, cochez cette case pour mettre le site à jour. Ne modifiez jamais la référence."
+  );
+  sheet.getRange(1, CATALOGUE_PHOTO_START_COLUMN).setNote(
+    "Facultatif : collez ici un lien Google Drive si vous souhaitez remplacer la photo principale. Laissez vide pour conserver la photo actuelle."
+  );
+  const rowCount = Math.max(1, sheet.getMaxRows() - 1);
+  const checkboxRule = SpreadsheetApp.newDataValidation().requireCheckbox().build();
+  sheet.getRange(2, CATALOGUE_UPDATE_COLUMN, rowCount, 1).setDataValidation(checkboxRule);
+  sheet.setColumnWidths(CATALOGUE_PHOTO_START_COLUMN, 3, 180);
+  sheet.setColumnWidth(CATALOGUE_UPDATE_COLUMN, 115);
+  sheet.setColumnWidth(CATALOGUE_UPDATE_STATUS_COLUMN, 170);
+  sheet.getRange(1, CATALOGUE_PHOTO_START_COLUMN, sheet.getMaxRows(), headers.length).setWrap(true);
+}
+
+function mettreAJourLigneCatalogue_(spreadsheet, sheet, row) {
+  const checkbox = sheet.getRange(row, CATALOGUE_UPDATE_COLUMN);
+  const statusCell = sheet.getRange(row, CATALOGUE_UPDATE_STATUS_COLUMN);
+  statusCell.clearNote().setValue("Mise à jour en cours…");
+  try {
+    const values = sheet.getRange(row, 2, 1, 15).getValues()[0];
+    const category = String(values[0] || "").trim();
+    const order = Math.max(1, Math.floor(Number(values[1]) || 1));
+    const choiceCode = String(values[2] || "Aucun").trim();
+    const name = String(values[3] || "").trim();
+    const stock = Math.max(0, Math.floor(Number(values[4]) || 0));
+    const descriptionParts = extraireDescriptionCatalogue_(values[5]);
+    const price = Number(values[6]);
+    const currentImageUrl = imageActuelleCatalogue_(sheet, row, values[8]);
+    const reference = String(values[9] || "").trim().toLowerCase();
+    const photoUrls = values.slice(10, 13).map((value) => String(value || "").trim()).filter(Boolean);
+    if (!/^[a-z0-9-]+$/.test(reference)) throw new Error("Référence invalide. Elle ne doit pas être modifiée.");
+    if (!name) throw new Error("Nom manquant.");
+    if (!Number.isFinite(price) || price <= 0) throw new Error("Prix invalide.");
+    const images = photoUrls.map(lirePhotoDrive_);
+    const payload = {
+      id: reference,
+      name,
+      category: categorieTechnique_(category),
+      tag: category,
+      price,
+      order,
+      sourceRow: row,
+      stock,
+      description: descriptionParts.description,
+      characteristics: descriptionParts.characteristics,
+      choiceCode,
+      images: images.map((image) => ({ data: image.data, contentType: image.contentType })),
+      existingGallery: images.length ? [] : [currentImageUrl]
+    };
+    const published = appelerPublicationWorker_(payload);
+    if (images.length) {
+      sheet.getRange(row, 1).setFormula(`=IMAGE("${published.product.image}";4;160;213)`);
+      sheet.getRange(row, 9).setValue(images[0].name);
+      sheet.getRange(row, 10).setValue(published.product.image);
+    }
+    sheet.getRange(row, CATALOGUE_PHOTO_START_COLUMN, 1, 3).clearContent();
+    checkbox.setValue(false);
+    statusCell.setValue(`Mis à jour le ${Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "dd/MM/yyyy HH:mm")}`);
+    SpreadsheetApp.flush();
+    spreadsheet.toast(`${name} a été mis à jour sur le site.`, "Mise à jour terminée", 6);
+  } catch (error) {
+    checkbox.setValue(false);
+    statusCell.setValue("Erreur").setNote(`Mise à jour impossible : ${error.message}`);
+    spreadsheet.toast(`Mise à jour impossible à la ligne ${row} : ${error.message}`, "Erreur", 10);
+    console.error(`Mise à jour catalogue ligne ${row} impossible`, error);
+  }
+}
+
+function extraireDescriptionCatalogue_(value) {
+  const lines = String(value || "").replace(/\r/g, "").split("\n");
+  while (lines.length && !lines[0].trim()) lines.shift();
+  if (lines.length && /^boucles? d['’]oreilles?\b/i.test(lines[0].trim())) lines.shift();
+  const characteristicsIndex = lines.findIndex((line) => /^caractéristiques\s*:/i.test(line.trim()));
+  if (characteristicsIndex < 0) {
+    throw new Error("La description doit contenir une section « Caractéristiques : ».");
+  }
+  const description = lines.slice(0, characteristicsIndex).join("\n").trim();
+  const characteristics = lines.slice(characteristicsIndex + 1).map((line) => line.trim()).filter(Boolean);
+  if (!description) throw new Error("Description manquante.");
+  if (!characteristics.length) throw new Error("Caractéristiques manquantes.");
+  return { description, characteristics };
+}
+
+function imageActuelleCatalogue_(sheet, row, storedValue) {
+  const stored = String(storedValue || "").trim();
+  if (stored) return stored;
+  const formula = sheet.getRange(row, 1).getFormula();
+  const match = formula.match(/=IMAGE\("([^"]+)"/i);
+  if (!match) throw new Error("Photo actuelle introuvable. Ajoutez un lien dans « Nouvelle photo principale ».");
+  return match[1];
 }
 
 function publierLigneArticle_(spreadsheet, sourceSheet, row) {
@@ -745,6 +868,15 @@ function ajouterAuCatalogue_(sheet, row, product) {
     product.imageUrl,
     product.reference
   ]]);
+  sheet.getRange(previousRow, CATALOGUE_PHOTO_START_COLUMN, 1, 5).copyTo(
+    sheet.getRange(row, CATALOGUE_PHOTO_START_COLUMN, 1, 5),
+    SpreadsheetApp.CopyPasteType.PASTE_FORMAT,
+    false
+  );
+  sheet.getRange(row, CATALOGUE_PHOTO_START_COLUMN, 1, 5).clearContent();
+  sheet.getRange(row, CATALOGUE_UPDATE_COLUMN).setDataValidation(
+    SpreadsheetApp.newDataValidation().requireCheckbox().build()
+  ).setValue(false);
   sheet.setRowHeight(row, 230);
 }
 

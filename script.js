@@ -2471,29 +2471,36 @@ async function loadPublishedProducts() {
     if (!response.ok || !payload.ok || !Array.isArray(payload.products)) {
       throw new Error(payload.message || "Catalogue publié invalide");
     }
-    const knownIds = new Set(products.map((product) => product.id));
     payload.products.forEach((row) => {
-      const product = normalizePublishedProduct(row);
-      if (product && !knownIds.has(product.id)) {
-        products.push(product);
-        knownIds.add(product.id);
-      }
+      const index = products.findIndex((product) => product.id === String(row?.id || "").trim());
+      const current = index >= 0 ? products[index] : null;
+      const product = normalizePublishedProduct(row, current);
+      if (!product) return;
+      if (index >= 0) products[index] = product;
+      else products.push(product);
     });
   } catch (error) {
     console.error("Chargement des articles publiés impossible", error);
   }
 }
 
-function normalizePublishedProduct(row) {
+function normalizePublishedProduct(row, current = null) {
   const id = String(row?.id || "").trim();
   const name = String(row?.name || "").trim();
   const category = String(row?.category || "").trim();
   const tag = String(row?.tag || "").trim();
   const price = Number(row?.price);
   const stock = Math.max(0, Math.floor(Number(row?.stock) || 0));
-  const gallery = Array.isArray(row?.gallery)
-    ? row.gallery.map((value) => String(value || "")).filter((value) => /^https:\/\/valmeo-checkout\.valmeo-creation\.workers\.dev\/product-images\//.test(value)).slice(0, 3)
+  const allowedImage = (value) => /^https:\/\/(?:valmeocreation\.fr\/|valmeo-checkout\.valmeo-creation\.workers\.dev\/product-images\/)/.test(value);
+  const publishedGallery = Array.isArray(row?.gallery)
+    ? row.gallery.map((value) => String(value || "")).filter(allowedImage).slice(0, 3)
     : [];
+  const currentGallery = Array.isArray(current?.gallery)
+    ? current.gallery
+    : current?.image
+      ? [current.image]
+      : [];
+  const gallery = publishedGallery.length ? publishedGallery : currentGallery;
   const characteristics = Array.isArray(row?.characteristics)
     ? row.characteristics.map((value) => String(value || "").trim()).filter(Boolean).slice(0, 20)
     : [];

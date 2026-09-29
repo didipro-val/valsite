@@ -21,6 +21,15 @@ Exécuter une seule fois la fonction `installerPublicationAutomatique` puis acce
 
 En cas d'échec, la case est décochée et le détail de l'erreur est ajouté comme note dans la cellule `Contrôle`.
 
+Le même déclencheur gère les modifications depuis l'onglet `Catalogue` :
+
+- modifier les informations sans jamais changer la `Référence` ;
+- renseigner facultativement `Nouvelle photo principale`, `Nouvelle photo 2` et `Nouvelle photo 3` avec des liens Google Drive ;
+- cocher `Mettre à jour` ;
+- consulter `Statut mise à jour` pour confirmer la publication ou lire le détail d'une erreur.
+
+Relancer `installerPublicationAutomatique()` prépare automatiquement ces colonnes et conserve un seul déclencheur `Lors d'une modification`.
+
 ## Suivi des expéditions La Poste
 
 Exécuter une seule fois la fonction `installerSuiviExpeditions` dans Apps Script, puis accepter les autorisations demandées. Cette fonction :

@@ -244,7 +244,7 @@ async function normalizeOrder(payload, env) {
 
   const items = await Promise.all(payload.items.map(async (row) => {
     const id = String(row?.id || "").trim();
-    const product = catalog[id] || await dynamicCheckoutProduct(env, id);
+    const product = await dynamicCheckoutProduct(env, id) || catalog[id];
     const quantity = Number(row?.quantity);
     const selectedChoice = String(row?.selectedChoice || "").trim().slice(0, 120);
     if (!product || !Number.isInteger(quantity) || quantity < 1 || quantity > 20) {
@@ -295,12 +295,24 @@ async function publishProduct(request, env) {
   if (!env.CATALOG_KV) return json({ ok: false, message: "Catalogue dynamique non configuré." }, 500);
   try {
     const payload = await request.json();
-    const { product, images } = normalizePublishedProduct(payload, request.url);
+    const id = String(payload?.id || "").trim().toLowerCase();
+    const previousProduct = /^[a-z0-9-]{1,100}$/.test(id)
+      ? await env.CATALOG_KV.get(`product:${id}`, "json")
+      : null;
+    const { product, images } = normalizePublishedProduct(payload, request.url, env.SITE_URL, previousProduct);
     for (let index = 0; index < images.length; index += 1) {
       const image = images[index];
       await env.CATALOG_KV.put(`image:${product.id}:${index}`, decodeBase64(image.data), {
         metadata: { contentType: image.contentType }
       });
+    }
+    if (images.length && Array.isArray(previousProduct?.gallery) && previousProduct.gallery.length > images.length) {
+      await Promise.all(
+        Array.from(
+          { length: Math.min(3, previousProduct.gallery.length) - images.length },
+          (_, offset) => env.CATALOG_KV.delete(`image:${product.id}:${images.length + offset}`)
+        )
+      );
     }
     await env.CATALOG_KV.put(`product:${product.id}`, JSON.stringify(product));
     const ids = await env.CATALOG_KV.get("catalog:index", "json") || [];
@@ -332,7 +344,7 @@ async function deletePublishedProduct(request, env, pathname) {
   return json({ ok: true });
 }
 
-function normalizePublishedProduct(payload, requestUrl) {
+function normalizePublishedProduct(payload, requestUrl, siteUrl, previousProduct = null) {
   const id = String(payload?.id || "").trim().toLowerCase();
   const name = String(payload?.name || "").trim();
   const category = String(payload?.category || "").trim();
@@ -354,9 +366,12 @@ function normalizePublishedProduct(payload, requestUrl) {
   if (!Number.isFinite(price) || price <= 0 || price > 1000) throw new Error("Prix invalide.");
   if (!description || description.length > 4000) throw new Error("Description invalide.");
   if (!characteristics.length) throw new Error("Caractéristiques manquantes.");
-  if (!images.length) throw new Error("Photo principale manquante.");
   const baseUrl = new URL(requestUrl);
-  const gallery = images.map((_, index) => new URL(`/product-images/${id}/${index}`, baseUrl).href);
+  const imageVersion = Date.now();
+  const gallery = images.length
+    ? images.map((_, index) => new URL(`/product-images/${id}/${index}?v=${imageVersion}`, baseUrl).href)
+    : normalizeExistingGallery(payload?.existingGallery, siteUrl, baseUrl, previousProduct?.gallery);
+  if (!gallery.length) throw new Error("Photo principale manquante.");
   const choiceCode = String(payload?.choiceCode || "Aucun");
   const choiceOptions = choiceCode === "C1"
     ? ["Attache dorée", "Attache argentée"]
@@ -381,6 +396,33 @@ function normalizePublishedProduct(payload, requestUrl) {
   };
   if (choiceOptions.length) product.choice = { code: choiceCode, options: choiceOptions };
   return { product, images };
+}
+
+function normalizeExistingGallery(values, siteUrl, workerUrl, previousGallery) {
+  const candidates = Array.isArray(values) && values.length
+    ? values
+    : Array.isArray(previousGallery)
+      ? previousGallery
+      : [];
+  let publicSite;
+  try {
+    publicSite = new URL(siteUrl);
+  } catch {
+    publicSite = new URL("https://valmeocreation.fr");
+  }
+  return candidates.slice(0, 3).map((value) => {
+    let url;
+    try {
+      url = new URL(String(value || "").trim(), publicSite);
+    } catch {
+      throw new Error("Adresse de photo existante invalide.");
+    }
+    const allowedHosts = new Set([publicSite.hostname, workerUrl.hostname]);
+    if (url.protocol !== "https:" || !allowedHosts.has(url.hostname)) {
+      throw new Error("Adresse de photo existante non autorisée.");
+    }
+    return url.href;
+  }).filter(Boolean);
 }
 
 function normalizePublishedImage(value) {
