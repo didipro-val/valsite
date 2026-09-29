@@ -562,3 +562,207 @@ function jsonResponse_(payload) {
     .createTextOutput(JSON.stringify(payload))
     .setMimeType(ContentService.MimeType.JSON);
 }
+
+const AJOUT_ARTICLES_SHEET_NAME = "Ajout articles";
+const PUBLICATION_WORKER_URL = "https://valmeo-checkout.valmeo-creation.workers.dev";
+
+// À exécuter une seule fois. Installe le déclencheur qui publie un article
+// lorsque la case « À publier » est cochée dans l'onglet Ajout articles.
+function installerPublicationAutomatique() {
+  const handler = "publierArticles_";
+  ScriptApp.getProjectTriggers()
+    .filter((trigger) => trigger.getHandlerFunction() === handler)
+    .forEach((trigger) => ScriptApp.deleteTrigger(trigger));
+  ScriptApp.newTrigger(handler)
+    .forSpreadsheet(SPREADSHEET_ID)
+    .onEdit()
+    .create();
+  console.log("Publication automatique active.");
+}
+
+function publierArticles_(event) {
+  if (!event || !event.range) return;
+  const range = event.range;
+  const sheet = range.getSheet();
+  if (sheet.getName() !== AJOUT_ARTICLES_SHEET_NAME) return;
+  if (range.getColumn() > 1 || range.getLastColumn() < 1 || range.getLastRow() < 5) return;
+
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    SpreadsheetApp.flush();
+    const firstRow = Math.max(5, range.getRow());
+    for (let row = firstRow; row <= range.getLastRow(); row += 1) {
+      if (sheet.getRange(row, 1).getValue() !== true) continue;
+      publierLigneArticle_(event.source, sheet, row);
+    }
+  } finally {
+    if (lock.hasLock()) lock.releaseLock();
+  }
+}
+
+function publierLigneArticle_(spreadsheet, sourceSheet, row) {
+  const statusCell = sourceSheet.getRange(row, 2);
+  const status = String(statusCell.getDisplayValue() || "").trim();
+  if (status === "Publié") return;
+  if (status !== "Prêt") {
+    sourceSheet.getRange(row, 1).setValue(false);
+    statusCell.setNote("Publication annulée : complétez la ligne jusqu'à ce que le contrôle affiche « Prêt ».");
+    return;
+  }
+
+  let publishedId = "";
+  try {
+    const catalogue = spreadsheet.getSheetByName(SHEET_NAME);
+    if (!catalogue) throw new Error(`Onglet ${SHEET_NAME} introuvable.`);
+    const values = sourceSheet.getRange(row, 3, 1, 13).getValues()[0];
+    const category = String(values[0] || "").trim();
+    const order = Math.max(1, Math.floor(Number(values[1]) || 1));
+    const choiceCode = String(values[2] || "Aucun").trim();
+    const name = String(values[3] || "").trim();
+    const stock = Math.max(0, Math.floor(Number(values[4]) || 0));
+    const price = Number(values[5]);
+    const description = String(values[6] || "").trim();
+    const characteristicsText = String(values[7] || "").trim();
+    const photoUrls = values.slice(8, 11).map((value) => String(value || "").trim()).filter(Boolean);
+    const reference = String(values[11] || "").trim().toLowerCase();
+    if (!/^[a-z0-9-]+$/.test(reference)) throw new Error("Référence invalide.");
+    if (catalogue.createTextFinder(reference).matchEntireCell(true).findNext()) {
+      SpreadsheetApp.flush();
+      return;
+    }
+    const destinationRow = catalogue.getLastRow() + 1;
+    const images = photoUrls.map(lirePhotoDrive_);
+    const payload = {
+      id: reference,
+      name,
+      category: categorieTechnique_(category),
+      tag: category,
+      price,
+      order,
+      sourceRow: destinationRow,
+      stock,
+      description,
+      characteristics: caracteristiquesListe_(characteristicsText),
+      choiceCode,
+      images: images.map((image) => ({ data: image.data, contentType: image.contentType }))
+    };
+    const published = appelerPublicationWorker_(payload);
+    publishedId = reference;
+    ajouterAuCatalogue_(catalogue, destinationRow, {
+      category,
+      order,
+      choiceCode,
+      name,
+      stock,
+      price,
+      description,
+      characteristicsText,
+      reference,
+      originalFileName: images[0].name,
+      imageUrl: published.product.image
+    });
+    statusCell.clearNote();
+    SpreadsheetApp.flush();
+    spreadsheet.toast(`${name} a été publié automatiquement.`, "Publication terminée", 6);
+  } catch (error) {
+    if (publishedId) supprimerPublicationWorker_(publishedId);
+    sourceSheet.getRange(row, 1).setValue(false);
+    statusCell.setNote(`Erreur de publication automatique : ${error.message}`);
+    spreadsheet.toast(`Publication impossible à la ligne ${row} : ${error.message}`, "Erreur", 10);
+    console.error(`Publication ligne ${row} impossible`, error);
+  }
+}
+
+function lirePhotoDrive_(url) {
+  const match = String(url || "").match(/\/d\/([a-zA-Z0-9_-]+)/) || String(url || "").match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (!match) throw new Error("Lien de photo Google Drive invalide.");
+  const file = DriveApp.getFileById(match[1]);
+  const blob = file.getBlob();
+  const contentType = String(blob.getContentType() || "").toLowerCase();
+  if (!["image/jpeg", "image/png", "image/webp"].includes(contentType)) {
+    throw new Error(`Format de photo non pris en charge : ${file.getName()}`);
+  }
+  return {
+    name: file.getName(),
+    contentType,
+    data: Utilities.base64Encode(blob.getBytes())
+  };
+}
+
+function appelerPublicationWorker_(payload) {
+  const secret = PropertiesService.getScriptProperties().getProperty("INVENTORY_API_SECRET");
+  if (!secret) throw new Error("Secret de publication absent.");
+  const response = UrlFetchApp.fetch(`${PUBLICATION_WORKER_URL}/admin/products`, {
+    method: "post",
+    contentType: "application/json",
+    headers: { "X-Inventory-Secret": secret },
+    payload: JSON.stringify(payload),
+    muteHttpExceptions: true
+  });
+  const body = JSON.parse(response.getContentText() || "{}");
+  if (response.getResponseCode() < 200 || response.getResponseCode() >= 300 || !body.ok) {
+    throw new Error(body.message || `Erreur Cloudflare ${response.getResponseCode()}.`);
+  }
+  return body;
+}
+
+function supprimerPublicationWorker_(reference) {
+  try {
+    const secret = PropertiesService.getScriptProperties().getProperty("INVENTORY_API_SECRET");
+    UrlFetchApp.fetch(`${PUBLICATION_WORKER_URL}/admin/products/${encodeURIComponent(reference)}`, {
+      method: "delete",
+      headers: { "X-Inventory-Secret": secret },
+      muteHttpExceptions: true
+    });
+  } catch (error) {
+    console.error("Annulation Cloudflare impossible", error);
+  }
+}
+
+function ajouterAuCatalogue_(sheet, row, product) {
+  const previousRow = Math.max(2, row - 1);
+  sheet.getRange(previousRow, 1, 1, 11).copyTo(
+    sheet.getRange(row, 1, 1, 11),
+    SpreadsheetApp.CopyPasteType.PASTE_NORMAL,
+    false
+  );
+  const completeDescription = [
+    `Boucle d'oreille ${product.name}`,
+    product.description,
+    product.characteristicsText
+  ].filter(Boolean).join("\n\n");
+  sheet.getRange(row, 1).setFormula(`=IMAGE("${product.imageUrl}";4;160;213)`);
+  sheet.getRange(row, 2, 1, 10).setValues([[
+    product.category,
+    product.order,
+    product.choiceCode,
+    product.name,
+    product.stock,
+    completeDescription,
+    product.price,
+    product.originalFileName,
+    product.imageUrl,
+    product.reference
+  ]]);
+  sheet.setRowHeight(row, 230);
+}
+
+function categorieTechnique_(category) {
+  const values = {
+    "Créatives": "creatives",
+    "Façonnées": "faconnees",
+    "Florales": "florales",
+    "Perles": "perles",
+    "Esprit nature": "esprit-nature"
+  };
+  if (!values[category]) throw new Error("Catégorie inconnue.");
+  return values[category];
+}
+
+function caracteristiquesListe_(text) {
+  return String(text || "")
+    .split(/\r?\n/)
+    .map((value) => value.trim())
+    .filter((value) => value && !/^caractéristiques\s*:/i.test(value));
+}

@@ -5,6 +5,12 @@
   "compatibility_date": "2026-09-24",
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true },
+  "kv_namespaces": [
+    {
+      "binding": "CATALOG_KV",
+      "id": "179ce90587f44909879d14282e9d71cc"
+    }
+  ],
   "secrets_store_secrets": [
     {
       "binding": "STRIPE_RESTRICTED_KEY",

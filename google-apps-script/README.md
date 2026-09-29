@@ -10,6 +10,17 @@ Ce projet Google Apps Script expose la lecture publique des stocks et des opéra
 
 Le script utilise la colonne `K` (`Référence`) comme identifiant stable et la colonne `F` (`Stock`) comme quantité disponible. Les commandes déjà traitées sont reconnues par leur `orderId`, ce qui évite une double décrémentation lors d'un nouvel envoi réseau.
 
+## Publication automatique des articles
+
+Exécuter une seule fois la fonction `installerPublicationAutomatique` puis accepter les autorisations Google demandées. Quand une case `À publier` est cochée sur une ligne dont le contrôle affiche `Prêt`, le script :
+
+- lit les informations et les photos Drive de la ligne ;
+- publie le produit et ses images dans le catalogue dynamique Cloudflare ;
+- ajoute la ligne et la miniature dans l'onglet `Catalogue` ;
+- laisse la formule de contrôle confirmer le statut `Publié`.
+
+En cas d'échec, la case est décochée et le détail de l'erreur est ajouté comme note dans la cellule `Contrôle`.
+
 ## Suivi des expéditions La Poste
 
 Exécuter une seule fois la fonction `installerSuiviExpeditions` dans Apps Script, puis accepter les autorisations demandées. Cette fonction :

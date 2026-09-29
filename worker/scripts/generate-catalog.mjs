@@ -8,7 +8,7 @@ const rootDir = path.resolve(scriptDir, "../..");
 const sourcePath = path.join(rootDir, "script.js");
 const outputPath = path.join(rootDir, "worker/src/catalog.json");
 const source = fs.readFileSync(sourcePath, "utf8");
-const match = source.match(/^const products = (\[[\s\S]*?\n\]);\r?\n\r?\nconst productOrder/m);
+const match = source.match(/^(?:const|let) products = (\[[\s\S]*?\n\]);\r?\n\r?\nconst productOrder/m);
 if (!match) throw new Error("Catalogue products introuvable dans script.js");
 
 const products = vm.runInNewContext(`(${match[1]})`);

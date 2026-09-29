@@ -1,4 +1,4 @@
-const products = [
+let products = [
   {
     "id": "alba",
     "name": "Alba",
@@ -2184,6 +2184,7 @@ const CATEGORY_INTROS = {
   creatives: "Des formes, des couleurs et de l'originalité. Trouvez les boucles qui vous ressemblent, imaginées pour exprimer ce petit quelque chose qui n’appartient qu’à vous."
 };
 const STOCK_API_URL = "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec";
+const PUBLISHED_CATALOG_URL = "https://valmeo-checkout.valmeo-creation.workers.dev/catalog";
 
 const cart = new Map();
 let activeFilter = "faconnees";
@@ -2454,7 +2455,72 @@ async function syncStockFromSheet({ silent = false } = {}) {
 }
 
 function getProductOrder(product) {
-  return productOrder[product.id] || { order: 9999, row: product.sourceRow || 9999, original: 9999 };
+  return productOrder[product.id] || {
+    order: Number(product.order) || 9999,
+    row: product.sourceRow || 9999,
+    original: 9999
+  };
+}
+
+async function loadPublishedProducts() {
+  try {
+    const url = new URL(PUBLISHED_CATALOG_URL);
+    url.searchParams.set("t", String(Date.now()));
+    const response = await fetch(url, { cache: "no-store" });
+    const payload = await response.json();
+    if (!response.ok || !payload.ok || !Array.isArray(payload.products)) {
+      throw new Error(payload.message || "Catalogue publié invalide");
+    }
+    const knownIds = new Set(products.map((product) => product.id));
+    payload.products.forEach((row) => {
+      const product = normalizePublishedProduct(row);
+      if (product && !knownIds.has(product.id)) {
+        products.push(product);
+        knownIds.add(product.id);
+      }
+    });
+  } catch (error) {
+    console.error("Chargement des articles publiés impossible", error);
+  }
+}
+
+function normalizePublishedProduct(row) {
+  const id = String(row?.id || "").trim();
+  const name = String(row?.name || "").trim();
+  const category = String(row?.category || "").trim();
+  const tag = String(row?.tag || "").trim();
+  const price = Number(row?.price);
+  const stock = Math.max(0, Math.floor(Number(row?.stock) || 0));
+  const gallery = Array.isArray(row?.gallery)
+    ? row.gallery.map((value) => String(value || "")).filter((value) => /^https:\/\/valmeo-checkout\.valmeo-creation\.workers\.dev\/product-images\//.test(value)).slice(0, 3)
+    : [];
+  const characteristics = Array.isArray(row?.characteristics)
+    ? row.characteristics.map((value) => String(value || "").trim()).filter(Boolean).slice(0, 20)
+    : [];
+  if (!/^[a-z0-9-]{1,100}$/.test(id) || !name || !category || !tag || !Number.isFinite(price) || price <= 0 || !gallery.length) {
+    return null;
+  }
+  const product = {
+    id,
+    name,
+    category,
+    tag,
+    price,
+    image: gallery[0],
+    gallery,
+    description: String(row?.description || ""),
+    characteristics,
+    sourceRow: Math.max(2, Math.floor(Number(row?.sourceRow) || 9999)),
+    order: Math.max(1, Math.floor(Number(row?.order) || 9999)),
+    stock
+  };
+  if (row?.choice && Array.isArray(row.choice.options)) {
+    product.choice = {
+      code: String(row.choice.code || ""),
+      options: row.choice.options.map((value) => String(value || "").trim()).filter(Boolean).slice(0, 5)
+    };
+  }
+  return product;
 }
 
 function compareProducts(a, b) {
@@ -2892,11 +2958,16 @@ window.addEventListener("resize", () => {
   if (window.innerWidth > 900) closeMobileMenu({ restoreFocus: false });
 });
 
-restoreCartReservation();
-renderProducts("faconnees");
-updateCart();
-syncStockFromSheet({ silent: true });
-stockSyncTimer = window.setInterval(() => syncStockFromSheet({ silent: true }), STOCK_SYNC_INTERVAL);
+async function initializeStore() {
+  await loadPublishedProducts();
+  restoreCartReservation();
+  renderProducts("faconnees");
+  updateCart();
+  syncStockFromSheet({ silent: true });
+  stockSyncTimer = window.setInterval(() => syncStockFromSheet({ silent: true }), STOCK_SYNC_INTERVAL);
+}
+
+initializeStore();
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") syncStockFromSheet({ silent: true });
 });
