@@ -570,10 +570,17 @@ const CATALOGUE_UPDATE_COLUMN = 15;
 const CATALOGUE_UPDATE_STATUS_COLUMN = 16;
 
 // À exécuter manuellement une seule fois pour autoriser la lecture des photos
-// privées du dossier Drive utilisé pour le catalogue.
+// privées du dossier Drive et l'appel du service de publication Cloudflare.
 function autoriserPhotosDrive() {
   const rootFolder = DriveApp.getRootFolder();
-  console.log(`Accès aux photos Drive autorisé pour ${rootFolder.getName()}.`);
+  const response = UrlFetchApp.fetch(`${PUBLICATION_WORKER_URL}/catalog`, {
+    method: "get",
+    muteHttpExceptions: true
+  });
+  if (response.getResponseCode() < 200 || response.getResponseCode() >= 300) {
+    throw new Error(`Service de publication inaccessible (${response.getResponseCode()}).`);
+  }
+  console.log(`Accès Drive et publication Internet autorisés pour ${rootFolder.getName()}.`);
 }
 
 // À exécuter une seule fois. Installe le déclencheur qui publie un article
