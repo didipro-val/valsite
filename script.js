@@ -1773,6 +1773,34 @@ const products = [
       ]
     },
     "stock": 1
+  },
+  {
+    "id": "ginkgo",
+    "name": "Ginkgo",
+    "category": "esprit-nature",
+    "tag": "Esprit nature",
+    "price": 16,
+    "image": "./assets/esprit-nature/ginkgo.png?v=1",
+    "gallery": [
+      "./assets/esprit-nature/ginkgo.png?v=1"
+    ],
+    "description": "Les Ginkgo, inspirées de la feuille de ginkgo, sont réalisées en bois naturel et accompagnées d’une perle orangée aux nuances chaleureuses, montées sur des apprêts dorés en acier inoxydable.\n\nUn modèle léger et original qui associe simplicité, nature et élégance.",
+    "characteristics": [
+      "Bois et perles en verre",
+      "Apprêts dorés en acier inoxydable",
+      "Un style naturel qui se mêle à la nature",
+      "Taille : 4 cm",
+      "Ginkgo est une création unique, façonnée à la main"
+    ],
+    "sourceRow": 74,
+    "choice": {
+      "code": "C2",
+      "options": [
+        "Attache dorée",
+        "Pince à vis dorée"
+      ]
+    },
+    "stock": 1
   }
 ];
 
@@ -2136,6 +2164,11 @@ const productOrder = {
     "order": 1,
     "row": 73,
     "original": 71
+  },
+  "ginkgo": {
+    "order": 2,
+    "row": 74,
+    "original": 72
   }
 };
 
