@@ -169,6 +169,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   align-items: stretch;
   gap: 18px;
 }
+.about-collage-sprig {
+  position: absolute;
+  top: 55%;
+  left: 44.5%;
+  z-index: 1;
+  width: 13%;
+  aspect-ratio: 167 / 235;
+  background: url("./assets/valmeo/rameau-collage.png") center / contain no-repeat;
+  mix-blend-mode: multiply;
+  opacity: .72;
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
 .about-collage figure {
   position: relative;
   z-index: 1;
@@ -436,6 +449,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .about-media::before { inset: -10px 12px 14px -10px; }
   .about-collage .about-collage-process { top: 0; right: -4%; width: 40%; height: 47%; }
   .about-collage .about-collage-flowers { bottom: 0; left: -3%; width: 42%; height: 47%; }
+  .about-collage-sprig { left: 43%; width: 14%; }
   .about-copy h3 { margin-bottom: 24px; font-size: 3rem; }
   .about-copy p { margin-bottom: 21px; font-size: 1.2rem; line-height: 1.68; }
   .about-copy .about-opening { font-size: 1.55rem; }
