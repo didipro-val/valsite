@@ -6,6 +6,12 @@ Site vitrine et boutique statique pour Valmeo Creation, inspire du compte public
 
 Ouvrir `index.html` dans un navigateur.
 
+## Référencement Google
+
+Le fichier `sitemap.xml`, publié à la racine du domaine, liste les neuf pages publiques à proposer à Google. `robots.txt` autorise l'exploration et indique l'adresse du sitemap : `https://valmeocreation.fr/sitemap.xml`. Envoyer cette adresse dans le rapport « Sitemaps » de Google Search Console après validation du domaine.
+
+Lors de la création d'une nouvelle page publique à référencer, ajouter son URL HTTPS complète au sitemap. Le parcours de paiement `commande.html` n'y figure pas. Les sections de l'accueil et les fiches produits ouvertes en fenêtre restent rattachées à la page d'accueil : elles n'ont actuellement pas d'URL de page distincte à ajouter. L'ajout d'un article par Google Sheets ne nécessite donc pas de modifier ce sitemap.
+
 ## Remplacer les visuels
 
 La photo de profil publique Instagram est stockee dans `assets/valmeo-profile.jpg`. Les visuels produit sont copies depuis `C:\Users\vileurbanne\Pictures\valmeo` vers `assets/valmeo`.
