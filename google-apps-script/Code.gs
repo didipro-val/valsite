@@ -623,13 +623,19 @@ function reparerPositionBoisea() {
 // À exécuter une seule fois. Installe le déclencheur qui publie un article
 // lorsque la case « À publier » est cochée dans l'onglet Ajout articles.
 function installerPublicationAutomatique() {
-  const handler = "publierArticles_";
+  const handlers = ["publierArticles_", "traiterPublicationsEnAttente"];
   ScriptApp.getProjectTriggers()
-    .filter((trigger) => trigger.getHandlerFunction() === handler)
+    .filter((trigger) => handlers.includes(trigger.getHandlerFunction()))
     .forEach((trigger) => ScriptApp.deleteTrigger(trigger));
-  ScriptApp.newTrigger(handler)
+  ScriptApp.newTrigger("publierArticles_")
     .forSpreadsheet(SPREADSHEET_ID)
     .onEdit()
+    .create();
+  // Filet de sécurité : reprend les cases qui seraient restées cochées après
+  // une interruption temporaire du déclencheur lors d'une modification.
+  ScriptApp.newTrigger("traiterPublicationsEnAttente")
+    .timeBased()
+    .everyMinutes(5)
     .create();
   preparerMiseAJourCatalogue_();
   console.log("Publication et mise à jour automatiques actives.");
@@ -643,10 +649,10 @@ function publierArticles_(event) {
     && range.getColumn() <= 1
     && range.getLastColumn() >= 1
     && range.getLastRow() >= 5;
-  const isCatalogUpdate = sheet.getName() === SHEET_NAME
-    && range.getColumn() <= CATALOGUE_UPDATE_COLUMN
-    && range.getLastColumn() >= CATALOGUE_UPDATE_COLUMN
-    && range.getLastRow() >= 2;
+  // Sur une table Google Sheets, l'événement reçu peut couvrir la ligne sans
+  // se limiter exactement à la cellule de la case. On vérifie donc la case de
+  // chaque ligne modifiée dès que l'édition concerne l'onglet Catalogue.
+  const isCatalogUpdate = sheet.getName() === SHEET_NAME && range.getLastRow() >= 2;
   if (!isNewProduct && !isCatalogUpdate) return;
 
   const lock = LockService.getScriptLock();
@@ -659,6 +665,39 @@ function publierArticles_(event) {
       if (sheet.getRange(row, checkboxColumn).getValue() !== true) continue;
       if (isNewProduct) publierLigneArticle_(event.source, sheet, row);
       else mettreAJourLigneCatalogue_(event.source, sheet, row);
+    }
+  } finally {
+    if (lock.hasLock()) lock.releaseLock();
+  }
+}
+
+// Peut être lancée manuellement et sert aussi de filet de sécurité planifié.
+// Elle traite uniquement les lignes dont la case d'action est encore cochée.
+function traiterPublicationsEnAttente() {
+  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    SpreadsheetApp.flush();
+    const ajout = spreadsheet.getSheetByName(AJOUT_ARTICLES_SHEET_NAME);
+    if (ajout) {
+      const lastRow = Math.max(5, ajout.getLastRow());
+      const checks = ajout.getRange(5, 1, lastRow - 4, 1).getValues();
+      checks.forEach((value, index) => {
+        if (value[0] === true) publierLigneArticle_(spreadsheet, ajout, index + 5);
+      });
+    }
+    const catalogue = spreadsheet.getSheetByName(SHEET_NAME);
+    if (catalogue) {
+      const lastArticleRow = derniereLigneArticleCatalogue_(catalogue, "");
+      if (lastArticleRow >= 2) {
+        const checks = catalogue
+          .getRange(2, CATALOGUE_UPDATE_COLUMN, lastArticleRow - 1, 1)
+          .getValues();
+        checks.forEach((value, index) => {
+          if (value[0] === true) mettreAJourLigneCatalogue_(spreadsheet, catalogue, index + 2);
+        });
+      }
     }
   } finally {
     if (lock.hasLock()) lock.releaseLock();
@@ -750,11 +789,11 @@ function mettreAJourLigneCatalogue_(spreadsheet, sheet, row) {
     checkbox.setValue(false);
     statusCell.setValue(`Mis à jour le ${Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "dd/MM/yyyy HH:mm")}`);
     SpreadsheetApp.flush();
-    spreadsheet.toast(`${name} a été mis à jour sur le site.`, "Mise à jour terminée", 6);
+    afficherNotification_(spreadsheet, `${name} a été mis à jour sur le site.`, "Mise à jour terminée", 6);
   } catch (error) {
     checkbox.setValue(false);
     statusCell.setValue("Erreur").setNote(`Mise à jour impossible : ${error.message}`);
-    spreadsheet.toast(`Mise à jour impossible à la ligne ${row} : ${error.message}`, "Erreur", 10);
+    afficherNotification_(spreadsheet, `Mise à jour impossible à la ligne ${row} : ${error.message}`, "Erreur", 10);
     console.error(`Mise à jour catalogue ligne ${row} impossible`, error);
   }
 }
@@ -846,12 +885,12 @@ function publierLigneArticle_(spreadsheet, sourceSheet, row) {
     });
     statusCell.clearNote();
     SpreadsheetApp.flush();
-    spreadsheet.toast(`${name} a été publié automatiquement.`, "Publication terminée", 6);
+    afficherNotification_(spreadsheet, `${name} a été publié automatiquement.`, "Publication terminée", 6);
   } catch (error) {
     if (publishedId) supprimerPublicationWorker_(publishedId);
     sourceSheet.getRange(row, 1).setValue(false);
     statusCell.setNote(`Erreur de publication automatique : ${error.message}`);
-    spreadsheet.toast(`Publication impossible à la ligne ${row} : ${error.message}`, "Erreur", 10);
+    afficherNotification_(spreadsheet, `Publication impossible à la ligne ${row} : ${error.message}`, "Erreur", 10);
     console.error(`Publication ligne ${row} impossible`, error);
   }
 }
@@ -870,6 +909,15 @@ function lirePhotoDrive_(url) {
     contentType,
     data: Utilities.base64Encode(blob.getBytes())
   };
+}
+
+function afficherNotification_(spreadsheet, message, title, timeoutSeconds) {
+  try {
+    spreadsheet.toast(message, title, timeoutSeconds);
+  } catch (error) {
+    // Les déclencheurs planifiés ne peuvent pas afficher de notification UI.
+    console.log(`${title} : ${message}`);
+  }
 }
 
 function appelerPublicationWorker_(payload) {
