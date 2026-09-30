@@ -159,6 +159,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   pointer-events: none;
 }
 .section-foliage-left { top: 0; left: min(-5vw, -30px); }
+#la-creatrice > .section-foliage-left { top: auto; bottom: 0; transform: scaleY(-1); }
 .section-foliage-right { top: 0; right: min(-5vw, -30px); transform: scaleX(-1); }
 .section-foliage-bottom { right: 0; bottom: 0; transform: rotate(180deg); }
 main { position: relative; display: flow-root; }
