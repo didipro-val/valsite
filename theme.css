@@ -151,16 +151,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 .section-foliage {
   position: absolute;
-  z-index: 0;
+  z-index: 2;
   width: clamp(85px, 9vw, 140px);
-  aspect-ratio: 140 / 200;
-  background: url("./assets/valmeo/feuillage-doux.svg") center / contain no-repeat;
-  opacity: .8;
+  aspect-ratio: 128 / 183;
+  background: url("./assets/valmeo/feuillage-reference.svg") center / contain no-repeat;
+  opacity: 1;
   pointer-events: none;
 }
 .section-foliage-left { top: 0; left: min(-5vw, -30px); }
 .section-foliage-right { top: 0; right: min(-5vw, -30px); transform: scaleX(-1); }
 .section-foliage-bottom { right: 0; bottom: 0; transform: rotate(180deg); }
+main { position: relative; }
+.page-foliage-left { left: 0; bottom: 0; transform: scaleY(-1); }
+.page-foliage-right { right: 0; bottom: 0; transform: rotate(180deg); }
 .about-card > .about-media, .about-card > .about-copy { z-index: 1; }
 .about-copy { position: relative; }
 .about-card-reverse .about-media { order: 2; }
@@ -183,19 +186,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   grid-template-rows: repeat(2, minmax(0, 1fr));
   align-items: stretch;
   gap: 18px;
-}
-.about-collage-sprig {
-  position: absolute;
-  top: 55%;
-  left: 44.5%;
-  z-index: 1;
-  width: 13%;
-  aspect-ratio: 140 / 200;
-  background: url("./assets/valmeo/feuillage-doux.svg") center / contain no-repeat;
-  mix-blend-mode: multiply;
-  opacity: .72;
-  transform: rotate(-8deg);
-  pointer-events: none;
 }
 .about-collage figure {
   position: relative;
@@ -470,7 +460,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .about-media::before { inset: -10px 12px 14px -10px; }
   .about-collage .about-collage-process { top: 0; right: -4%; width: 40%; height: 47%; }
   .about-collage .about-collage-flowers { bottom: 0; left: -3%; width: 42%; height: 47%; }
-  .about-collage-sprig { left: 43%; width: 14%; }
   .section-foliage { width: 56px; opacity: .65; }
   .section-foliage-left { left: -22px; }
   .section-foliage-right { right: -22px; }

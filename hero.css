@@ -50,10 +50,10 @@
   position: absolute;
   z-index: 0;
   width: clamp(90px, 7.5vw, 160px);
-  aspect-ratio: 140 / 200;
-  background: url("./assets/valmeo/feuillage-doux.svg") center / contain no-repeat;
+  aspect-ratio: 128 / 183;
+  background: url("./assets/valmeo/feuillage-reference.svg") center / contain no-repeat;
   mix-blend-mode: multiply;
-  opacity: .8;
+  opacity: 1;
   pointer-events: none;
 }
 .hero-corner-sprig-top {
