@@ -161,7 +161,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .section-foliage-left { top: 0; left: min(-5vw, -30px); }
 .section-foliage-right { top: 0; right: min(-5vw, -30px); transform: scaleX(-1); }
 .section-foliage-bottom { right: 0; bottom: 0; transform: rotate(180deg); }
-main { position: relative; }
+main { position: relative; display: flow-root; }
+.page-foliage-left, .page-foliage-right { width: clamp(50px, 5.5vw, 100px); }
 .page-foliage-left { left: 0; bottom: 0; transform: scaleY(-1); }
 .page-foliage-right { right: 0; bottom: 0; transform: rotate(180deg); }
 .about-card > .about-media, .about-card > .about-copy { z-index: 1; }
@@ -461,6 +462,7 @@ main { position: relative; }
   .about-collage .about-collage-process { top: 0; right: -4%; width: 40%; height: 47%; }
   .about-collage .about-collage-flowers { bottom: 0; left: -3%; width: 42%; height: 47%; }
   .section-foliage { width: 56px; opacity: .65; }
+  .page-foliage-left, .page-foliage-right { width: 38px; }
   .section-foliage-left { left: -22px; }
   .section-foliage-right { right: -22px; }
   .atelier > .section-foliage { width: 28px; }
