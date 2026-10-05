@@ -1801,6 +1801,35 @@ let products = [
       ]
     },
     "stock": 1
+  },
+  {
+    "id": "boisea",
+    "name": "Boisea",
+    "category": "esprit-nature",
+    "tag": "Esprit nature",
+    "price": 16,
+    "image": "https://valmeo-checkout.valmeo-creation.workers.dev/product-images/boisea/0?v=1790718983309",
+    "gallery": [
+      "https://valmeo-checkout.valmeo-creation.workers.dev/product-images/boisea/0?v=1790718983309"
+    ],
+    "description": "Boiséa des boucles d’oreilles légères mettant à l’honneur le bois naturel, découpé en forme de feuille. Accompagnées d'un perle aux nuances ambrées apporte une touche chaleureuse et lumineuse,montées sur des apprêts dorés en acier inoxydable.\n\nBoiséa un modèle léger et féminin qui mêle douceur et esprit Naturel.",
+    "characteristics": [
+      "Bois et perles en verre",
+      "Apprêts dorés en acier inoxydable",
+      "Un style naturel qui se mèle  à la nature",
+      "Taille : 5cm",
+      "Boiséa est une création unique, façonnée à la main"
+    ],
+    "sourceRow": 75,
+    "order": 3,
+    "stock": 1,
+    "choice": {
+      "code": "C2",
+      "options": [
+        "Attache dorée",
+        "Pince à vis dorée"
+      ]
+    }
   }
 ];
 

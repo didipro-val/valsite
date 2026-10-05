@@ -363,5 +363,10 @@
     "name": "Ginkgo",
     "unitAmount": 1600,
     "image": "https://didipro-val.github.io/valsite/assets/esprit-nature/ginkgo.png?v=1"
+  },
+  "boisea": {
+    "name": "Boisea",
+    "unitAmount": 1600,
+    "image": "https://valmeo-checkout.valmeo-creation.workers.dev/product-images/boisea/0?v=1790718983309"
   }
 }
