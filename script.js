@@ -2997,7 +2997,7 @@ window.addEventListener("resize", () => {
 async function initializeStore() {
   await loadPublishedProducts();
   restoreCartReservation();
-  renderProducts("faconnees");
+  renderProducts(activeFilter);
   updateCart();
   syncStockFromSheet({ silent: true });
   stockSyncTimer = window.setInterval(() => syncStockFromSheet({ silent: true }), STOCK_SYNC_INTERVAL);
