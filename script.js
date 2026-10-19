@@ -2206,6 +2206,7 @@ const CART_HOLD_DURATION = 30 * 60 * 1000;
 const STOCK_SYNC_INTERVAL = 60 * 1000;
 const FREE_SHIPPING_THRESHOLD = 35;
 const CATEGORY_INTROS = {
+  "les-elegantes": "Des boucles d’oreilles raffinées pour apporter une touche d’élégance à vos tenues, au quotidien comme pour les grandes occasions.",
   florales: "Des fleurs, des couleurs et une petite touche de nature. Trouvez les boucles qui vous ressemblent, comme une fleur que vous auriez choisie dans la nature.",
   faconnees: "Des matières, des couleurs et le charme du geste artisanal. Trouvez les boucles qui vous ressemblent, façonnées avec soin pour révéler votre personnalité.",
   "esprit-nature": "Des formes organiques, des feuillages et des teintes inspirées du vivant. Découvrez des boucles qui célèbrent la nature avec douceur et caractère.",

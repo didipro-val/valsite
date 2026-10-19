@@ -1010,7 +1010,8 @@ function categorieTechnique_(category) {
     "Façonnées": "faconnees",
     "Florales": "florales",
     "Perles": "perles",
-    "Esprit nature": "esprit-nature"
+    "Esprit nature": "esprit-nature",
+    "Les élégantes": "les-elegantes"
   };
   if (!values[category]) throw new Error("Catégorie inconnue.");
   return values[category];

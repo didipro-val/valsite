@@ -357,7 +357,7 @@ function normalizePublishedProduct(payload, requestUrl, siteUrl, previousProduct
   const characteristics = Array.isArray(payload?.characteristics)
     ? payload.characteristics.map((value) => String(value || "").trim()).filter(Boolean).slice(0, 20)
     : [];
-  const allowedCategories = new Set(["creatives", "faconnees", "florales", "perles", "esprit-nature"]);
+  const allowedCategories = new Set(["creatives", "faconnees", "florales", "perles", "esprit-nature", "les-elegantes"]);
   const images = Array.isArray(payload?.images) ? payload.images.slice(0, 3).map(normalizePublishedImage) : [];
   if (!/^[a-z0-9-]{1,100}$/.test(id)) throw new Error("Référence invalide.");
   if (!name || name.length > 120) throw new Error("Nom invalide.");
