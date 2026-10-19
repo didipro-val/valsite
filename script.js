@@ -2291,11 +2291,11 @@ function productNeedsChoice(product) {
 }
 
 function productUsesEarAttachmentGuide(product) {
-  return product.choice?.code === "C2";
+  return ["C2", "C3"].includes(product.choice?.code);
 }
 
 function renderChoiceOptionLabel(product, option) {
-  if (productUsesEarAttachmentGuide(product) && option === "Pince à vis dorée") {
+  if (product.choice?.code === "C2" && option === "Pince à vis dorée") {
     return `${option} <span class="choice-photo-trigger" data-choice-preview-trigger>(photo)</span>`;
   }
 

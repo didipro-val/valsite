@@ -377,8 +377,10 @@ function normalizePublishedProduct(payload, requestUrl, siteUrl, previousProduct
     ? ["Attache dorée", "Attache argentée"]
     : choiceCode === "C2"
       ? ["Attache dorée", "Pince à vis dorée"]
-      : [];
-  if (!["Aucun", "C1", "C2"].includes(choiceCode)) throw new Error("Choix d’attache invalide.");
+      : choiceCode === "C3"
+        ? ["Attache argent", "Pince à vis argent"]
+        : [];
+  if (!["Aucun", "C1", "C2", "C3"].includes(choiceCode)) throw new Error("Choix d’attache invalide.");
   const product = {
     id,
     name,

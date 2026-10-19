@@ -21,6 +21,15 @@ Exécuter une seule fois la fonction `installerPublicationAutomatique` puis acce
 
 En cas d'échec, la case est décochée et le détail de l'erreur est ajouté comme note dans la cellule `Contrôle`.
 
+Les codes de choix d’attache sont transmis au service de publication pour les ajouts et les mises à jour :
+
+- `Aucun` : aucun choix ;
+- `C1` : Attache dorée ou Attache argentée ;
+- `C2` : Attache dorée ou Pince à vis dorée ;
+- `C3` : Attache argent ou Pince à vis argent.
+
+Les listes Google Sheets sont dans `Ajout articles!E5:E300` et `Catalogue!D2:D1000`. Le client doit choisir une option avant l’ajout au panier pour C1, C2 et C3.
+
 Le même déclencheur gère les modifications depuis l'onglet `Catalogue` :
 
 - modifier les informations sans jamais changer la `Référence` ;
