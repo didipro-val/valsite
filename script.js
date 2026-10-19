@@ -2213,6 +2213,14 @@ const CATEGORY_INTROS = {
   perles: "Des perles, des couleurs et une délicate légèreté. Trouvez les boucles qui vous ressemblent, avec ce petit éclat qui fait toute la différence.",
   creatives: "Des formes, des couleurs et de l'originalité. Trouvez les boucles qui vous ressemblent, imaginées pour exprimer ce petit quelque chose qui n’appartient qu’à vous."
 };
+const CATEGORY_LABELS = {
+  faconnees: "Les façonnées",
+  "esprit-nature": "Les esprit nature",
+  florales: "Les florales",
+  perles: "Les perles",
+  creatives: "Les créatives",
+  "les-elegantes": "Les élégantes"
+};
 const STOCK_API_URL = "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec";
 const PUBLISHED_CATALOG_URL = "https://valmeo-checkout.valmeo-creation.workers.dev/catalog";
 
@@ -2607,7 +2615,7 @@ function renderProducts(filter = "all") {
           </button>
           <div class="product-content">
             <div class="product-meta">
-              <span class="product-tag">${product.tag}</span>
+              <span class="product-tag">${CATEGORY_LABELS[product.category] || product.tag}</span>
               <span class="price">${euro(product.price)}</span>
             </div>
             <h3>${escapeHtml(product.name)} <span class="product-stock">(${stockLabel(product)})</span></h3>
@@ -2742,7 +2750,7 @@ function openProduct(id) {
   price.className = "modal-price";
   price.textContent = euro(product.price);
   modalTitle.append(name, price, stock);
-  modalMeta.textContent = product.tag;
+  modalMeta.textContent = CATEGORY_LABELS[product.category] || product.tag;
   modalDescription.innerHTML = paragraphs(product.description);
   modalCharacteristics.innerHTML = product.characteristics.length
     ? product.characteristics.map((item) => `<li>${item}</li>`).join("")

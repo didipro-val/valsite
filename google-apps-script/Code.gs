@@ -1006,15 +1006,16 @@ function derniereLigneArticleCatalogue_(sheet, referenceExclue) {
 
 function categorieTechnique_(category) {
   const values = {
-    "Créatives": "creatives",
-    "Façonnées": "faconnees",
-    "Florales": "florales",
-    "Perles": "perles",
-    "Esprit nature": "esprit-nature",
-    "Les élégantes": "les-elegantes"
+    "créatives": "creatives",
+    "façonnées": "faconnees",
+    "florales": "florales",
+    "perles": "perles",
+    "esprit nature": "esprit-nature",
+    "élégantes": "les-elegantes"
   };
-  if (!values[category]) throw new Error("Catégorie inconnue.");
-  return values[category];
+  const key = String(category || "").trim().toLowerCase().replace(/^les\s+/, "");
+  if (!values[key]) throw new Error("Catégorie inconnue.");
+  return values[key];
 }
 
 function caracteristiquesListe_(text) {
