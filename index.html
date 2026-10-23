@@ -22,7 +22,7 @@
     </script>
     <link rel="stylesheet" href="./styles.css?v=29" />
     <link rel="stylesheet" href="./hero.css?v=11" />
-    <link rel="stylesheet" href="./theme.css?v=49" />
+    <link rel="stylesheet" href="./theme.css?v=50" />
   </head>
   <body>
     <header class="site-header">
@@ -100,9 +100,20 @@
           </div>
           <div class="featured-selection-grid" data-featured-products></div>
         </section>
-        <div class="section-heading">
-          <h2>À chacune son coup de cœur.</h2>
-          <p class="section-intro" data-category-intro aria-live="polite">Les 12 derniers modèles ajoutés, toutes collections confondues.</p>
+        <div class="shop-heading">
+          <div class="section-heading">
+            <h2>À chacune son coup de cœur.</h2>
+            <p class="section-intro" data-category-intro aria-live="polite">Les 12 derniers modèles ajoutés, toutes collections confondues.</p>
+          </div>
+          <div class="product-search" role="search" aria-label="Rechercher dans les boucles">
+            <label for="product-search">Rechercher une boucle</label>
+            <div class="product-search-field">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+              <input id="product-search" type="search" placeholder="Ex. : Capucine, Akalia…" autocomplete="off" spellcheck="false" maxlength="100" aria-describedby="product-search-status" data-product-search />
+              <button type="button" class="product-search-clear" aria-label="Effacer la recherche" data-clear-product-search hidden>×</button>
+            </div>
+            <p id="product-search-status" class="product-search-status" role="status" data-search-status>À partir de 3 lettres · Toutes les collections</p>
+          </div>
         </div>
         <p class="collection-help" id="collection-help">Choisissez une collection pour découvrir ses modèles</p>
         <div class="filters" aria-label="Filtres produits" aria-describedby="collection-help">
@@ -367,6 +378,6 @@
     </div>
     <div class="overlay" data-overlay></div>
 
-    <script src="./script.js?v=52"></script>
+    <script src="./script.js?v=53"></script>
   </body>
 </html>

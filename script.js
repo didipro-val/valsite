@@ -2252,6 +2252,9 @@ const cartItems = document.querySelector("[data-cart-items]");
 const cartCount = document.querySelector("[data-cart-count]");
 const cartTotal = document.querySelector("[data-cart-total]");
 const categoryIntro = document.querySelector("[data-category-intro]");
+const productSearch = document.querySelector("[data-product-search]");
+const clearProductSearch = document.querySelector("[data-clear-product-search]");
+const productSearchStatus = document.querySelector("[data-search-status]");
 const cartShippingProgress = document.querySelector("[data-cart-shipping-progress]");
 const cartShippingMessage = document.querySelector("[data-cart-shipping-message]");
 const cartShippingTrack = document.querySelector("[data-cart-shipping-track]");
@@ -2624,16 +2627,37 @@ function renderFeaturedProducts() {
   `).join("");
 }
 
+function normalizeProductSearch(value) {
+  return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("fr").trim();
+}
+
 function renderProducts(filter = "all") {
   renderFeaturedProducts();
   activeFilter = filter;
-  categoryIntro.textContent = CATEGORY_INTROS[filter] || CATEGORY_INTROS.florales;
-  const visibleProducts = filter === "nouveautes"
-    ? newestProducts()
-    : [...(filter === "all" ? products : products.filter((product) => product.category === filter))].sort(compareProducts);
+  const query = normalizeProductSearch(productSearch?.value);
+  const searching = query.length >= 3;
+  categoryIntro.textContent = searching ? "Recherche dans toutes les collections." : CATEGORY_INTROS[filter] || CATEGORY_INTROS.florales;
+  const visibleProducts = searching
+    ? products.filter((product) => normalizeProductSearch(product.name).includes(query)).sort(compareProducts)
+    : filter === "nouveautes"
+      ? newestProducts()
+      : [...(filter === "all" ? products : products.filter((product) => product.category === filter))].sort(compareProducts);
+  document.querySelectorAll("[data-filter]").forEach((button) => {
+    const selected = !searching && button.dataset.filter === filter;
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+  if (clearProductSearch) clearProductSearch.hidden = !productSearch.value;
+  if (productSearchStatus) {
+    productSearchStatus.textContent = searching
+      ? `${visibleProducts.length} ${visibleProducts.length === 1 ? "modèle trouvé" : "modèles trouvés"} · Toutes les collections`
+      : query.length > 0 ? "Saisissez au moins 3 lettres pour lancer la recherche." : "À partir de 3 lettres · Toutes les collections";
+  }
 
   if (visibleProducts.length === 0) {
-    const emptyMessage = filter === "esprit-nature"
+    const emptyMessage = searching
+      ? "Aucune boucle ne correspond à votre recherche. Essayez un autre nom ou effacez la recherche pour retrouver les collections."
+      : filter === "esprit-nature"
       ? "Les premières boucles de la collection « Esprit nature » arrivent bientôt."
       : "Aucun article n’est disponible dans cette catégorie pour le moment.";
     productGrid.innerHTML = `
@@ -2973,6 +2997,13 @@ function closeCart() {
   cartPanel.setAttribute("aria-hidden", "true");
 }
 
+productSearch?.addEventListener("input", () => renderProducts(activeFilter));
+clearProductSearch?.addEventListener("click", () => {
+  productSearch.value = "";
+  renderProducts(activeFilter);
+  productSearch.focus();
+});
+
 document.addEventListener("click", (event) => {
   const addButton = event.target.closest("[data-add]");
   const filterButton = event.target.closest("[data-filter]");
@@ -2998,10 +3029,7 @@ document.addEventListener("click", (event) => {
   if (addButton && !addButton.disabled) addToCart(addButton.dataset.add, addButton.dataset.choice || "");
 
   if (filterButton) {
-    document.querySelectorAll("[data-filter]").forEach((button) => {
-      button.classList.toggle("active", button === filterButton);
-      button.setAttribute("aria-pressed", String(button === filterButton));
-    });
+    if (productSearch) productSearch.value = "";
     renderProducts(filterButton.dataset.filter);
   }
 
