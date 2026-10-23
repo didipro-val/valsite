@@ -17,6 +17,21 @@ const totalNode = document.querySelector("[data-summary-total]");
 let cartRows = [];
 let catalog = {};
 
+function updateCheckoutSteps(completed = false) {
+  const steps = document.querySelectorAll('.checkout-steps li');
+  steps.forEach((step, index) => {
+    step.classList.toggle('is-done', completed || index < 2);
+    step.classList.toggle('is-active', !completed && index === 2);
+    step.removeAttribute('aria-current');
+    if (!completed && index === 2) step.setAttribute('aria-current', 'step');
+    if (completed) step.querySelector('span').textContent = '✓';
+  });
+  if (completed && steps[2]) {
+    steps[2].lastChild.textContent = ' Paiement validé';
+    document.querySelector('.checkout-steps').setAttribute('aria-label', 'Commande terminée : panier, livraison et paiement validés');
+  }
+}
+
 function formatMoney(cents) {
   return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(cents / 100);
 }
@@ -136,6 +151,7 @@ function confirmationItemsHtml(items) {
 }
 
 function renderConfirmation(order) {
+  updateCheckoutSteps(true);
   localStorage.removeItem(CART_STORAGE_KEY);
   content.hidden = true;
   statusPanel.hidden = false;
@@ -176,6 +192,8 @@ async function handleReturn() {
     return false;
   }
   if (result !== "success") return false;
+
+  updateCheckoutSteps();
 
   content.hidden = true;
   statusPanel.hidden = false;
