@@ -95,6 +95,8 @@
   line-height: 1.8;
 }
 .boheme-hero .hero-actions { align-items: center; gap: 24px; }
+.hero-primary-action { display: flex; flex-direction: column; align-items: flex-start; max-width: 100%; gap: 10px; }
+.boheme-hero .hero-reassurance { margin: 0; color: #626656; font-size: .75rem; line-height: 1.6; }
 .boheme-hero .button.primary {
   min-height: 55px;
   padding: 0 25px;
@@ -168,6 +170,7 @@
   .boheme-hero h1 { font-size: clamp(2.9rem, 9.5vw, 4.2rem); margin-bottom: 20px; }
   .boheme-hero .hero-description { margin: 0 auto 22px; font-size: .92rem; line-height: 1.65; }
   .boheme-hero .hero-actions { justify-content: center; gap: 12px 24px; }
+  .hero-primary-action { align-items: center; }
   .boheme-hero .hero-actions .button { width: auto; }
   .hero-craft-note { justify-content: center; margin-top: 22px; text-align: left; }
   .hero-art { width: min(85%, 390px); padding: 8px; margin-bottom: 12px; }
