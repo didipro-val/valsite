@@ -106,6 +106,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .section-heading { max-width: 700px; margin-bottom: 30px; }
 .section-heading h2 { font-family: "Valmeo Editorial", Georgia, serif; font-weight: 500; font-style: normal; font-size: clamp(2.4rem, 4vw, 4rem); margin-bottom: 15px; }
 .section-intro { color: var(--muted); font-size: .95rem; line-height: 1.7; max-width: 540px; }
+#boutique .section-heading { margin-bottom: 18px; }
+#boutique .section-heading h2 { color: #9f573c; font-size: clamp(1.8rem, 2.7vw, 2.6rem); margin-bottom: 8px; }
+#boutique .section-intro { margin-top: 0; }
+#boutique .filters { margin-bottom: 20px; }
 .filters { gap: 10px; margin-bottom: 32px; }
 .filter { min-height: 44px; padding: 10px 24px; background: #fffbf4; font-size: .83rem; }
 .filter:hover { border-color: var(--sage); }
