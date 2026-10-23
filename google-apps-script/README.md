@@ -21,6 +21,12 @@ Exécuter une seule fois la fonction `installerPublicationAutomatique` puis acce
 
 En cas d'échec, la case est décochée et le détail de l'erreur est ajouté comme note dans la cellule `Contrôle`.
 
+### Noms déjà utilisés
+
+Dans `Ajout articles`, la formule de contrôle en `B5` vérifie les noms saisis en `F5:F300` contre les titres de `Catalogue!E2:E` et les autres lignes d’ajout. Elle ignore la casse, les accents et les espaces superflus. Un doublon affiche `Nom déjà utilisé` dans `Contrôle`, avec le nom et le contrôle en rouge et un avertissement de validation sur le nom. Comme le déclencheur ne publie que les lignes `Prêt`, une nouvelle ligne en doublon ne peut pas être publiée. Les lignes déjà publiées restent `Publié`.
+
+Le 23 octobre 2026, la Cléa de la collection Florales a été renommée Clém (titre et description). Sa référence stable `clea-2` est conservée pour les stocks, paniers et commandes ; la Cléa des Façonnées reste inchangée. Les autres doublons repérés sont Violetta (trois modèles) et Rosélia (deux modèles) ; ils attendent le choix de nouveaux noms.
+
 Les codes de choix d’attache sont transmis au service de publication pour les ajouts et les mises à jour :
 
 - `Aucun` : aucun choix ;

@@ -974,22 +974,21 @@ let products = [
   },
   {
     "id": "clea-2",
-    "name": "Cléa",
+    "name": "Clém",
     "category": "florales",
     "tag": "Florales",
     "price": 10,
     "image": "./assets/catalogue-saugardevalerie/photos/row-041.webp?v=5",
     "gallery": [
-      "./assets/catalogue-saugardevalerie/photos/row-020.webp?v=5",
       "./assets/catalogue-saugardevalerie/photos/row-041.webp?v=5"
     ],
-    "description": "Les Cléa sont composées d'une petites fleur blanche, ornées de deux feuilles dorées, montées sur des apprêts dorés en acier inoxydable.\n\nAvec leur details dorés, les Feuillages de Cléa apportent un mouvement naturel et lumineux sans trop charger votre tenue.",
+    "description": "Les Clém sont composées d'une petites fleur blanche, ornées de deux feuilles dorées, montées sur des apprêts dorés en acier inoxydable.\n\nAvec leur details dorés, les Feuillages de Clém apportent un mouvement naturel et lumineux sans trop charger votre tenue.",
     "characteristics": [
       "Pâte polymère",
       "Apprêts dorés en acier inoxydable",
       "Confortables pour la journée",
       "Taille 4 cm de longueur",
-      "Cléa est une création faite main, unique par ses détails"
+      "Clém est une création faite main, unique par ses détails"
     ],
     "sourceRow": 41,
     "stock": 1
