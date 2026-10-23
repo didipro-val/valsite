@@ -22,23 +22,21 @@ let products = [
   },
   {
     "id": "violetta",
-    "name": "Violetta",
+    "name": "Amethyste",
     "category": "creatives",
     "tag": "Créatives",
     "price": 8,
     "image": "./assets/catalogue-saugardevalerie/photos/row-003.webp?v=5",
     "gallery": [
-      "./assets/catalogue-saugardevalerie/photos/row-003.webp?v=5",
-      "./assets/catalogue-saugardevalerie/photos/row-051.webp?v=5",
-      "./assets/catalogue-saugardevalerie/photos/row-055.webp?v=5"
+      "./assets/catalogue-saugardevalerie/photos/row-003.webp?v=5"
     ],
-    "description": "Les violletta sont composées d'une pétale violette nervuré avec des éclats dorés, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme des Violettes apporte une touche colorée pleine de caractère, aussi agréable avec une tenue décontrectée qu'avec une tenue plus habillée.",
+    "description": "Les Amethyste sont composées d'une pétale violette nervuré avec des éclats dorés, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme des Amethyste apporte une touche colorée pleine de caractère, aussi agréable avec une tenue décontrectée qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte polymère feille d'or",
       "Apprêts dorés en acier inoxydable",
       "Faciles à mettre avec vos tenues préférées",
       "Taille : 3 cm",
-      "Les Violetta sont façonnées à la main, en modèle unique"
+      "Les Amethyste sont façonnées à la main, en modèle unique"
     ],
     "sourceRow": 3,
     "stock": 1
@@ -699,23 +697,22 @@ let products = [
   },
   {
     "id": "roselia",
-    "name": "Rosélia",
+    "name": "Lyséa",
     "category": "faconnees",
     "tag": "Façonnées",
     "price": 12,
     "image": "./assets/catalogue-saugardevalerie/photos/row-029.webp?v=5",
     "gallery": [
       "./assets/catalogue-saugardevalerie/photos/row-029.webp?v=5",
-      "./assets/catalogue-saugardevalerie/photos/row-029-2.webp?v=5",
-      "./assets/catalogue-saugardevalerie/photos/row-050.webp?v=5"
+      "./assets/catalogue-saugardevalerie/photos/row-029-2.webp?v=5"
     ],
-    "description": "Les rosélia sont composées de petits médaillons roses pale décoré de fin feuillage légèrement cintillant agrémentée de branches bronze style ancien, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les rosélia apporte une note tendre et romantique, aussi agréable avec une de tout les jours qu'avec une tenue plus habillée.",
+    "description": "Les Lyséa sont composées de petits médaillons roses pale décoré de fin feuillage légèrement cintillant agrémentée de branches bronze style ancien, montées sur des apprêts dorés en acier inoxydable.\n\nUn bijou comme les Lyséa apporte une note tendre et romantique, aussi agréable avec une de tout les jours qu'avec une tenue plus habillée.",
     "characteristics": [
       "Pâte auto durcissante",
       "Apprêt dorés en acier inoxydable",
       "Faciles à mettre avec vos tenues préférées",
       "Taille : 5 cm",
-      "Réalisées à la main, les rosélia ont chacune leurs petits détails uniques"
+      "Réalisées à la main, les Lyséa ont chacune leurs petits détails uniques"
     ],
     "sourceRow": 29,
     "choice": {
@@ -1198,8 +1195,6 @@ let products = [
     "price": 12,
     "image": "./assets/catalogue-saugardevalerie/photos/row-050.webp?v=5",
     "gallery": [
-      "./assets/catalogue-saugardevalerie/photos/row-029.webp?v=5",
-      "./assets/catalogue-saugardevalerie/photos/row-029-2.webp?v=5",
       "./assets/catalogue-saugardevalerie/photos/row-050.webp?v=5"
     ],
     "description": "Les Rosélia sont composées de deux fleurs roses à coeur doré, composées de pétales couleur rose pastel façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts doré en acier inoxydable.\n\nUn bijou comme les Rosélia apporte une note tendre et romantique, aussi agréable avec une tenue simple qu'avec une tenue plus habillée.",
@@ -1215,23 +1210,21 @@ let products = [
   },
   {
     "id": "violetta-2",
-    "name": "Violetta",
+    "name": "Violine",
     "category": "florales",
     "tag": "Florales",
     "price": 12,
     "image": "./assets/catalogue-saugardevalerie/photos/row-051.webp?v=5",
     "gallery": [
-      "./assets/catalogue-saugardevalerie/photos/row-003.webp?v=5",
-      "./assets/catalogue-saugardevalerie/photos/row-051.webp?v=5",
-      "./assets/catalogue-saugardevalerie/photos/row-055.webp?v=5"
+      "./assets/catalogue-saugardevalerie/photos/row-051.webp?v=5"
     ],
-    "description": "Les Violetta sont composées de deux fleurs mauve à coeur doré, composées de pétales rose façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts doré en acier inoxydable.\n\nAvec leur ton mauve, les Violetta apportent une touche colorée pleine de caractère sans trop charger votre tenue en soirée ou au quotidien .",
+    "description": "Les Violine sont composées de deux fleurs mauve à coeur doré, composées de pétales rose façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts doré en acier inoxydable.\n\nAvec leur ton mauve, les Violine apportent une touche colorée pleine de caractère sans trop charger votre tenue en soirée ou au quotidien .",
     "characteristics": [
       "Pâte polymère",
       "Apprêts créoles dorées de 3cm en acier inoxydable",
       "Confortables pour la journée",
       "Taille: 2,5 cm",
-      "Faites à la main, les Violetta gardent le charme d'une création unique"
+      "Faites à la main, les Violine gardent le charme d'une création unique"
     ],
     "sourceRow": 51,
     "stock": 1
@@ -1315,8 +1308,6 @@ let products = [
     "price": 10,
     "image": "./assets/catalogue-saugardevalerie/photos/row-055.webp?v=5",
     "gallery": [
-      "./assets/catalogue-saugardevalerie/photos/row-003.webp?v=5",
-      "./assets/catalogue-saugardevalerie/photos/row-051.webp?v=5",
       "./assets/catalogue-saugardevalerie/photos/row-055.webp?v=5"
     ],
     "description": "Les Sélène sont deux belles fleurs éclosent à coeur doré, composées de pétales couleur fushia façonées à la main unes à unes ornées d'un pistile doré, montées sur des apprêts gouttes dorés en acier inoxydable.\n\nOn choisit les Sélène pour changer des bijoux trop classiques, avec un détail délicat qui se remarque juste ce qu'il faut.",
@@ -1800,7 +1791,7 @@ let products = [
       ]
     },
     "stock": 1
-  },
+  },
   {
     "id": "boisea",
     "name": "Boisea",
