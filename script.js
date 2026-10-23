@@ -2223,6 +2223,12 @@ const CATEGORY_LABELS = {
 };
 const STOCK_API_URL = "https://script.google.com/macros/s/AKfycbwb2KrVbhq8R1lrHdomMHZnIPg324mDCl_dJmtaeNhJFr66MgZnBzgJ5CLm09JelNHf/exec";
 const PUBLISHED_CATALOG_URL = "https://valmeo-checkout.valmeo-creation.workers.dev/catalog";
+const FEATURED_PRODUCTS = [
+  { id: "capucine", image: "./assets/valmeo/selection-portee-capucine.png" },
+  { id: "brindille", image: "./assets/valmeo/selection-portee-brindille.png" },
+  { id: "plumea", image: "./assets/valmeo/selection-portee-plumea.png" },
+  { id: "opaline", image: "./assets/valmeo/selection-portee-opaline.png" }
+];
 
 const cart = new Map();
 let activeFilter = "faconnees";
@@ -2579,7 +2585,32 @@ function compareProducts(a, b) {
   );
 }
 
+function renderFeaturedProducts() {
+  const section = document.querySelector("[data-featured-section]");
+  const grid = document.querySelector("[data-featured-products]");
+  if (!section || !grid) return;
+  const selection = FEATURED_PRODUCTS.map((entry) => ({
+    ...entry,
+    product: products.find((product) => product.id === entry.id)
+  })).filter((entry) => entry.product);
+  section.hidden = selection.length === 0;
+  grid.innerHTML = selection.map(({ product, image }) => `
+    <article class="featured-card">
+      <button class="featured-photo" type="button" data-open-product="${escapeAttribute(product.id)}" aria-label="Découvrir ${escapeAttribute(product.name)}">
+        <img src="${image}" alt="Les boucles ${escapeAttribute(product.name)} portées à l’oreille" loading="lazy" width="560" height="720">
+      </button>
+      <div class="featured-card-copy">
+        <p class="featured-collection">${escapeHtml(CATEGORY_LABELS[product.category] || product.tag)}</p>
+        <div class="featured-card-title"><h3>${escapeHtml(product.name)}</h3><span class="price">${euro(product.price)}</span></div>
+        ${productIsOutOfStock(product) ? '<p class="featured-unavailable">Indisponible actuellement</p>' : ""}
+        <button class="featured-discover" type="button" data-open-product="${escapeAttribute(product.id)}" aria-label="Voir la fiche de ${escapeAttribute(product.name)}">Découvrir <span aria-hidden="true">↗</span></button>
+      </div>
+    </article>
+  `).join("");
+}
+
 function renderProducts(filter = "all") {
+  renderFeaturedProducts();
   activeFilter = filter;
   categoryIntro.textContent = CATEGORY_INTROS[filter] || CATEGORY_INTROS.florales;
   const visibleProducts = [...(filter === "all" ? products : products.filter((product) => product.category === filter))].sort(compareProducts);
