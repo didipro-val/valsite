@@ -149,9 +149,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .featured-card-copy { padding-top: 5px; }
   .featured-name { min-height: 44px; font-size: 1.5rem; }
 }
-#boutique .filters { display: grid; grid-template-columns: 1.4fr repeat(6, minmax(0, 1fr)); gap: 10px; padding: 14px; border: 1px solid #d6cbbb; border-radius: 22px; background: #eee8dc80; }
+#boutique .filters { display: grid; grid-template-columns: 1.4fr repeat(7, minmax(0, 1fr)); gap: 10px; padding: 14px; border: 1px solid #d6cbbb; border-radius: 22px; background: #eee8dc80; }
 #boutique .filter { --filter-tint: #f5e6d9; --filter-border: #d9b89d; display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 60px; padding: 12px 8px; border: 1px solid var(--filter-border); border-radius: 14px; color: #354c3e; background: var(--filter-tint); font-size: .86rem; font-weight: 700; line-height: 1.35; white-space: normal; cursor: pointer; box-shadow: 0 3px 8px #354c3e08; }
 #boutique .filter[data-filter="esprit-nature"] { --filter-tint: #e7eddf; --filter-border: #b2c1a2; }
+#boutique .filter[data-filter="all"] { --filter-tint: #dfe9e5; --filter-border: #a5bdb1; }
 #boutique .filter[data-filter="florales"] { --filter-tint: #f4e2e1; --filter-border: #d5ada9; }
 #boutique .filter[data-filter="perles"] { --filter-tint: #f3eddf; --filter-border: #d2c2a0; }
 #boutique .filter[data-filter="creatives"] { --filter-tint: #ece4ed; --filter-border: #c8b5cb; }
@@ -502,6 +503,7 @@ main { position: relative; display: flow-root; }
   #boutique .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 0 22px; padding: 12px; gap: 10px; overflow: visible; }
   #boutique .filter { min-height: 52px; padding: 12px 8px; font-size: .88rem; }
   #boutique .filter-new { grid-column: 1 / -1; min-height: 66px; }
+  #boutique .filter[data-filter="all"] { grid-column: 1 / -1; }
   .filter-new .filter-label { font-size: 1.12rem; }
   .filter-new .filter-caption { font-size: .76rem; }
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px 10px; }

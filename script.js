@@ -2209,6 +2209,7 @@ const NEWEST_PRODUCTS_LIMIT = 12;
 const initialProductIds = new Set(products.map((product) => product.id));
 const publishedProductOrder = new Map();
 const CATEGORY_INTROS = {
+  all: "Toutes les boucles d’oreilles, réunies au même endroit.",
   nouveautes: `Les ${NEWEST_PRODUCTS_LIMIT} derniers modèles ajoutés, toutes collections confondues.`,
   "les-elegantes": "Une touche d’élégance pour le quotidien et les grandes occasions.",
   florales: "Des fleurs et des couleurs, pour porter un peu de nature.",
