@@ -152,8 +152,22 @@
 .hero-art-note { position: absolute; bottom: -23px; right: -5px; color: #647251; font: 500 1.9rem "Valmeo Hand", cursive; transform: rotate(-9deg); }
 .boheme-hero a:focus-visible { outline: 3px solid #365744; outline-offset: 6px; }
 
+.hero-art.hero-showcase { height: 510px; max-width: 540px; padding: 0; }
+.hero-worn-photo { position: absolute; margin: 0; overflow: hidden; border: 6px solid #fffaf1; box-shadow: 0 18px 42px #354c3e20; }
+.hero-worn-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hero-worn-photo-main { top: 10px; left: 0; width: 57%; height: 440px; border-radius: 150px 150px 28px 28px; transform: rotate(-4deg); }
+.hero-worn-photo-main img { object-position: 48% 62%; }
+.hero-worn-photo-secondary { right: 0; bottom: 0; width: 43%; height: 335px; border-radius: 110px 110px 24px 24px; transform: rotate(5deg); }
+.hero-worn-photo-secondary img { object-position: 43% 58%; }
+.hero-showcase-logo { position: absolute; top: 0; right: 3%; width: 125px; aspect-ratio: 1; padding: 7px; border: 1px solid #a9814640; border-radius: 50%; background: #fff5e3; box-shadow: 0 8px 24px #354c3e10; transform: rotate(5deg); }
+.hero-showcase-logo img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+
 @media (min-width: 1800px) { .boheme-hero { gap: 65px; } }
 @media (max-width: 1000px) {
+  .hero-art.hero-showcase { height: 440px; }
+  .hero-worn-photo-main { height: 375px; }
+  .hero-worn-photo-secondary { height: 285px; }
+  .hero-showcase-logo { width: 100px; }
   .boheme-hero { gap: 20px; min-height: 640px; padding: 50px 4vw 90px; }
   .boheme-hero h1 { font-size: clamp(3rem, 6vw, 4rem); }
   .boheme-hero .hero-actions { gap: 12px; }
@@ -161,6 +175,11 @@
   .hero-signature-caption { font-size: .48rem; letter-spacing: .08em; }
 }
 @media (max-width: 700px) {
+  .hero-art.hero-showcase { width: min(100%, 390px); height: 390px; margin: 0 auto 12px; }
+  .hero-worn-photo { border-width: 4px; }
+  .hero-worn-photo-main { height: 340px; }
+  .hero-worn-photo-secondary { height: 260px; }
+  .hero-showcase-logo { width: 90px; }
   .boheme-hero { grid-template-columns: 1fr; gap: 32px; padding: 32px 22px 80px; min-height: 0; }
   .hero-corner-sprig { width: 58px; opacity: .55; }
   .hero-corner-sprig-top { top: 0; left: 0; }
