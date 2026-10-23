@@ -44,3 +44,11 @@ La publication automatique est assurée par le déclencheur Apps Script `publier
 Dans l'onglet `Catalogue`, corriger les informations de la ligne sans changer la colonne `Référence`. Ajouter facultativement de nouveaux liens Google Drive dans les colonnes `Nouvelle photo principale`, `Nouvelle photo 2` et `Nouvelle photo 3`, puis cocher `Mettre à jour`. La colonne `Statut mise à jour` confirme la synchronisation avec le site ou contient une note détaillant l'erreur. Sans nouveau lien photo, les images actuelles sont conservées.
 
 La valeur `Esprit nature` du catalogue est convertie en identifiant technique `esprit-nature` pour le filtre du site. Les articles importés doivent donc conserver exactement ce nom de catégorie dans le Google Sheet.
+
+## Statistiques de fréquentation (23 octobre 2026)
+
+Cloudflare Web Analytics est installé sur les dix pages publiques via `analytics.js`. Tableau de bord (compte didipro@gmail.com) : https://dash.cloudflare.com/03d56eb619d7422eaec084d5e42a0425/web-analytics/overview?siteTag~in=af89415e17b84359b840592b85af6a00&excludeBots=Yes
+
+Choisir la période dans le calendrier, puis « Visits » pour les visites ou « Page views » pour les pages consultées. Les statistiques débutent à l’installation ; aucun historique antérieur ne peut être reconstruit. Une visite n’est pas une personne unique. Les robots connus sont exclus par le filtre du tableau de bord ; refus du consentement et bloqueurs peuvent réduire la mesure. Les visites de vérification peuvent apparaître dans les premiers chiffres.
+
+Le chargement du beacon officiel est conditionné au consentement. Le choix est mémorisé 180 jours dans `valmeo-analytics-consent-v1` ; il peut être changé sur `cookies.html`. Le retrait recharge la page pour arrêter le script. Ne pas insérer directement un deuxième beacon. Toute nouvelle page doit inclure `<script defer src="./analytics.js?v=1"></script>` avant `</body>`. Ne jamais ajouter de données client aux chemins des URL ou aux noms d’événements. Cloudflare conserve ces statistiques six mois ; prévoir des exports si une conservation plus longue est souhaitée.
