@@ -2227,7 +2227,8 @@ const FEATURED_PRODUCTS = [
   { id: "capucine", image: "./assets/valmeo/selection-portee-capucine.png" },
   { id: "brindille", image: "./assets/valmeo/selection-portee-brindille.png" },
   { id: "plumea", image: "./assets/valmeo/selection-portee-plumea.png" },
-  { id: "opaline", image: "./assets/valmeo/selection-portee-opaline.png" }
+  { id: "opaline", image: "./assets/valmeo/selection-portee-opaline.png" },
+  { id: "savana", image: "./assets/valmeo/selection-portee-savana.png" }
 ];
 
 const cart = new Map();
