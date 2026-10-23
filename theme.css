@@ -110,6 +110,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 #boutique .section-heading h2 { color: #9f573c; font-size: clamp(1.8rem, 2.7vw, 2.6rem); margin-bottom: 8px; }
 #boutique .section-intro { margin-top: 0; }
 #boutique .filters { margin-bottom: 20px; }
+.collection-help { display: none; }
 .featured-selection { margin-bottom: 42px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
 .featured-selection-heading { margin-bottom: 20px; }
 .featured-selection-heading h2 { margin: 0 0 8px; color: #9f573c; font: 500 clamp(1.8rem, 2.7vw, 2.6rem)/1.2 "Valmeo Editorial", Georgia, serif; }
@@ -474,7 +475,8 @@ main { position: relative; display: flow-root; }
   .section-heading { margin-bottom: 20px; }
   .section-heading h2 { font-size: 2.5rem; }
   .section-intro { font-size: .85rem; margin-top: 15px; }
-  .filters { margin: 0 0 22px; padding: 0 0 4px; gap: 7px; flex-wrap: nowrap; overflow-x: auto; }
+  #boutique .collection-help { display: block; margin: 0 0 12px; color: #9f573c; font-size: .88rem; line-height: 1.5; }
+  #boutique .filters { margin: 0 0 22px; padding: 0; gap: 8px; flex-wrap: wrap; overflow: visible; }
   .filter { padding: 10px 15px; min-height: 42px; font-size: .75rem; }
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px 10px; }
   .product-card { border-radius: 12px; box-shadow: none; }
