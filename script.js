@@ -2311,7 +2311,7 @@ function productUsesEarAttachmentGuide(product) {
 }
 
 function renderChoiceOptionLabel(product, option) {
-  if (product.choice?.code === "C2" && option === "Pince à vis dorée") {
+  if (productUsesEarAttachmentGuide(product) && ["Pince à vis dorée", "Pince à vis argent"].includes(option)) {
     return `${option} <span class="choice-photo-trigger" data-choice-preview-trigger>(photo)</span>`;
   }
 
