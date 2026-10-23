@@ -2999,6 +2999,7 @@ document.addEventListener("click", (event) => {
   if (filterButton) {
     document.querySelectorAll("[data-filter]").forEach((button) => {
       button.classList.toggle("active", button === filterButton);
+      button.setAttribute("aria-pressed", String(button === filterButton));
     });
     renderProducts(filterButton.dataset.filter);
   }

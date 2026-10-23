@@ -149,10 +149,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .featured-card-copy { padding-top: 5px; }
   .featured-name { min-height: 44px; font-size: 1.5rem; }
 }
-.filters { gap: 10px; margin-bottom: 32px; }
-.filter { min-height: 44px; padding: 10px 24px; background: #fffbf4; font-size: .83rem; }
-.filter:hover { border-color: var(--sage); }
-.filter.active { color: white; background: var(--sage); border-color: var(--sage); }
+#boutique .filters { display: grid; grid-template-columns: 1.4fr repeat(6, minmax(0, 1fr)); gap: 10px; padding: 14px; border: 1px solid #d6cbbb; border-radius: 22px; background: #eee8dc80; }
+#boutique .filter { --filter-tint: #f5e6d9; --filter-border: #d9b89d; display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 60px; padding: 12px 8px; border: 1px solid var(--filter-border); border-radius: 14px; color: #354c3e; background: var(--filter-tint); font-size: .86rem; font-weight: 700; line-height: 1.35; white-space: normal; cursor: pointer; box-shadow: 0 3px 8px #354c3e08; }
+#boutique .filter[data-filter="esprit-nature"] { --filter-tint: #e7eddf; --filter-border: #b2c1a2; }
+#boutique .filter[data-filter="florales"] { --filter-tint: #f4e2e1; --filter-border: #d5ada9; }
+#boutique .filter[data-filter="perles"] { --filter-tint: #f3eddf; --filter-border: #d2c2a0; }
+#boutique .filter[data-filter="creatives"] { --filter-tint: #ece4ed; --filter-border: #c8b5cb; }
+#boutique .filter[data-filter="les-elegantes"] { --filter-tint: #eee6d4; --filter-border: #c9b78d; }
+#boutique .filter:hover { border-color: #354c3e; box-shadow: 0 4px 12px #354c3e18; }
+#boutique .filter.active { color: #fffaf1; background: #354c3e; border-color: #354c3e; box-shadow: 0 0 0 2px #354c3e30; }
+#boutique .filter:focus-visible { outline: 3px solid #9f573c; outline-offset: 4px; }
+#boutique .filter-new { flex-direction: column; gap: 3px; color: #85482f; border: 2px solid #9f573c; background: #f4dfcf; }
+.filter-new .filter-label { font-size: 1.05rem; font-weight: 700; }
+.filter-new .filter-label::before { content: "✦"; margin-right: 7px; }
+.filter-new .filter-caption { font-size: .68rem; font-weight: 400; }
+#boutique .filter-new.active { background: #9f573c; border-color: #9f573c; box-shadow: 0 4px 14px #9f573c30, 0 0 0 2px #9f573c20; }
+@media (min-width: 701px) and (max-width: 1000px) {
+  #boutique .filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #boutique .filter-new { grid-column: 1 / -1; }
+}
 .product-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 22px; }
 .product-card { border: 1px solid #53664412; border-radius: 16px; box-shadow: none; background: #fffbf4; }
 .product-card:hover { box-shadow: 0 15px 35px #43563514; transform: translateY(-4px); }
@@ -484,8 +499,11 @@ main { position: relative; display: flow-root; }
   .section-heading h2 { font-size: 2.5rem; }
   .section-intro { font-size: .85rem; margin-top: 15px; }
   #boutique .collection-help { display: block; margin: 0 0 12px; color: #9f573c; font-size: .88rem; line-height: 1.5; }
-  #boutique .filters { margin: 0 0 22px; padding: 0; gap: 8px; flex-wrap: wrap; overflow: visible; }
-  .filter { padding: 10px 15px; min-height: 42px; font-size: .75rem; }
+  #boutique .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 0 22px; padding: 12px; gap: 10px; overflow: visible; }
+  #boutique .filter { min-height: 52px; padding: 12px 8px; font-size: .88rem; }
+  #boutique .filter-new { grid-column: 1 / -1; min-height: 66px; }
+  .filter-new .filter-label { font-size: 1.12rem; }
+  .filter-new .filter-caption { font-size: .76rem; }
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px 10px; }
   .product-card { border-radius: 12px; box-shadow: none; }
   .product-image { aspect-ratio: 1; }
