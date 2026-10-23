@@ -2218,6 +2218,7 @@ const CATEGORY_INTROS = {
   perles: "Des perles et des couleurs, tout en délicatesse.",
   creatives: "Des formes et des couleurs originales, pour exprimer votre personnalité."
 };
+const ALL_PRODUCTS_CATEGORY_ORDER = ["esprit-nature", "les-elegantes", "florales", "faconnees", "perles", "creatives"];
 const CATEGORY_LABELS = {
   faconnees: "Les façonnées",
   "esprit-nature": "Les esprit nature",
@@ -2597,6 +2598,14 @@ function compareProducts(a, b) {
   );
 }
 
+function compareAllProducts(a, b) {
+  const categoryRank = (category) => {
+    const index = ALL_PRODUCTS_CATEGORY_ORDER.indexOf(category);
+    return index < 0 ? ALL_PRODUCTS_CATEGORY_ORDER.length : index;
+  };
+  return categoryRank(a.category) - categoryRank(b.category) || compareProducts(a, b);
+}
+
 function newestProducts() {
   return [...products].sort((a, b) => {
     const publicationA = publishedProductOrder.get(a.id) || 0;
@@ -2641,7 +2650,7 @@ function renderProducts(filter = "all") {
     ? products.filter((product) => normalizeProductSearch(product.name).includes(query)).sort(compareProducts)
     : filter === "nouveautes"
       ? newestProducts()
-      : [...(filter === "all" ? products : products.filter((product) => product.category === filter))].sort(compareProducts);
+      : [...(filter === "all" ? products : products.filter((product) => product.category === filter))].sort(filter === "all" ? compareAllProducts : compareProducts);
   document.querySelectorAll("[data-filter]").forEach((button) => {
     const selected = !searching && button.dataset.filter === filter;
     button.classList.toggle("active", selected);
