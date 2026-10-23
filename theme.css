@@ -114,27 +114,29 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .featured-selection-heading { margin-bottom: 20px; }
 .featured-selection-heading h2 { margin: 0 0 8px; color: #9f573c; font: 500 clamp(1.8rem, 2.7vw, 2.6rem)/1.2 "Valmeo Editorial", Georgia, serif; }
 .featured-selection-heading p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.6; }
-.featured-selection-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
-.featured-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 90px 90px 14px 14px; background: #fffbf4; }
-.featured-photo { display: block; width: 100%; padding: 0; overflow: hidden; border: 0; background: #e8e1d6; aspect-ratio: 4 / 5; cursor: pointer; }
+.featured-selection-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; gap: 16px; padding: 18px 12px 12px; }
+.featured-card { min-width: 0; width: 96%; justify-self: center; transform: rotate(-4deg); }
+.featured-card:nth-child(2) { width: 90%; margin-top: 46px; transform: rotate(4deg); }
+.featured-card:nth-child(3) { margin-top: 8px; transform: rotate(-3deg); }
+.featured-card:nth-child(4) { width: 91%; margin-top: 35px; transform: rotate(5deg); }
+.featured-photo { display: block; width: 100%; padding: 0; overflow: hidden; border: 6px solid #fffaf1; border-radius: 140px 140px 24px 24px; background: #e8e1d6; box-shadow: 0 14px 30px #354c3e1c; aspect-ratio: 4 / 5; cursor: pointer; }
 .featured-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 44%; }
-.featured-card-copy { padding: 16px 18px 18px; }
-.featured-collection { margin: 0 0 8px; color: var(--muted); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; }
-.featured-card-title { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-.featured-card-title h3 { margin: 0; color: var(--ink); font: 500 1.65rem/1.2 "Valmeo Editorial", Georgia, serif; }
-.featured-card-title .price { white-space: nowrap; }
-.featured-discover { display: inline-flex; align-items: center; gap: 12px; margin-top: 14px; padding: 5px 0; border: 0; border-bottom: 1px solid #9f573c60; background: transparent; color: #9f573c; font: inherit; font-size: .85rem; cursor: pointer; }
-.featured-discover:hover { color: #85482f; border-bottom-color: currentColor; }
-.featured-photo:focus-visible, .featured-discover:focus-visible { outline: 3px solid #9f573c; outline-offset: -4px; }
+.featured-card-copy { padding: 8px 4px 0; text-align: center; }
+.featured-card-copy h3 { margin: 0; }
+.featured-name { padding: 6px 10px; border: 0; background: transparent; color: #9f573c; font: italic 500 1.8rem/1.2 "Valmeo Editorial", Georgia, serif; cursor: pointer; }
+.featured-name:hover { color: #85482f; text-decoration: underline; text-underline-offset: 5px; }
+.featured-photo:focus-visible, .featured-name:focus-visible { outline: 3px solid #9f573c; outline-offset: 3px; }
 .featured-unavailable { margin: 8px 0 0; color: #85482f; font-size: .78rem; }
 @media (max-width: 700px) {
   .featured-selection { margin-bottom: 28px; padding-bottom: 24px; }
-  .featured-selection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 10px; }
-  .featured-card { border-radius: 65px 65px 12px 12px; }
-  .featured-card-copy { padding: 12px 10px 14px; }
-  .featured-card-title h3 { font-size: 1.35rem; }
-  .featured-collection { font-size: .57rem; letter-spacing: .02em; }
-  .featured-discover { min-height: 42px; margin-top: 6px; }
+  .featured-selection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 6px; padding: 12px 6px 8px; }
+  .featured-card { width: 94%; transform: rotate(-3deg); }
+  .featured-card:nth-child(2) { width: 93%; margin-top: 25px; transform: rotate(3deg); }
+  .featured-card:nth-child(3) { margin-top: 0; transform: rotate(-2deg); }
+  .featured-card:nth-child(4) { width: 93%; margin-top: 24px; transform: rotate(3deg); }
+  .featured-photo { border-width: 4px; border-radius: 90px 90px 18px 18px; }
+  .featured-card-copy { padding-top: 5px; }
+  .featured-name { min-height: 44px; font-size: 1.5rem; }
 }
 .filters { gap: 10px; margin-bottom: 32px; }
 .filter { min-height: 44px; padding: 10px 24px; background: #fffbf4; font-size: .83rem; }

@@ -2600,10 +2600,8 @@ function renderFeaturedProducts() {
         <img src="${image}" alt="Les boucles ${escapeAttribute(product.name)} portées à l’oreille" loading="lazy" width="560" height="720">
       </button>
       <div class="featured-card-copy">
-        <p class="featured-collection">${escapeHtml(CATEGORY_LABELS[product.category] || product.tag)}</p>
-        <div class="featured-card-title"><h3>${escapeHtml(product.name)}</h3><span class="price">${euro(product.price)}</span></div>
+        <h3><button class="featured-name" type="button" data-open-product="${escapeAttribute(product.id)}">${escapeHtml(product.name)}</button></h3>
         ${productIsOutOfStock(product) ? '<p class="featured-unavailable">Indisponible actuellement</p>' : ""}
-        <button class="featured-discover" type="button" data-open-product="${escapeAttribute(product.id)}" aria-label="Voir la fiche de ${escapeAttribute(product.name)}">Découvrir <span aria-hidden="true">↗</span></button>
       </div>
     </article>
   `).join("");
