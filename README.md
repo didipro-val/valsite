@@ -23,6 +23,10 @@ La photo de profil publique Instagram est stockee dans `assets/valmeo-profile.jp
 
 ## Fonctionnement boutique
 
+### Nouveautés
+
+Le filtre « Nouveautés », sélectionné à l’ouverture, réunit les 12 derniers modèles ajoutés de toutes les collections. Les nouveaux articles du catalogue dynamique sont classés selon leur première publication : une modification de prix, de stock ou de description ne remet pas un ancien modèle en tête. Les articles du catalogue initial servent de complément, dans l’ordre inverse de leurs lignes d’origine. Les autres filtres conservent leur classement habituel. Les prochains articles publiés depuis Google Sheets apparaissent automatiquement dans cette sélection ; aucune catégorie « Nouveautés » n’est à saisir dans le tableau.
+
 Le panier et les filtres fonctionnent cote navigateur. Les quantites sont synchronisees avec le Google Sheet `catalogue-sites-saugardevalerie` par le service contenu dans `google-apps-script/`. Le paiement passe par Stripe Checkout via le Cloudflare Worker contenu dans `worker/`. Le Worker reserve le stock avant le paiement, puis le webhook Stripe confirme la commande ou libere la reservation. L'integration publiee utilise actuellement l'environnement de test Stripe.
 
 ## Ajouter des articles « Esprit nature »

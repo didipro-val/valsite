@@ -2205,7 +2205,11 @@ const CART_STORAGE_KEY = "valmeo-cart-reservation-v1";
 const CART_HOLD_DURATION = 30 * 60 * 1000;
 const STOCK_SYNC_INTERVAL = 60 * 1000;
 const FREE_SHIPPING_THRESHOLD = 35;
+const NEWEST_PRODUCTS_LIMIT = 12;
+const initialProductIds = new Set(products.map((product) => product.id));
+const publishedProductOrder = new Map();
 const CATEGORY_INTROS = {
+  nouveautes: `Les ${NEWEST_PRODUCTS_LIMIT} derniers modèles ajoutés, toutes collections confondues.`,
   "les-elegantes": "Une touche d’élégance pour le quotidien et les grandes occasions.",
   florales: "Des fleurs et des couleurs, pour porter un peu de nature.",
   faconnees: "Des matières et des couleurs façonnées à la main, pour révéler votre personnalité.",
@@ -2232,7 +2236,7 @@ const FEATURED_PRODUCTS = [
 ];
 
 const cart = new Map();
-let activeFilter = "faconnees";
+let activeFilter = "nouveautes";
 let cartExpiresAt = 0;
 let cartExpiryTimer = null;
 let stockSyncTimer = null;
@@ -2516,11 +2520,13 @@ async function loadPublishedProducts() {
     if (!response.ok || !payload.ok || !Array.isArray(payload.products)) {
       throw new Error(payload.message || "Catalogue publié invalide");
     }
-    payload.products.forEach((row) => {
+    payload.products.forEach((row, publicationIndex) => {
       const index = products.findIndex((product) => product.id === String(row?.id || "").trim());
       const current = index >= 0 ? products[index] : null;
       const product = normalizePublishedProduct(row, current);
       if (!product) return;
+      // The public catalogue preserves first-publication order; edits do not move an entry.
+      if (!initialProductIds.has(product.id)) publishedProductOrder.set(product.id, publicationIndex + 1);
       if (index >= 0) products[index] = product;
       else products.push(product);
     });
@@ -2586,6 +2592,14 @@ function compareProducts(a, b) {
   );
 }
 
+function newestProducts() {
+  return [...products].sort((a, b) => {
+    const publicationA = publishedProductOrder.get(a.id) || 0;
+    const publicationB = publishedProductOrder.get(b.id) || 0;
+    return publicationB - publicationA || b.sourceRow - a.sourceRow || compareProducts(a, b);
+  }).slice(0, NEWEST_PRODUCTS_LIMIT);
+}
+
 function renderFeaturedProducts() {
   const section = document.querySelector("[data-featured-section]");
   const grid = document.querySelector("[data-featured-products]");
@@ -2612,7 +2626,9 @@ function renderProducts(filter = "all") {
   renderFeaturedProducts();
   activeFilter = filter;
   categoryIntro.textContent = CATEGORY_INTROS[filter] || CATEGORY_INTROS.florales;
-  const visibleProducts = [...(filter === "all" ? products : products.filter((product) => product.category === filter))].sort(compareProducts);
+  const visibleProducts = filter === "nouveautes"
+    ? newestProducts()
+    : [...(filter === "all" ? products : products.filter((product) => product.category === filter))].sort(compareProducts);
 
   if (visibleProducts.length === 0) {
     const emptyMessage = filter === "esprit-nature"
